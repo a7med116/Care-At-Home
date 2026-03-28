@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="./image/favicon.ico" type="image/x-icon">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <div id="google_translate_element" style="display:none"></div>
+    <title>Care At Home | Project</title>
+  </head>
+  <body>
+    <!-- start header -->
+
+    <header id="logo">
+      <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+<div class="nav-bar" id="online doctor">
+  <nav>
+    <div class="logo">
+      <a href="#logo"><p><span>care at home</span></p></a>
+      <div class="lang-switch">
+        <button id="lang-toggle">ar</button>
+      </div>
+    </div>
+
+    <!-- Sidebar (Mobile Menu) -->
+    <ul class="sidebar" id="mobileSidebar">
+      <li onclick="toggleSidebar()">
+        <a href="#"><span class="material-symbols-outlined">close</span></a>
+      </li>
+      <li><a href="./Donations/Donations.html">donations</a></li>
+      <li><a href="./How It Work/how it work.html">how care at home works</a></li>
+      <li><a href="./Medical diagnosis/Medical diagnosis.html">diagnosis</a></li>
+
+      <!-- Mobile Dropdown (ID مظبوط) -->
+      <li class="dropdown" id="mobileDropdown">
+        <a href="javascript:void(0)" onclick="toggleMobileDropdown(event)">
+          services <span class="blue-arrow">▼</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="./Care-Bot/bot.html">bot cara at home</a></li>
+        <li><a href="./healthdashboard/health-dashboard.html">healthdashboard</a></li>
+        <li><a href="./patient services/patient.html">patien services</a></li>
+        <li><a href="./prescriptions/prescriptions.html">Telehealth Services</a></li>
+        <li><a href="./Medication/Medication.html">medication</a></li>
+        <li><a href="./Medical diagnosis/Medical diagnosis.html">Diagnosis</a></li>
+        <li><a href="./Emergency/emergency.html">emergency</a></li>
+        <li><a href="./nursing/nursing.html">nursing</a></li>
+        <li><a href="./profile-personal/profile.html">profile-personal</a></li>
+        <li><a href="./profile edit/profile copy.html">profile edit</a></li>
+        <li><a href="./Dashboard/dash.html">Dashboard</a></li>
+        </ul>
+      </li>
+
+      <li><a class="a4" href="./our providers/our providers.html">our providers</a></li>
+      <div class="botn">
+        <a href="./Get-Started/get-started.html" target="_blank">get started</a>
+      </div>
+    </ul>
+
+    <!-- Desktop Menu -->
+    <ul class="main-menu hide">
+      <li><a href="./Donations/Donations.html">donations</a></li>
+      <li><a href="./How It Work/how it work.html">how care at home works</a></li>
+      <li><a href="./Medical diagnosis/Medical diagnosis.html">diagnosis</a></li>
+
+      <!-- Desktop Dropdown (ID مختلف) -->
+      <li class="dropdown" id="desktopDropdown">
+        <a href="javascript:void(0)" onclick="toggleDesktopDropdown(event)">
+          services <span class="blue-arrow">▼</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="./Care-Bot/bot.html">bot cara at home</a></li>
+        <li><a href="./healthdashboard/health-dashboard.html">healthdashboard</a></li>
+        <li><a href="./prescriptions/prescriptions.html">Telehealth Services</a></li>
+        <li><a href="./profile-personal/profile.html">profile-personal</a></li>
+        <li><a href="./patient services/patient.html">patien services</a></li>
+        <li><a href="./profile edit/profile copy.html">profile edit</a></li>
+        <li><a href="./Medication/Medication.html">medication</a></li>
+        <li><a href="./Emergency/emergency.html">emergency</a></li>
+        <li><a href="./Dashboard/dash.html">Dashboard</a></li>
+        <li><a href="./Medical diagnosis/">Diagnosis</a></li>
+        <li><a href="./about us/about.html">about us</a></li>
+      <li><a href="./nursing/nursing.html">nursing</a></li>
+      <li><a href="./help us/help.html">help us</a></li>
+
+        </ul>
+      </li>
+
+      <li><a class="a4" href="./our providers/our providers.html">our providers</a></li>
+      <div class="botn">
+        <a href="./Get-Started/get-started.html" target="_blank">get started</a>
+      </div>
+    </ul>
+
+    <!-- Menu Button for Mobile -->
+    <div class="menu-btn" onclick="toggleSidebar()">
+      <span class="material-symbols-outlined">menu</span>
+    </div>
+  </nav>
+</div>
+      <section>
+        <div class="main-section">
+          <div class="about-doctor">
+            <h2>See a Doctor</h2>
+            <h2>Within Minutes</h2>
+            <p class="p">Get complete, high-quality care with meds delivered in as little as 1 hour.</p>
+              <div class="botn1">
+              <a href="./Doctors/alldoctors.html" target="_blank">speak to a doctor</a>
+            </div>
+            <p class="p1">Available in 50 states. Insurance accepted.</p>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="imge">
+            <img src="./image/photo2.webp" alt="">
+            <img class="photo" src="./image/photo1.webp" alt="">
+            <img src="./image/photo.webp" alt="">
+          </div>
+        </div>
+      </section>
+    </header>
+    <!-- end header -->
+     <!-- start dlivery -->
+
+    <section class="dlivery">
+      <div class="box1">
+        <h1 class="h">See If Delivery Is Available Near You</h1>
+        <p class="enn">Enter your ZIP code to check if prescription delivery is available in your area and how soon your meds could arrive.</p>
+        <div class="inn1">
+          <label for="zeb-code">zip-code</label>
+        </div>
+        <div class="innn">
+        <input type="text" id="zipInput" required placeholder="31004">
+        </div>
+      <img src="./image/delivery_.webp" alt="">
+      <div class="aa">
+          <a href="">check dlivery</a>
+          <p>See if we can deliver meds within an hour.</p>
+        </div>
+      <div class="box">
+        <h1>See If Delivery Is Available Near You</h1>
+        <p class="zip">Enter your ZIP code to check if prescription delivery is available in your area and how soon your meds could arrive.</p>
+        <label for="text">enter your zip code</label>
+        <input type="text" id="zipInput" placeholder="31823">
+        <div class="a">
+          <a  href="#" id="checkBtn" onclick="checkDelivery()">Check Delivery</a>
+          <p>See if we can deliver meds within an hour.</p>
+        </div>
+        <div id="zipError" style="color:red; margin-top:5px;"></div>
+      </div>
+    </section>
+    <!-- end dlivery -->
+     <!-- start main -->
+
+    <main id="how care at home works">
+      <div class="title">
+        <h1>how to get started</h1>
+      </div>
+      <div class="pra">
+        <p>
+          Choose your doctor, start a virtual visit, and have your prescriptions
+          sent to your
+        </p>
+        <p class="pra1">preferred pharmacy for pickup — all in just a few easy
+          steps.</p>
+      </div>
+     <div class="container">
+      <!-- start-content -->
+      <div class="content">
+        <!-- start-card -->
+        <div class="card">
+          <!-- start-item -->
+          <div class="item">
+            <i class="fa-regular fa-comment"></i>
+          <h2>chosse a doctor</h2>
+          <p class="ch">Choose a physician by availability, specialty, ratings, and more.</p>
+          </div>
+          <!-- end-item -->
+      <div class="images">
+        <img src="./image/photo2.webp" alt="">
+      </div>
+    </div>
+    <!-- end-card -->
+  </div>
+  <!-- end-content -->
+      <!-- start-content -->
+      <div class="content">
+        <!-- start-card -->
+        <div class="card">
+          <!-- start-item -->
+          <div class="item">
+            <i class="fa-solid fa-mobile"></i>
+          <h2 class="start">Start your video visit</h2>
+          <p class="ch">Connect with a doctor in minutes on a secure video call.</p>
+          </div>
+          <!-- end-item -->
+      <div class="images">
+        <img src="./image/photo.webp" alt="">
+      </div>
+    </div>
+    <!-- end-card -->
+  </div>
+  <!-- end-content -->
+  <!-- start-content -->
+      <div class="content">
+        <!-- start-card -->
+        <div class="card">
+          <!-- start-item -->
+          <div class="item">
+            <i class="fa-solid fa-van-shuttle"></i>
+          <h2>Get your prescription</h2>
+          <p class="ch">Pick up your meds or have them delivered in as little as an hour.</p>
+          </div>
+          <!-- end-item -->
+      <div class="images">
+        <img src="./image/photo1.webp" alt="">
+      </div>
+    </div>
+    <!-- end-card -->
+  </div>
+  <!-- end-content -->
+  </div>
+      </div>
+      <div class="btn">
+        <a href="./Doctors/index.html" target="_blank">Doctors</a>
+      </div>
+      <p class="none">Available in 50 states. Insurance accepted.</p>
+    </main>
+    <!-- end main -->
+     <div class="diagnosis" id="diagnosis">
+       <h1>check your self</h1>
+      <div class="diagn">
+        <div class="kalam">
+          <p>Diagnosis is the process of determining the cause of a disease or condition by evaluating a patient's signs, symptoms, and medical history. It is the foundation of patient care,
+             as an accurate diagnosis leads to effective treatment plans.</p>
+             <div class="icons-tele1">
+              <div class="icon-tele1">
+                <img src="./image/cam.svg" alt="">
+              <p>Fast</p>
+              <p>virtual visits</p>
+              </div>
+              <div class="icon-tele1">
+                <img src="./image/message-circle-lines.svg" alt="">
+                <p>24/7 care</p>
+                <p>assistants</p>
+              </div>
+              <div class="icon-tele1">
+                <img src="./image/ico_pill.svg" alt="">
+              <p>Prescriptions</p>
+              <p>virtual visits</p>
+              </div>
+            </div>
+            <div class="li">
+             <a href="./Medical diagnosis/Medical diagnosis.html" target="_blank">check now</a>
+            </div>
+          </div>
+        <div class="sora">
+          <img src="./image/diagnosis.jpg" alt="">
+        </div>
+      </div>
+     </div>
+     <!-- pharmacy -->
+      <div class="pharmacies">
+        <div class="pharmacy">
+        <div class="title">
+          <h3> care at home Professional Pharmacy: Your healthcare starts here.</h3>
+          <p>Your care at home Pharmacies offer comprehensive pharmaceutical care combining safety,
+             speed, and professional expertise. We are committed to providing genuine medications,
+              reliable delivery, and personalized pharmaceutical consultations tailored to each patient's needs.</p>
+              <div class="botns">
+                <a href="./pharmacy/pharmacy.html" target="_blank">order now</a>
+              </div>
+              <div class="icones">
+                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+              </div>
+            </div>
+            <div class="image">
+              <img src="./image/pharmacy (1).jpg" alt="">
+            </div>
+      </div>
+      </div>
+      <!-- pharmacy -->
+      <!-- strat tele services -->
+        <div class="main-services" id="Telehealth Services">
+          <div class="tele">
+            <h2>Telehealth Services</h2>
+            <h6>Available 24/7</h6>
+            <p class="tel">See a doctor within minutes and get an Rx from any local pharmacy.</p>
+              <div class="botn11">
+              <a href="./prescriptions/prescriptions.html" target="_blank">prescriptions</a>
+            </div>
+            <p class="telee">Available in 50 states. Insurance accepted.</p>
+            <div class="icons-tele">
+              <div class="icon-tele">
+                <img src="./image/cam.svg" alt="">
+              <p>Fast</p>
+              <p>virtual visits</p>
+              </div>
+              <div class="icon-tele">
+                <img src="./image/message-circle-lines.svg" alt="">
+                <p>24/7 care</p>
+                <p>assistants</p>
+              </div>
+              <div class="icon-tele">
+                <img src="./image/ico_pill.svg" alt="">
+              <p>Prescriptions</p>
+              <p>virtual visits</p>
+              </div>
+            </div>
+          </div>
+          <div class="cards-tele">
+            <div class="imge">
+              <img class="photo-tele" src="./image/photo1.webp" alt="">
+              <img src="./image/photo.webp" alt="">
+            </div>
+          </div>
+        </div>
+      <!-- end tele services -->
+       <!-- start price -->
+        <div class="pric">
+          <div class="price">
+          <div class="pricing">
+            <h1>all-time</h1>
+            <h3>physician visit</h3>
+            <p>One-time visit with a physician for diagnosis,
+               treatment, Rx, labs,
+                referrals, and doctor’s notes.</p>
+                <div class="pricing1">
+                  <div class="copay">
+                    <div class="with1">
+                      <h5>with insurance</h5>
+                    <h2>copay</h2>
+                    </div>
+
+                  </div>
+                  <div class="without">
+                      <div class="with">
+                        <h5>without insurance</h5>
+                      <h2>$ 129</h2>
+                      </div>
+                    </div>
+                </div>
+                <div class="your">
+                  <p>Your copay or $129 without insurance.</p>
+                </div>
+                <div class="boton">
+              <a href="./Subscriptions/Subscriptions.html" target="_blank">get Subscriptions</a>
+            </div>
+            <b>¹Having a visit does not guarantee a medication will be ordered or refilled. It is the doctors’ professional decision. It is prohibited by law to prescribe or refill controlled substances via virtual visits. ²Your provider may recommend follow-up care, including additional services that may not be included in the visit price.</b>
+          </div>
+          <div class="price2">
+            <div class="boxing">
+              <div class="hassan">
+                <h2>What's included</h2>
+              </div>
+              <div class="section1">
+                <img src="./image/cam.svg" alt="">
+               <div class="section2">
+                 <h3>24/7 virtual doctor visits</h3>
+                <p>See the first available physician,
+                   or schedule a visit with a physician you like.</p>
+               </div>
+              </div>
+              <div class="section1">
+                <img src="./image/ico_pill.svg" alt="">
+                <div class="section2">
+                 <h3>Prescriptions as needed</h3>
+                <p>See our physicians whenever you need a new Rx or need to renew existing Rx.¹</p>
+               </div>
+              </div>
+              <div class="section1">
+                <img src="./image/message-circle-lines.svg" alt="">
+                <div class="section2">
+                 <h3>On-demand care support</h3>
+                <p>Chat with our care support whenever necessary. They are here for you 24/7.</p>
+               </div>
+              </div>
+              <div class="section1">
+                <img src="./image/shield.5fdae0.svg" alt="">
+                <div class="section2">
+                 <h3>100% treatment guarantee</h3>
+                <p>You can request a refund after your visit if we are unable to provide care.</p>
+               </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+       <!-- end price -->
+    <div class="de">
+      <h1>Comprehensive care, where you are</h1>
+      <p>Access a wide range of essential healthcare services tailored to your needs,
+         all from the comfort of your home</p>
+    </div>
+    <!-- start pepere -->
+
+   <section class="pepere">
+  <div class="cards1">
+     <div class="icon">
+      <h2>Online Prescriptions</h2>
+    <img src="./image/DrHouse-online-prescriptions.144477.svg" alt="">
+    </div>
+    <div class="tags">
+      <span>Refills</span>
+      <span>Antibiotics</span>
+      <span>Antivirals</span>
+      <span>Antihistamines</span>
+      <span>Beta Blockers</span>
+      <span>Antidepressants</span>
+    </div>
+
+    <div class="more">
+      <a href="./Get-Started/get-started.html">Read more</a>
+    </div>
+  </div>
+  <div class="cards1">
+     <div class="icon">
+      <h2>telehealth services</h2>
+    <img src="./image/DrHouse-telehealth-services.e98809.svg" alt="">
+    </div>
+    <div class="tags">
+      <span>online doctor</span>
+      <span>doctor's note</span>
+      <span>lab tests</span>
+      <span>urgent care</span>
+      <span>weight loss</span>
+      <span>smoking cessation</span>
+    </div>
+
+    <div class="more">
+      <a href="./Get-Started/get-started.html">Read more</a>
+    </div>
+  </div>
+  <div class="cards1">
+     <div class="icon">
+      <h2>virtual urgent care</h2>
+    <img src="./image/DrHouse-virtual-urgent-care.becb21.svg" alt="">
+    </div>
+    <div class="tags">
+      <span>cold & flu</span>
+      <span>food poisoning</span>
+      <span>strep throat</span>
+      <span>diarrhea</span>
+      <span>covid-19</span>
+      <span>sinus infection</span>
+    </div>
+
+    <div class="more">
+      <a href="./Get-Started/get-started.html">Read more</a>
+    </div>
+  </div>
+  <div class="cards1">
+     <div class="icon">
+      <h2>virtual primary care</h2>
+    <img src="./image/DrHouse-virtual-primary-care.f78115.svg" alt="">
+    </div>
+    <div class="tags">
+      <span>asthma</span>
+      <span>hypertension</span>
+      <span>arthritis</span>
+      <span>diabetes</span>
+      <span>migraine</span>
+      <span>allergies</span>
+      <span>awv</span>
+    </div>
+
+    <div class="more">
+      <a href="./Get-Started/get-started.html">Read more</a>
+    </div>
+  </div>
+  <div class="cards1">
+    <div class="icon">
+      <h2>men's health</h2>
+    <img src="./image/DrHouse-mens-health.f88aac.svg" alt="">
+    </div>
+    <div class="tags">
+      <span>hair loss</span>
+      <span>hemorrhoids</span>
+      <span>premature ejaculation</span>
+      <span>erectile dysfunction</span>
+    </div>
+
+    <div class="more">
+      <a href="./Get-Started/get-started.html">Read more</a>
+    </div>
+  </div>
+  <div class="cards1">
+    <div class="icon">
+      <h2>women's health</h2>
+    <img src="./image/DrHouse-womens-health.e6f72f.svg" alt="">
+    </div>
+    <div class="tags">
+      <span>menopause</span>
+      <span>gynecology</span>
+      <span>birth control</span>
+      <span>yeast infections</span>
+      <span>bacterial vaginosis</span>
+
+    </div>
+
+    <div class="more">
+      <a href="./Get-Started/get-started.html">Read more</a>
+    </div>
+  </div>
+</section>
+    <!-- end pepere -->
+     <!-- start treatment -->
+      <div class="treatment">
+        <div class="got">
+        <h2>Get a treatment plan for 1000s of conditions</h2>
+        <p>Get the treatment you need, whenever you need it from our expert board-certified online physicians. Our doctors are here for you 24/7/365!</p>
+      </div>
+      <div class="diseases">
+        <div class="disease">
+          <h2>cold & flu treatment</h2>
+          <a href="./Get-Started/get-started.html">learn more</a>
+        </div>
+        <div class="disease">
+          <h2>antibiotics</h2>
+          <a href="./Get-Started/get-started.html">learn more</a>
+        </div>
+        <div class="disease">
+          <h2>antifungals</h2>
+          <a href="./Get-Started/get-started.html">learn more</a>
+        </div>
+        <div class="disease">
+          <h2>prescription refills</h2>
+          <a href="./Get-Started/get-started.htm">learn more</a>
+        </div>
+        <div class="disease">
+          <h2>antivirals</h2>
+          <a href="./Get-Started/get-started.html">learn more</a>
+        </div>
+        <div class="disease">
+          <h2>beta blockers</h2>
+          <a href="./Get-Started/get-started.html">learn more</a>
+        </div>
+        <div class="disease">
+          <h2>anxiety medication</h2>
+          <a href="./Get-Started/get-started.html">learn more</a>
+        </div>
+        <div class="disease">
+          <h2>corticosteroids</h2>
+          <a href="./Get-Started/get-started.html">learn more</a>
+        </div>
+        <div class="disease">
+          <h2>diuretice</h2>
+          <a href="./Get-Started/get-started.html">learn more</a>
+        </div>
+      </div>
+      </div>
+     <!-- end treatment -->
+     <!-- start article -->
+     <article id="our providers">
+       <div class="providers">
+        <div class="articl">
+         <div class="picture">
+          <img src="./image/doctor-group.jpg" alt="">
+        </div>
+        <div class="abouts">
+          <h2 class="who">World-class care team</h2>
+          <p class="p1">All of our doctors are board-certified and trained in the top US medical schools.</p>
+          <p class="p2">Our physicians are qualified to diagnose and treat wide variety of non-emergency conditions.</p>
+          <p class="p3">We approach patient care with the best clinical practices to provide personalized treatment.</p>
+          <div class="provide">
+            <a href="./our providers/our providers.html" target="_blank">our providers</a>
+          </div>
+        </div>
+      </div>
+       </div>
+    </article>
+    <!-- end article -->
+     <!-- start tabeb -->
+     <div class="see">
+       <h2>
+        See why people turn to care at home...
+      </h2>
+    </div>
+     <section class="tabeb">
+      <div class="dev">
+        <div class="div">
+        <img src="./image/five_stars.svg" alt="">
+        <h3>best online doctor</h3>
+        <p>
+        Best online doctors service I've ever used! 5 stars! Ease, speed, price, comfort, value. Dr Berzansky is my new go-to!
+      </p>
+      <h5>android user</h5>
+    </div>
+        <div class="div">
+        <img src="./image/five_stars.svg" alt="">
+        <h3>amazing</h3>
+        <p>
+        i am grateful i found care at home. instead of waiting weeks, i waited 15 min to get on a quick video chat
+      </p>
+      <h5>ios user</h5>
+    </div>
+        <div class="div">
+        <img src="./image/five_stars.svg" alt="">
+        <h3>will use again</h3>
+        <p>
+          very kind and professional, definitely will use again.
+      </p>
+      <h5>android user</h5>
+    </div>
+        <div class="div">
+        <img src="./image/five_stars.svg" alt="">
+        <h3>quick, convenient...</h3>
+        <p>
+        quick, convenient, and professional. avoided an emergency room visit. i am very satisfied with my visit.
+      </p>
+      <h5>android user</h5>
+    </div>
+        <div class="div">
+        <img src="./image/five_stars.svg" alt="">
+        <h3>great.</h3>
+        <p>
+        i was in and out in just a few minutes. it took longer to sign up than it did to be seen! excellent service and very kind...
+      </p>
+      <h5>ios user</h5>
+    </div>
+  </div>
+</section>
+<!-- end tabeb -->
+ <!-- start footer -->
+  <!-- ===== FOOTER ===== -->
+<footer class="meds-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h3>Care At Home</h3>
+      <p class="footer-support">Customer Support</p>
+      <p class="footer-support-text">Support Is Open 24/7 In The Care At Home</p>
+      <p class="footer-address-title">Address</p>
+      <p class="footer-address">Egypt, Tanta</p>
+      <div class="footer-social">
+        <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="../Care-Bot/bot.html">bot cara at home</a></li>
+        <li><a href="../healthdashboard/health-dashboard.html">healthdashboard</a></li>
+        <li><a href="../patient services/patient.html">patien services</a></li>
+        <li><a href="./prescriptions/prescriptions.html">Telehealth Services</a></li>
+        <li><a href="../Medication/Medication.html">medication</a></li>
+        <li><a href="../Medical diagnosis/Medical diagnosis.html">Diagnosis</a></li>
+        <li><a href="../Emergency/emergency.html">emergency</a></li>
+        <li><a href="../nursing/nursing.html">nursing</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="../How It Work/how it work.html">How It Works</a></li>
+        <li><a href="../Subscriptions/">Pricing</a></li>
+        <li><a href="#">Promo Codes</a></li>
+        <li><a href="#">Employers</a></li>
+        <li><a href="#">Brokers</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="../about us/about.html">About Us</a></li>
+        <li><a href="../help us/help.html">Help Center</a></li>
+        <li><a href="../our providers/our providers.html">Our Providers</a></li>
+        <li><a href="../pharmacy/contactus/contact.html">Contact Us</a></li>
+        <li><a href="#">Newsroom</a></li>
+        <li><a href="#">Sitemap</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Terms Of Use</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Refund/Cancellation Policy</a></li>
+        <li><a href="#">Notice Of Privacy Practices</a></li>
+        <li><a href="#">Consent To Virtual Visits</a></li>
+        <li><a href="#">Content Creation Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-partners">
+    <span class="partner-logo">aetna</span>
+    <span class="partner-logo">Anthem</span>
+    <span class="partner-logo">Humana</span>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Care At Home, Inc. All Rights Reserved.</p>
+  </div>
+</footer>
+ <!-- end footer -->
+  <script src="script.js"></script>
+  <div id="subscribeModal" class="subscribe-overlay">
+  <div class="subscribe-modal">
+    <button class="close-btn" onclick="closeSubscribeModal()">&times;</button>
+    <div class="icon">
+      <i class="fa-solid fa-bell"></i>
+    </div>
+    <h3>Subscribe Now!</h3>
+    <p>Join our community to get the latest health tips, exclusive offers, and updates from Care At Home.</p>
+    <a href="./Subscriptions/Subscriptions.html" class="subscribe-btn">Subscribe</a>
+    <button class="no-thanks" onclick="closeSubscribeModal()">No thanks, maybe later</button>
+  </div>
+</div>
+<script src="script.js"></script>
+  </body>
+</html>
