@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Care At Home - How It Works</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="how it work.css">
+    <link rel="shortcut icon" href="../image/favicon.ico" type="image/x-icon">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <base target="_blank">
+</head>
+  <body>
+    <!-- ══════════════ HEADER (unchanged) ══════════════ -->
+  <header id="logo">
+    <div class="nav-bar" id="online doctor">
+      <nav>
+        <div class="logo">
+          <a href="#logo"><p><span>care at home</span></p></a>
+          <div class="lang-switch">
+            <button id="lang-toggle">ar</button>
+          </div>
+        </div>
+        <ul class="sidebar">
+          <li onclick="hidesidebar()"><a href="#"><span class="material-symbols-outlined">close</span></a></li>
+          <li><a href="../index.html#online doctor">online doctor</a></li>
+          <li><a href="../index.html#how care at home works">how care at home works</a></li>
+          <li><a href="../index.html#diagnosis">diagnosis</a></li>
+          <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+          <li><a class="a4" href="../our providers/our providers.html">our providers</a></li>
+          <div class="botn">
+            <a href="./Get-Started/get-started.html" target="_blank">get started</a>
+          </div>
+        </ul>
+        <ul>
+          <li class="hide"><a href="../index.html#online doctor">online doctor</a></li>
+          <li class="hide"><a href="../index.html#how care at home works">how care at home works</a></li>
+          <li class="hide"><a href="../index.html#diagnosis">diagnosis</a></li>
+          <li class="hide"><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+          <li class="hide"><a class="a4" href="../our providers/our providers.html">our providers</a></li>
+          <div class="botn">
+            <a class="hide" href="./Get-Started/get-started.html" target="_blank">get started</a>
+          </div>
+          <li class="span" onclick="showsidebar()"><a href="#"><span class="material-symbols-outlined">menu</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <!-- HERO -->
+    <section class="bot-hero">
+      <div class="bh-inner">
+        <div class="bh-badge">
+          <i class="fa-solid fa-gift"></i>&nbsp; 100% Free For Everyone
+        </div>
+        <h1>How <span>Care At Home</span> Works</h1>
+        <p class="bh-desc">
+          Learn how to use our platform to get premium healthcare services at home.
+          Simple steps, professional service, and completely free!
+        </p>
+        <div class="free-badge">
+          <i class="fa-solid fa-check-circle"></i>
+          Completely Free Service
+        </div>
+        <div class="bh-stats" style="margin-top: 30px;">
+          <div class="bhs">
+            <i class="fa-solid fa-play-circle"></i><span>Easy to Use</span>
+          </div>
+          <div class="bhs">
+            <i class="fa-solid fa-clock"></i><span>24/7 Available</span>
+          </div>
+          <div class="bhs">
+            <i class="fa-solid fa-shield-halved"></i><span>Safe & Trusted</span>
+          </div>
+          <div class="bhs">
+            <i class="fa-solid fa-users"></i><span>50,000+ Users</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+
+      <!-- STEPS SECTION -->
+      <section class="steps-section" id="steps">
+        <div class="section-title">
+          <h2> How To Use The Platform 🚀</h2>
+          <p>Follow these simple steps to get healthcare services at your home</p>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h3>Create Your Account</h3>
+            <p>First step is creating a free account on the platform. You only need:</p>
+            <ul class="step-features">
+              <li><i class="fa-solid fa-check"></i> Valid email address</li>
+              <li><i class="fa-solid fa-check"></i> Phone number for contact</li>
+              <li><i class="fa-solid fa-check"></i> Secure password</li>
+              <li><i class="fa-solid fa-check"></i> SMS verification</li>
+            </ul>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h3>Choose Your Service</h3>
+            <p>After logging in, select from available services:</p>
+            <ul class="step-features">
+              <li><i class="fa-solid fa-check"></i> Online consultation</li>
+              <li><i class="fa-solid fa-check"></i> Home visit</li>
+              <li><i class="fa-solid fa-check"></i> Lab tests</li>
+              <li><i class="fa-solid fa-check"></i> X-rays & scans</li>
+            </ul>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h3>Schedule & Location</h3>
+            <p>Set your preferred time and date, and enter your address details:</p>
+            <ul class="step-features">
+              <li><i class="fa-solid fa-check"></i> Choose day and time</li>
+              <li><i class="fa-solid fa-check"></i> Pin location on map</li>
+              <li><i class="fa-solid fa-check"></i> Add special instructions</li>
+              <li><i class="fa-solid fa-check"></i> Confirm booking</li>
+            </ul>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <h3>Payment (Free!)</h3>
+            <p>All basic services are free! For premium services:</p>
+            <ul class="step-features">
+              <li><i class="fa-solid fa-check"></i> Vodafone Cash</li>
+              <li><i class="fa-solid fa-check"></i> Credit card</li>
+              <li><i class="fa-solid fa-check"></i> Bank transfer</li>
+              <li><i class="fa-solid fa-check"></i> Pay on visit</li>
+            </ul>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">5</div>
+            <h3>Track Your Request</h3>
+            <p>Track your request status in real-time:</p>
+            <ul class="step-features">
+              <li><i class="fa-solid fa-check"></i> Instant notifications</li>
+              <li><i class="fa-solid fa-check"></i> Track doctor/nurse location</li>
+              <li><i class="fa-solid fa-check"></i> Direct communication</li>
+              <li><i class="fa-solid fa-check"></i> Rate the service</li>
+            </ul>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">6</div>
+            <h3>Get Your Report</h3>
+            <p>After service completion, receive:</p>
+            <ul class="step-features">
+              <li><i class="fa-solid fa-check"></i> Detailed medical report</li>
+              <li><i class="fa-solid fa-check"></i> Electronic prescription</li>
+              <li><i class="fa-solid fa-check"></i> Health tips</li>
+              <li><i class="fa-solid fa-check"></i> Follow-up schedule</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURES -->
+      <section id="features">
+        <div class="section-title">
+          <h2>✨ Platform Features</h2>
+          <p>Why thousands of users choose Care At Home?</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="fa-solid fa-user-doctor"></i>
+            </div>
+            <h3>Best Doctors</h3>
+            <p>Specialized medical team of certified doctors with high experience in all specialties</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="fa-solid fa-truck-medical"></i>
+            </div>
+            <h3>Fast Service</h3>
+            <p>Doctor or nurse arrives in less than 60 minutes for emergency cases</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="fa-solid fa-file-medical"></i>
+            </div>
+            <h3>Electronic Health Record</h3>
+            <p>All your health data and reports saved securely and organized</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="fa-solid fa-headset"></i>
+            </div>
+            <h3>24/7 Support</h3>
+            <p>Customer service team available around the clock to answer your inquiries</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="fa-solid fa-pills"></i>
+            </div>
+            <h3>Mobile Pharmacy</h3>
+            <p>Medicine delivery to your home with usage instructions and dosages</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="fa-solid fa-mobile-screen"></i>
+            </div>
+            <h3>Easy App</h3>
+            <p>Simple and comfortable user interface suitable for all age groups</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="faq-section" id="faq">
+        <div class="section-title">
+          <h2> Frequently Asked Questions❓</h2>
+          <p>Answers to the most important user inquiries</p>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Is the service really free?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes! All basic medical consultations and health follow-ups are completely free. There are some premium services (specialized visits, advanced scans) at symbolic prices less than 50% of traditional clinic prices.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>How do you guarantee doctor quality?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>All doctors on our platform are certified by the Egyptian Ministry of Health and Doctors Syndicate. We verify their certificates and practical experience. Each doctor is also evaluated after every visit to ensure continuous quality.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>What areas do you cover?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>We currently cover Greater Cairo, Alexandria, Tanta, Mansoura, and Zagazig governorates. Coming soon to all Egyptian governorates. You can check service availability in your area by entering your address in the app.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>How do I book an appointment?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>After logging in, click "Book Appointment", select the service type (consultation/home visit/lab tests), choose the required specialty, select your preferred date and time, then confirm the booking. You will receive an immediate confirmation message.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Can I cancel my appointment?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, you can cancel or reschedule your appointment for free up to 4 hours before the scheduled time. To cancel: go to "My Appointments" and click cancel. No fees for early cancellation.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>How do I contact technical support?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>You can reach us via: Live chat in the app (fastest), Phone at 16600 (24/7), Email support@careathome.com, or through our social media pages. Average response time: 2 minutes for chat.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta-section" id="cta">
+        <h2>🎯 Ready To Start?</h2>
+        <p>Join over 50,000 users who trust Care At Home for premium healthcare services in their homes</p>
+        <a href="../Get-Started/get-started.html" class="cta-btn" onclick="showSignupModal()">
+          <i class="fa-solid fa-rocket"></i>
+          Start Now - For Free
+        </a>
+      </section>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+<footer class="meds-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h3>Care At Home</h3>
+      <p class="footer-support">Customer Support</p>
+      <p class="footer-support-text">Support Is Open 24/7 In The Care At Home</p>
+      <p class="footer-address-title">Address</p>
+      <p class="footer-address">Egypt, Tanta</p>
+      <div class="footer-social">
+        <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="../Care-Bot/bot.html">bot cara at home</a></li>
+        <li><a href="../healthdashboard/health-dashboard.html">healthdashboard</a></li>
+        <li><a href="../patient services/patient.html">patien services</a></li>
+        <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+        <li><a href="../Medication/Medication.html">medication</a></li>
+        <li><a href="../Medical diagnosis/Medical diagnosis.html">Diagnosis</a></li>
+        <li><a href="../Emergency/emergency.html">emergency</a></li>
+        <li><a href="../nursing/nursing.html">nursing</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="../How It Work/how it work.html">How It Works</a></li>
+        <li><a href="../Subscriptions/">Pricing</a></li>
+        <li><a href="#">Promo Codes</a></li>
+        <li><a href="#">Employers</a></li>
+        <li><a href="#">Brokers</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="../about us/about.html">About Us</a></li>
+        <li><a href="../help us/help.html">Help Center</a></li>
+        <li><a href="../our providers/our providers.html">Our Providers</a></li>
+        <li><a href="../pharmacy/contactus/contact.html">Contact Us</a></li>
+        <li><a href="#">Newsroom</a></li>
+        <li><a href="#">Sitemap</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Terms Of Use</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Refund/Cancellation Policy</a></li>
+        <li><a href="#">Notice Of Privacy Practices</a></li>
+        <li><a href="#">Consent To Virtual Visits</a></li>
+        <li><a href="#">Content Creation Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-partners">
+    <span class="partner-logo">aetna</span>
+    <span class="partner-logo">Anthem</span>
+    <span class="partner-logo">Humana</span>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Care At Home, Inc. All Rights Reserved.</p>
+  </div>
+</footer>
+ <!-- end footer -->
+    <div id="google_translate_element"></div>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src="how it work.js"></script>
+  </body>
+</html>

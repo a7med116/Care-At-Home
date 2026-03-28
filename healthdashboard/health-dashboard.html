@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة الصحة | Health Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="../image/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="health-dashboard.css">
+</head>
+<body>
+
+<section class="health-dashboard-section" id="health-dashboard">
+
+  <!-- Header -->
+  <div class="dashboard-header">
+    <div class="header-icon">
+      <i class="fa-solid fa-heart-pulse"></i>
+    </div>
+    <h2>لوحه <b>الصحه</b> </h2>
+    <p>نظرة شاملة على صحتك مع مؤشرات حيوية فورية، اتجاهات، والتاريخ الطبي</p>
+  </div>
+
+  <!-- User Profile Summary -->
+  <div class="user-summary-card">
+    <div class="user-avatar">
+      <i class="fa-solid fa-user-doctor"></i>
+    </div>
+    <div class="user-info">
+      <h3>أحمد محمد</h3>
+      <p><i class="fa-solid fa-cake-candles"></i> 35 سنة</p>
+      <p><i class="fa-solid fa-venus-mars"></i> ذكر</p>
+      <p><i class="fa-solid fa-droplet"></i> فصيلة الدم: O+</p>
+    </div>
+    <div class="user-status">
+      <span class="status-badge healthy"><i class="fa-solid fa-check-circle"></i> صحي</span>
+      <p class="last-check">آخر فحص: اليوم، 9:30 ص</p>
+    </div>
+  </div>
+
+  <!-- Vital Signs Grid -->
+  <div class="vitals-grid">
+
+    <!-- Body Temperature -->
+    <div class="vital-card" onclick="showVitalDetails('temperature')">
+      <div class="vital-icon temp">
+        <i class="fa-solid fa-temperature-half"></i>
+      </div>
+      <div class="vital-value">36.8</div>
+      <div class="vital-unit">°م</div>
+      <div class="vital-label">درجة حرارة الجسم</div>
+      <div class="vital-status normal">طبيعي</div>
+      <div class="vital-progress">
+        <div class="progress-bar temp-bar" style="width: 75%"></div>
+      </div>
+    </div>
+
+    <!-- Blood Sugar -->
+    <div class="vital-card" onclick="showVitalDetails('sugar')">
+      <div class="vital-icon sugar">
+        <i class="fa-solid fa-cube"></i>
+      </div>
+      <div class="vital-value">105</div>
+      <div class="vital-unit">mg/dL</div>
+      <div class="vital-label">سكر الدم</div>
+      <div class="vital-status warning">مرتفع قليلاً</div>
+      <div class="vital-progress">
+        <div class="progress-bar sugar-bar" style="width: 60%"></div>
+      </div>
+    </div>
+
+    <!-- Blood Pressure -->
+    <div class="vital-card" onclick="showVitalDetails('pressure')">
+      <div class="vital-icon pressure">
+        <i class="fa-solid fa-droplet"></i>
+      </div>
+      <div class="vital-value">120/80</div>
+      <div class="vital-unit">mmHg</div>
+      <div class="vital-label">ضغط الدم</div>
+      <div class="vital-status normal">مثالي</div>
+      <div class="vital-progress">
+        <div class="progress-bar pressure-bar" style="width: 70%"></div>
+      </div>
+    </div>
+
+    <!-- Heart Rate -->
+    <div class="vital-card" onclick="showVitalDetails('heartrate')">
+      <div class="vital-icon heart">
+        <i class="fa-solid fa-heart"></i>
+      </div>
+      <div class="vital-value">78</div>
+      <div class="vital-unit">نبضة/د</div>
+      <div class="vital-label">ضربات القلب</div>
+      <div class="vital-status normal">صحي</div>
+      <div class="vital-progress">
+        <div class="progress-bar heart-bar" style="width: 65%"></div>
+      </div>
+    </div>
+
+    <!-- Oxygen Saturation -->
+    <div class="vital-card" onclick="showVitalDetails('oxygen')">
+      <div class="vital-icon oxygen">
+        <i class="fa-solid fa-lungs"></i>
+      </div>
+      <div class="vital-value">98</div>
+      <div class="vital-unit">%</div>
+      <div class="vital-label">تشبع الأكسجين</div>
+      <div class="vital-status normal">ممتاز</div>
+      <div class="vital-progress">
+        <div class="progress-bar oxygen-bar" style="width: 98%"></div>
+      </div>
+    </div>
+
+    <!-- Respiratory Rate -->
+    <div class="vital-card" onclick="showVitalDetails('respiratory')">
+      <div class="vital-icon respiratory">
+        <i class="fa-solid fa-wind"></i>
+      </div>
+      <div class="vital-value">16</div>
+      <div class="vital-unit"> breaths/min</div>
+      <div class="vital-label">معدل التنفس</div>
+      <div class="vital-status normal">طبيعي</div>
+      <div class="vital-progress">
+        <div class="progress-bar respiratory-bar" style="width: 53%"></div>
+      </div>
+    </div>
+
+    <!-- BMI -->
+    <div class="vital-card" onclick="showVitalDetails('bmi')">
+      <div class="vital-icon bmi">
+        <i class="fa-solid fa-weight-scale"></i>
+      </div>
+      <div class="vital-value">22.5</div>
+      <div class="vital-unit">kg/m²</div>
+      <div class="vital-label">مؤشر كتلة الجسم</div>
+      <div class="vital-status normal">وزن طبيعي</div>
+      <div class="vital-progress">
+        <div class="progress-bar bmi-bar" style="width: 56%"></div>
+      </div>
+    </div>
+
+    <!-- Sleep Quality -->
+    <div class="vital-card" onclick="showVitalDetails('sleep')">
+      <div class="vital-icon sleep">
+        <i class="fa-solid fa-moon"></i>
+      </div>
+      <div class="vital-value">7.5</div>
+      <div class="vital-unit">ساعات</div>
+      <div class="vital-label">مدة النوم</div>
+      <div class="vital-status good">جيد</div>
+      <div class="vital-progress">
+        <div class="progress-bar sleep-bar" style="width: 94%"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Middle Section: Charts -->
+  <div class="charts-section">
+
+    <!-- Blood Pressure Breakdown -->
+    <div class="chart-card pressure-breakdown">
+      <h4><i class="fa-solid fa-droplet"></i> تفاصيل ضغط الدم</h4>
+      <div class="bp-metrics">
+        <div class="bp-metric">
+          <span class="bp-label">الانقباضي</span>
+          <div class="bp-bar-container">
+            <div class="bp-bar systolic" style="width: 80%"></div>
+          </div>
+          <span class="bp-value">120</span>
+        </div>
+        <div class="bp-metric">
+          <span class="bp-label">الانبساطي</span>
+          <div class="bp-bar-container">
+            <div class="bp-bar diastolic" style="width: 53%"></div>
+          </div>
+          <span class="bp-value">80</span>
+        </div>
+        <div class="bp-metric">
+          <span class="bp-label">النبض</span>
+          <div class="bp-bar-container">
+            <div class="bp-bar pulse" style="width: 40%"></div>
+          </div>
+          <span class="bp-value">40</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Heart Rate Chart -->
+    <div class="chart-card heart-chart">
+      <h4><i class="fa-solid fa-chart-simple"></i> ضربات القلب - آخر 7 أيام</h4>
+      <div class="chart-bars">
+        <div class="day-bar">
+          <div class="bar" style="height: 60%"></div>
+          <span>السبت</span>
+        </div>
+        <div class="day-bar">
+          <div class="bar" style="height: 75%"></div>
+          <span>الأحد</span>
+        </div>
+        <div class="day-bar">
+          <div class="bar" style="height: 85%"></div>
+          <span>الإثنين</span>
+        </div>
+        <div class="day-bar">
+          <div class="bar" style="height: 55%"></div>
+          <span>الثلاثاء</span>
+        </div>
+        <div class="day-bar">
+          <div class="bar" style="height: 80%"></div>
+          <span>الأربعاء</span>
+        </div>
+        <div class="day-bar">
+          <div class="bar" style="height: 70%"></div>
+          <span>الخميس</span>
+        </div>
+        <div class="day-bar">
+          <div class="bar" style="height: 65%"></div>
+          <span>الجمعة</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Section: History & Profile -->
+  <div class="bottom-section">
+
+    <!-- Medical History -->
+    <div class="history-card">
+      <h4><i class="fa-solid fa-clock-rotate-left"></i> السجل الطبي الأخير</h4>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">15 يناير 2025</div>
+          <div class="timeline-content">
+            <h5>الفحص السنوي الشامل</h5>
+            <p>فحص عام - جميع المؤشرات طبيعية. تم استبدال فيتامين د.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">28 ديسمبر 2024</div>
+          <div class="timeline-content">
+            <h5>تحليل دم شامل - نتائج طبيعية</h5>
+            <p>مستويات الكوليسترول ممتازة. HDL: 65 mg/dL, LDL: 110 mg/dL</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">10 نوفمبر 2024</div>
+          <div class="timeline-content">
+            <h5>فحص طبي دوري</h5>
+            <p>تنظيف روتيني. لم يتم اكتشاف تسوس. الموعد القادم بعد 6 أشهر.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">3 أكتوبر 2024</div>
+          <div class="timeline-content">
+            <h5>فحص نظر</h5>
+            <p>الرؤية 20/20. لا يوجد تغيير في النظارة الطبية.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Personal Health Profile -->
+    <div class="profile-card">
+      <h4><i class="fa-solid fa-id-card"></i> البيانات الشخصية</h4>
+      <div class="profile-details">
+
+        <div class="profile-row">
+          <span class="profile-label">الاسم</span>
+          <span class="profile-value">أحمد محمد</span>
+        </div>
+
+        <div class="profile-row">
+          <span class="profile-label">العمر</span>
+          <span class="profile-value">35 سنة</span>
+        </div>
+
+        <div class="profile-row">
+          <span class="profile-label">فصيلة الدم</span>
+          <span class="profile-value highlight">O+</span>
+        </div>
+
+        <div class="profile-row">
+          <span class="profile-label">الوزن</span>
+          <span class="profile-value">78 كجم</span>
+        </div>
+
+        <div class="profile-row">
+          <span class="profile-label">الطول</span>
+          <span class="profile-value">175 سم</span>
+        </div>
+
+        <div class="profile-row">
+          <span class="profile-label">مؤشر كتلة الجسم</span>
+          <span class="profile-value healthy">25.5 - طبيعي</span>
+        </div>
+
+        <div class="profile-row">
+          <span class="profile-label">الحساسية</span>
+          <span class="profile-value warning">بنسلين</span>
+        </div>
+
+        <div class="profile-row">
+          <span class="profile-label">الأمراض المزمنة</span>
+          <span class="profile-value">لا يوجد</span>
+        </div>
+
+        <div class="profile-row">
+          <span class="profile-label">الأدوية الحالية</span>
+          <span class="profile-value">فيتامين د3، أوميغا 3</span>
+        </div>
+
+        <div class="profile-row">
+          <span class="profile-label">رقم الطوارئ</span>
+          <span class="profile-value">+20 123 456 7890</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Additional Metrics -->
+  <div class="additional-metrics">
+
+    <!-- Hydration -->
+    <div class="metric-box">
+      <div class="metric-icon water">
+        <i class="fa-solid fa-glass-water"></i>
+      </div>
+      <div class="metric-info">
+        <h5>الترطيب</h5>
+        <div class="metric-value">2.1 <span>/ 2.5 لتر</span></div>
+        <div class="metric-progress">
+          <div class="progress-fill" style="width: 84%"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Steps -->
+    <div class="metric-box">
+      <div class="metric-icon steps">
+        <i class="fa-solid fa-person-walking"></i>
+      </div>
+      <div class="metric-info">
+        <h5>خطوات اليوم</h5>
+        <div class="metric-value">8,432 <span>/ 10,000</span></div>
+        <div class="metric-progress">
+          <div class="progress-fill" style="width: 84%"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calories -->
+    <div class="metric-box">
+      <div class="metric-icon calories">
+        <i class="fa-solid fa-fire"></i>
+      </div>
+      <div class="metric-info">
+        <h5>السعرات المحروقة</h5>
+        <div class="metric-value">1,850 <span>/ 2,200</span></div>
+        <div class="metric-progress">
+          <div class="progress-fill" style="width: 84%"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stress Level -->
+    <div class="metric-box">
+      <div class="metric-icon stress">
+        <i class="fa-solid fa-brain"></i>
+      </div>
+      <div class="metric-info">
+        <h5>مستوى التوتر</h5>
+        <div class="metric-value">منخفض <span>2/10</span></div>
+        <div class="metric-progress">
+          <div class="progress-fill low" style="width: 20%"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- Vital Details Modal -->
+<div class="vital-modal-overlay" id="vital-modal-overlay" onclick="closeVitalModal(event)">
+  <div class="vital-modal" onclick="event.stopPropagation()">
+    <button class="vital-modal-close" onclick="closeVitalModal()">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div class="vital-modal-header" id="vital-modal-header"></div>
+    <div class="vital-modal-body" id="vital-modal-body"></div>
+  </div>
+</div>
+
+<script src="health-dashboard.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="get-started.css" />
+    <link rel="shortcut icon" href="./image/favicon.ico" type="image/x-icon" />
+    <title>Get Started | Care At Home</title>
+  </head>
+  <body>
+    <header id="logo">
+      <div class="nav-bar" id="online doctor">
+        <nav>
+          <div class="logo">
+            <a href="#logo"
+              ><p><span>care at home</span></p></a
+            >
+            <div class="lang-switch">
+              <button id="lang-toggle">ar</button>
+            </div>
+          </div>
+          <ul>
+            <li class="hide">
+              <a href="../index.html#online doctor">online doctor</a>
+            </li>
+            <li class="hide">
+              <a href="../index.html#how care at home works"
+                >how care at home works</a
+              >
+            </li>
+            <li class="hide">
+              <a href="../index.html#diagnosis">diagnosis</a>
+            </li>
+            <li class="hide">
+              <a href="../index.html#Telehealth Services">Telehealth Services</a
+              >
+            </li>
+            <li class="hide">
+              <a class="a4" href="../our providers/our providers.html"
+                >our providers</a
+              >
+            </li>
+            <div class="botn">
+              <a
+                class="hide"
+                href="./Get-Started/get-started.html"
+                target="_blank"
+                >get started</a
+              >
+            </div>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="header">
+        <h1>See an Online Doctor Within Minutes</h1>
+        <p>get started to access your account and continue your healthcare journey</p>
+      </div>
+
+      <div class="content">
+        <!-- Left Panel - Info -->
+        <div class="info-panel">
+          <div class="info-item active">
+            <div class="check-icon">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="info-content">
+              <h3><i class="fas fa-shield-alt"></i> Secure Access</h3>
+              <p>Your data is protected with advanced<br />encryption technology</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="check-icon">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="info-content">
+              <h3><i class="fas fa-user-md"></i> Expert Doctors</h3>
+              <p>Connect with certified healthcare<br />professionals instantly</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="check-icon">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="info-content">
+              <h3><i class="fas fa-clock"></i> 24/7 Available</h3>
+              <p>Access healthcare services anytime,<br />anywhere you need</p>
+            </div>
+          </div>
+
+          <div class="partners">
+            <div class="partner-logos">
+              <div class="partner-logo">Humana</div>
+              <div class="partner-logo"><i class="fas fa-heart"></i> aetna</div>
+              <div class="partner-logo">
+                <i class="fas fa-shield-alt"></i> UnitedHealthcare
+              </div>
+              <div class="partner-logo">
+                Anthem <i class="fas fa-plus-square"></i>
+              </div>
+              <div class="partner-logo">Medicare.gov</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Panel - Login Form -->
+        <div class="login-form">
+          <div class="form-header">
+            <i class="fas fa-sign-in-alt"></i>
+            <h2>get started now</h2>
+          </div>
+
+          <form id="loginForm">
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-user"></i>
+                name
+                <span class="required">*</span>
+              </label>
+              <input
+                type="text"
+                class="form-input"
+                id="name"
+                placeholder="Enter your name"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-lock"></i>
+                Password
+                <span class="required">*</span>
+              </label>
+              <div class="password-wrapper">
+                <input
+                  type="password"
+                  class="form-input"
+                  id="password"
+                  placeholder="Enter your password"
+                  required
+                />
+                <button type="button" class="toggle-password" onclick="togglePassword()">
+                  <i class="fas fa-eye" id="eye-icon"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-options">
+              <label class="remember-me">
+                <input type="checkbox" id="remember" />
+                <span>Remember me</span>
+              </label>
+              <a href="#" class="forgot-password">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="login-btn">
+              <i class="fas fa-sign-in-alt"></i>
+              Get Started Now
+            </button>
+          </form>
+
+          <div class="create-account">
+            <p>Don't have an account? <a href="../create an account/account.html">Create an account</a></p>
+          </div>
+
+          <div class="thank-you">
+            Welcome to Care At Home <i class="fas fa-heart"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+<footer class="meds-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h3>Care At Home</h3>
+      <p class="footer-support">Customer Support</p>
+      <p class="footer-support-text">Support Is Open 24/7 In The Care At Home</p>
+      <p class="footer-address-title">Address</p>
+      <p class="footer-address">Egypt, Tanta</p>
+      <div class="footer-social">
+        <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="../Care-Bot/bot.html">bot cara at home</a></li>
+        <li><a href="../healthdashboard/health-dashboard.html">healthdashboard</a></li>
+        <li><a href="../patient services/patient.html">patien services</a></li>
+        <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+        <li><a href="../Medication/Medication.html">medication</a></li>
+        <li><a href="../Medical diagnosis/Medical diagnosis.html">Diagnosis</a></li>
+        <li><a href="../Emergency/emergency.html">emergency</a></li>
+        <li><a href="../nursing/nursing.html">nursing</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="../How It Work/how it work.html">How It Works</a></li>
+        <li><a href="../Subscriptions/">Pricing</a></li>
+        <li><a href="#">Promo Codes</a></li>
+        <li><a href="#">Employers</a></li>
+        <li><a href="#">Brokers</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="../about us/about.html">About Us</a></li>
+        <li><a href="../help us/help.html">Help Center</a></li>
+        <li><a href="../our providers/our providers.html">Our Providers</a></li>
+        <li><a href="../pharmacy/contactus/contact.html">Contact Us</a></li>
+        <li><a href="#">Newsroom</a></li>
+        <li><a href="#">Sitemap</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Terms Of Use</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Refund/Cancellation Policy</a></li>
+        <li><a href="#">Notice Of Privacy Practices</a></li>
+        <li><a href="#">Consent To Virtual Visits</a></li>
+        <li><a href="#">Content Creation Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-partners">
+    <span class="partner-logo">aetna</span>
+    <span class="partner-logo">Anthem</span>
+    <span class="partner-logo">Humana</span>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Care At Home, Inc. All Rights Reserved.</p>
+  </div>
+</footer>
+ <!-- end footer -->
+    <div id="google_translate_element" style="display: none"></div>
+    <script src="script.js"></script>
+  </body>
+</html>

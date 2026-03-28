@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="help.css" />
+    <link rel="shortcut icon" href="../image/favicon.ico" type="image/x-icon" />
+    <title>Help Center — Care At Home</title>
+  </head>
+  <body>
+    <!-- ══ HEADER (unchanged) ═══════════════════════════════ -->
+    <header id="logo">
+      <div class="nav-bar" id="online doctor">
+        <nav>
+          <div class="logo">
+            <a href="#logo"
+              ><p><span>care at home</span></p></a
+            >
+            <div class="lang-switch"><button id="lang-toggle">ar</button></div>
+          </div>
+          <ul class="sidebar">
+            <li onclick="hidesidebar()">
+              <a href="#"
+                ><span class="material-symbols-outlined">close</span></a
+              >
+            </li>
+            <li><a href="../index.html#online doctor">online doctor</a></li>
+            <li>
+              <a href="../index.html#how care at home works"
+                >how care at home works</a
+              >
+            </li>
+            <li><a href="../index.html#diagnosis">diagnosis</a></li>
+            <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+            <li>
+              <a class="a4" href="../our providers/our providers.html"
+                >our providers</a
+              >
+            </li>
+            <div class="botn">
+              <a href="./Get-Started/get-started.html" target="_blank"
+                >get started</a
+              >
+            </div>
+          </ul>
+          <ul>
+            <li class="hide">
+              <a href="../index.html#online doctor">online doctor</a>
+            </li>
+            <li class="hide">
+              <a href="../index.html#how care at home works"
+                >how care at home works</a
+              >
+            </li>
+            <li class="hide">
+              <a href="../index.html#diagnosis">diagnosis</a>
+            </li>
+            <li class="hide">
+              <a href="../index.html#Telehealth Services">Telehealth Services</a>
+            </li>
+            <li class="hide">
+              <a class="a4" href="../our providers/our providers.html"
+                >our providers</a
+              >
+            </li>
+            <div class="botn">
+              <a
+                class="hide"
+                href="./Get-Started/get-started.html"
+                target="_blank"
+                >get started</a
+              >
+            </div>
+            <li class="span" onclick="showsidebar()">
+              <a href="#"
+                ><span class="material-symbols-outlined">menu</span></a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ══ HERO ══════════════════════════════════════════════ -->
+    <section class="faq-hero">
+      <div class="faq-hero-bg"></div>
+      <div class="faq-hero-content">
+        <div class="hero-badge">
+          <i class="fa-solid fa-circle-question"></i> Help Center
+        </div>
+        <h1>How Can We <span>Help You?</span></h1>
+        <p>
+          Find answers to the most common questions about our services,
+          pharmacy, appointments, and more.
+        </p>
+
+        <!-- Search -->
+        <div class="faq-search-wrap">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input
+            type="text"
+            id="faqSearch"
+            placeholder="Search your question…"
+            oninput="searchFaqs(this.value)"
+            autocomplete="off"
+          />
+          <button class="search-clear" id="searchClear" onclick="clearSearch()">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <!-- Stats row -->
+        <div class="hero-stats">
+          <div class="hs-item">
+            <strong>50+</strong><span>Questions Answered</span>
+          </div>
+          <div class="hs-div"></div>
+          <div class="hs-item">
+            <strong>24/7</strong><span>Support Available</span>
+          </div>
+          <div class="hs-div"></div>
+          <div class="hs-item">
+            <strong>&lt;2h</strong><span>Avg. Response Time</span>
+          </div>
+          <div class="hs-div"></div>
+          <div class="hs-item">
+            <strong>98%</strong><span>Satisfaction Rate</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CATEGORY TABS ═════════════════════════════════════ -->
+    <div class="faq-tabs-wrap" id="faqTabsWrap">
+      <div class="faq-tabs" id="faqTabs">
+        <button
+          class="tab-btn active"
+          data-cat="all"
+          onclick="filterCat('all', this)"
+        >
+          <i class="fa-solid fa-border-all"></i> All
+        </button>
+        <button
+          class="tab-btn"
+          data-cat="medical"
+          onclick="filterCat('medical', this)"
+        >
+          <i class="fa-solid fa-stethoscope"></i> Medical Services
+        </button>
+        <button
+          class="tab-btn"
+          data-cat="pharmacy"
+          onclick="filterCat('pharmacy', this)"
+        >
+          <i class="fa-solid fa-pills"></i> Pharmacy
+        </button>
+        <button
+          class="tab-btn"
+          data-cat="appointments"
+          onclick="filterCat('appointments', this)"
+        >
+          <i class="fa-solid fa-calendar-check"></i> Appointments
+        </button>
+        <button
+          class="tab-btn"
+          data-cat="billing"
+          onclick="filterCat('billing', this)"
+        >
+          <i class="fa-solid fa-credit-card"></i> Billing & Payments
+        </button>
+        <button
+          class="tab-btn"
+          data-cat="home"
+          onclick="filterCat('home', this)"
+        >
+          <i class="fa-solid fa-house-medical"></i> Home Visits
+        </button>
+        <button
+          class="tab-btn"
+          data-cat="privacy"
+          onclick="filterCat('privacy', this)"
+        >
+          <i class="fa-solid fa-shield-halved"></i> Privacy & Security
+        </button>
+        <button
+          class="tab-btn"
+          data-cat="tech"
+          onclick="filterCat('tech', this)"
+        >
+          <i class="fa-solid fa-laptop-medical"></i> Technical Support
+        </button>
+      </div>
+    </div>
+
+    <!-- ══ FAQ MAIN ═══════════════════════════════════════════ -->
+    <div class="faq-main" id="faqMain">
+      <!-- No results -->
+      <div class="faq-no-results" id="faqNoResults" style="display: none">
+        <i class="fa-solid fa-face-thinking"></i>
+        <h3>No Results Found</h3>
+        <p>
+          We couldn't find a match. Try different keywords or
+          <a href="contact.html">contact us directly</a>.
+        </p>
+      </div>
+
+      <!-- ─ Medical Services ─────────────────────── -->
+      <div class="faq-group" data-cat="medical">
+        <div class="faq-group-header">
+          <i class="fa-solid fa-stethoscope"></i> Medical Services
+        </div>
+        <div class="faq-list">
+          <div
+            class="faq-card"
+            data-q="What medical services does Care At Home offer?"
+          >
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>What medical services does Care At Home offer?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Care At Home provides a comprehensive range of telehealth and
+                in-home services including online doctor consultations, medical
+                diagnosis, tele-services, online prescriptions, men's and
+                women's health programs, and certified home nursing visits. All
+                services are available 24/7.
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="faq-card"
+            data-q="Can I get an online doctor consultation at any time?"
+          >
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>Can I get an online doctor consultation at any time?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Yes! Our online doctor service is available 24 hours a day, 7
+                days a week. You can connect with a certified physician within
+                minutes from your phone or computer — no waiting room needed.
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="faq-card"
+            data-q="Are your doctors licensed and certified in Egypt?"
+          >
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>Are your doctors licensed and certified in Egypt?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Absolutely. Every physician on our platform is fully licensed by
+                the Egyptian Medical Syndicate and has been thoroughly vetted by
+                our medical team. You can view each doctor's credentials,
+                specialty, and patient reviews on their profile page.
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="faq-card"
+            data-q="Can I get an official doctor's note for work or school?"
+          >
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span
+                >Can I get an official doctor's note for work or school?</span
+              >
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Yes. After your online consultation, your doctor can issue an
+                official digital doctor's note which is stamped and legally
+                valid. It will be sent directly to your email and also saved in
+                your Care At Home patient profile.
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="faq-card"
+            data-q="Is Care At Home available outside Tanta?"
+          >
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>Is Care At Home available outside Tanta?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Our online services (doctor consultations, prescriptions,
+                tele-services) are available across all of Egypt. Physical home
+                visits are currently available in Tanta and surrounding Gharbia
+                Governorate cities, with expansion to more areas coming soon.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─ Pharmacy ────────────────────────────── -->
+      <div class="faq-group" data-cat="pharmacy">
+        <div class="faq-group-header">
+          <i class="fa-solid fa-pills"></i> Pharmacy
+        </div>
+        <div class="faq-list">
+          <div
+            class="faq-card"
+            data-q="How do I order medication from Care At Home pharmacy?"
+          >
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>How do I order medication from Care At Home pharmacy?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Browse our pharmacy page, add items to your cart, and checkout.
+                You can pay via cash on delivery, Visa, Vodafone Cash, Fawry, or
+                InstaPay. Orders placed before 8 PM are eligible for same-day
+                delivery within Tanta.
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="faq-card"
+            data-q="Can I order prescription medication online?"
+          >
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>Can I order prescription medication online?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Yes. Upload a photo of your valid prescription on our pharmacy
+                page. Our licensed pharmacists review every prescription before
+                dispensing. Alternatively, you can get an online prescription
+                from one of our doctors in the same session.
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="faq-card"
+            data-q="What is the delivery time for pharmacy orders?"
+          >
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>What is the delivery time for pharmacy orders?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Orders placed before 8 PM are typically delivered the same day.
+                Orders placed after 8 PM are delivered the next morning by 10
+                AM. Express delivery (within 2 hours) is available for an
+                additional fee during peak hours.
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="faq-card"
+            data-q="Can I return a medication if it's wrong or damaged?"
+          >
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>Can I return a medication if it's wrong or damaged?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                We offer a 30-day return policy for sealed, unopened
+                medications. If you received the wrong product or a damaged
+                item, contact us immediately via WhatsApp or our contact form
+                and we'll arrange a free replacement or full refund within 24
+                hours.
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="faq-card"
+            data-q="Are pharmacy prices competitive with regular pharmacies?"
+          >
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span
+                >Are pharmacy prices competitive with regular pharmacies?</span
+              >
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Our prices match or beat the official Egyptian Pharmacy
+                Authority prices. We also run regular flash sales, bundle deals,
+                and loyalty discounts that make our prices even more
+                competitive. No hidden charges — ever.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─ Appointments ───────────────────────── -->
+      <div class="faq-group" data-cat="appointments">
+        <div class="faq-group-header">
+          <i class="fa-solid fa-calendar-check"></i> Appointments
+        </div>
+        <div class="faq-list">
+          <div
+            class="faq-card"
+            data-q="How do I book an appointment with a doctor?"
+          >
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>How do I book an appointment with a doctor?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Visit our Doctors page, browse by specialty or name, and click
+                "Book Appointment" on any doctor's profile. Choose your
+                preferred date, time slot, and consultation type (online or home
+                visit). You'll receive an SMS and email confirmation instantly.
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="faq-card"
+            data-q="Can I reschedule or cancel an appointment?"
+          >
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>Can I reschedule or cancel an appointment?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Yes. You can reschedule or cancel up to 2 hours before your
+                appointment from your profile dashboard or by contacting
+                support. Cancellations made at least 2 hours in advance receive
+                a full refund. Late cancellations may incur a small fee.
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="faq-card"
+            data-q="How long does an online consultation take?"
+          >
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>How long does an online consultation take?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Most consultations take between 10–20 minutes. Complex cases or
+                specialist consultations may take longer. You won't be rushed —
+                our doctors give each patient the time they need to feel fully
+                heard and properly treated.
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="faq-card"
+            data-q="What happens if my doctor is late to the appointment?"
+          >
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>What happens if my doctor is late to the appointment?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                If your doctor is more than 10 minutes late, you have the option
+                to wait or instantly switch to another available doctor at no
+                extra cost. If you prefer, we'll refund your consultation fee in
+                full, no questions asked.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─ Billing ────────────────────────────── -->
+      <div class="faq-group" data-cat="billing">
+        <div class="faq-group-header">
+          <i class="fa-solid fa-credit-card"></i> Billing & Payments
+        </div>
+        <div class="faq-list">
+          <div class="faq-card" data-q="What payment methods do you accept?">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>What payment methods do you accept?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                We accept Cash on Delivery, Visa/Mastercard, Vodafone Cash,
+                Fawry, and InstaPay. All online payment methods are secured with
+                SSL encryption and comply with Egyptian Central Bank
+                regulations.
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="faq-card"
+            data-q="Is my payment information stored securely?"
+          >
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>Is my payment information stored securely?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                We never store your full card details on our servers. All card
+                transactions are processed through our PCI-DSS compliant payment
+                gateway. We only retain a secure token for your convenience with
+                future payments.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-card" data-q="How do I get a refund?">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>How do I get a refund?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Submit a refund request through your profile dashboard or our
+                contact form. Approved refunds are processed within 3–5 business
+                days back to your original payment method. Cash refunds are
+                handled on the same delivery.
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="faq-card"
+            data-q="Do you offer any subscription or loyalty plans?"
+          >
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>Do you offer any subscription or loyalty plans?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Yes! Our Care+ monthly subscription gives you unlimited online
+                consultations, 15% off all pharmacy orders, priority home visit
+                scheduling, and a dedicated health coordinator. Plans start at
+                299 EGP/month.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─ Home Visits ─────────────────────────── -->
+      <div class="faq-group" data-cat="home">
+        <div class="faq-group-header">
+          <i class="fa-solid fa-house-medical"></i> Home Visits
+        </div>
+        <div class="faq-list">
+          <div
+            class="faq-card"
+            data-q="What home visit services are available?"
+          >
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>What home visit services are available?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                We offer doctor home visits, home nursing care, physiotherapy
+                sessions, IV drip therapy, blood sample collection for lab
+                tests, post-operative wound care, and elderly care packages. All
+                services are performed by certified professionals.
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="faq-card"
+            data-q="How quickly can a nurse or doctor arrive at my home?"
+          >
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>How quickly can a nurse or doctor arrive at my home?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Standard home visits are scheduled within 2–4 hours of booking.
+                For urgent cases, our express home visit service guarantees
+                arrival within 60 minutes in Tanta city. You'll receive live GPS
+                tracking of your provider once dispatched.
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="faq-card"
+            data-q="Are home visit fees different from clinic fees?"
+          >
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>Are home visit fees different from clinic fees?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Home visits include a small transport fee on top of the standard
+                consultation fee. Exact pricing depends on your location and the
+                type of service. You'll see the full cost breakdown before
+                confirming your booking — no surprises.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─ Privacy ────────────────────────────── -->
+      <div class="faq-group" data-cat="privacy">
+        <div class="faq-group-header">
+          <i class="fa-solid fa-shield-halved"></i> Privacy & Security
+        </div>
+        <div class="faq-list">
+          <div class="faq-card" data-q="Is my medical data kept confidential?">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>Is my medical data kept confidential?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Your medical data is fully encrypted and stored on secure
+                HIPAA-compliant servers. Only the healthcare providers involved
+                in your care can access your records. We never share, sell, or
+                disclose your health information to any third party.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-card" data-q="Can I delete my account and data?">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>Can I delete my account and all my data?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Yes. You have the right to request full deletion of your account
+                and all associated data at any time. Submit a deletion request
+                from your profile settings or email privacy@careathome.com.
+                We'll complete the deletion within 30 days and send you a
+                confirmation.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-card" data-q="Are online consultations recorded?">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>Are online consultations recorded?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Consultations are never recorded without your explicit consent.
+                If you choose to enable recording for your personal records
+                (available in your session settings), recordings are encrypted
+                and only accessible by you and your treating doctor.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─ Technical Support ─────────────────── -->
+      <div class="faq-group" data-cat="tech">
+        <div class="faq-group-header">
+          <i class="fa-solid fa-laptop-medical"></i> Technical Support
+        </div>
+        <div class="faq-list">
+          <div
+            class="faq-card"
+            data-q="The video call isn't working. What should I do?"
+          >
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>The video call isn't working. What should I do?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                First, check that your browser has camera and microphone
+                permissions enabled. Try refreshing the page or switching to
+                Chrome or Firefox for the best experience. If the issue
+                persists, the consultation will automatically switch to a phone
+                call. Our tech team is available 24/7 at support@careathome.com.
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="faq-card"
+            data-q="I forgot my password. How do I reset it?"
+          >
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>I forgot my password. How do I reset it?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Click "Forgot Password" on the login page. Enter your registered
+                email or phone number and you'll receive a reset link via SMS
+                and email within 2 minutes. The link is valid for 15 minutes. If
+                you don't receive it, check your spam folder or contact support.
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="faq-card"
+            data-q="Which browsers and devices are supported?"
+          >
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>Which browsers and devices are supported?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Care At Home works on all modern browsers (Chrome, Firefox,
+                Safari, Edge) on desktop, tablet, and mobile. For the best video
+                consultation experience, we recommend using Chrome or Firefox on
+                a device with a front-facing camera and a stable internet
+                connection (at least 3 Mbps).
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-card" data-q="Is there a mobile app available?">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>Is there a mobile app available?</span>
+              <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Our mobile app for Android and iOS is currently in development
+                and will be launched soon. Until then, our website is fully
+                responsive and works seamlessly on any smartphone browser — no
+                app download needed.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end faq-main -->
+
+    <!-- ══ STILL NEED HELP ════════════════════════════════════ -->
+    <div class="still-help-section">
+      <div class="still-help-card">
+        <div class="sh-icon"><i class="fa-solid fa-headset"></i></div>
+        <div class="sh-text">
+          <h3>Still Have Questions?</h3>
+          <p>
+            Our support team is available 24/7 to help you with anything not
+            covered here.
+          </p>
+        </div>
+        <div class="sh-actions">
+          <a href="../pharmacy/contactus/contact.html" class="sh-btn primary"
+            ><i class="fa-solid fa-envelope"></i> Send a Message</a
+          >
+          <a
+            href="https://wa.me/201244788554"
+            target="_blank"
+            class="sh-btn whatsapp"
+            ><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a
+          >
+          <a href="tel:+201244788554" class="sh-btn phone"
+            ><i class="fa-solid fa-phone"></i> Call Us Now</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ POPULAR TOPICS ══════════════════════════════════════ -->
+    <div class="popular-topics">
+      <div class="pt-inner">
+        <h3>Popular Topics</h3>
+        <div class="pt-tags">
+          <span onclick="triggerSearch('prescription')"
+            ><i class="fa-solid fa-file-medical"></i> Prescription Upload</span
+          >
+          <span onclick="triggerSearch('delivery')"
+            ><i class="fa-solid fa-truck-medical"></i> Delivery Times</span
+          >
+          <span onclick="triggerSearch('refund')"
+            ><i class="fa-solid fa-rotate-left"></i> Refunds</span
+          >
+          <span onclick="triggerSearch('home visit')"
+            ><i class="fa-solid fa-house-medical"></i> Home Visits</span
+          >
+          <span onclick="triggerSearch('password')"
+            ><i class="fa-solid fa-lock"></i> Reset Password</span
+          >
+          <span onclick="triggerSearch('payment')"
+            ><i class="fa-solid fa-credit-card"></i> Payment Methods</span
+          >
+          <span onclick="triggerSearch('cancel')"
+            ><i class="fa-solid fa-calendar-xmark"></i> Cancel Appointment</span
+          >
+          <span onclick="triggerSearch('subscription')"
+            ><i class="fa-solid fa-star"></i> Care+ Plan</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+<footer class="meds-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h3>Care At Home</h3>
+      <p class="footer-support">Customer Support</p>
+      <p class="footer-support-text">Support Is Open 24/7 In The Care At Home</p>
+      <p class="footer-address-title">Address</p>
+      <p class="footer-address">Egypt, Tanta</p>
+      <div class="footer-social">
+        <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="../Care-Bot/bot.html">bot cara at home</a></li>
+        <li><a href="../healthdashboard/health-dashboard.html">healthdashboard</a></li>
+        <li><a href="../patient services/patient.html">patien services</a></li>
+        <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+        <li><a href="../Medication/Medication.html">medication</a></li>
+        <li><a href="../Medical diagnosis/Medical diagnosis.html">Diagnosis</a></li>
+        <li><a href="../Emergency/emergency.html">emergency</a></li>
+        <li><a href="../nursing/nursing.html">nursing</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="../How It Work/how it work.html">How It Works</a></li>
+        <li><a href="../Subscriptions/">Pricing</a></li>
+        <li><a href="#">Promo Codes</a></li>
+        <li><a href="#">Employers</a></li>
+        <li><a href="#">Brokers</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="../about us/about.html">About Us</a></li>
+        <li><a href="../help us/help.html">Help Center</a></li>
+        <li><a href="../our providers/our providers.html">Our Providers</a></li>
+        <li><a href="../pharmacy/contactus/contact.html">Contact Us</a></li>
+        <li><a href="#">Newsroom</a></li>
+        <li><a href="#">Sitemap</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Terms Of Use</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Refund/Cancellation Policy</a></li>
+        <li><a href="#">Notice Of Privacy Practices</a></li>
+        <li><a href="#">Consent To Virtual Visits</a></li>
+        <li><a href="#">Content Creation Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-partners">
+    <span class="partner-logo">aetna</span>
+    <span class="partner-logo">Anthem</span>
+    <span class="partner-logo">Humana</span>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Care At Home, Inc. All Rights Reserved.</p>
+  </div>
+</footer>
+ <!-- end footer -->
+
+    <div id="google_translate_element" style="display: none"></div>
+    <script src="help.js"></script>
+  </body>
+</html>

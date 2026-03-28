@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Account — Care At Home</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+    <link rel="shortcut icon" href="../image/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="account.css" />
+  </head>
+  <body>
+    <!-- ══════════════ HEADER (unchanged) ══════════════ -->
+  <header id="logo">
+    <div class="nav-bar" id="online doctor">
+      <nav>
+        <div class="logo">
+          <a href="#logo"><p><span>care at home</span></p></a>
+          <div class="lang-switch">
+            <button id="lang-toggle">ar</button>
+          </div>
+        </div>
+        <ul class="sidebar">
+          <li onclick="hidesidebar()"><a href="#"><span class="material-symbols-outlined">close</span></a></li>
+          <li><a href="../index.html#online doctor">online doctor</a></li>
+          <li><a href="../index.html#how care at home works">how care at home works</a></li>
+          <li><a href="../index.html#diagnosis">diagnosis</a></li>
+          <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+          <li><a class="a4" href="../our providers/our providers.html">our providers</a></li>
+          <div class="botn">
+            <a href="./Get-Started/get-started.html" target="_blank">get started</a>
+          </div>
+        </ul>
+        <ul>
+          <li class="hide"><a href="../index.html#online doctor">online doctor</a></li>
+          <li class="hide"><a href="../index.html#how care at home works">how care at home works</a></li>
+          <li class="hide"><a href="../index.html#diagnosis">diagnosis</a></li>
+          <li class="hide"><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+          <li class="hide"><a class="a4" href="../our providers/our providers.html">our providers</a></li>
+          <div class="botn">
+            <a class="hide" href="./Get-Started/get-started.html" target="_blank">get started</a>
+          </div>
+          <li class="span" onclick="showsidebar()"><a href="#"><span class="material-symbols-outlined">menu</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+      <!-- ═══ HERO CONTENT ═══════════════════════════════════════ -->
+      <div class="hero-section">
+        <div class="hero-split">
+          <!-- LEFT -->
+          <div class="hero-left">
+            <div class="hero-badge">
+              <i class="fa-solid fa-house-medical"></i> Care At Home
+            </div>
+            <h1>Your Health,<br />At Home.</h1>
+            <p>
+              Join thousands of patients and healthcare professionals using Care
+              At Home for seamless, trusted medical services delivered to your
+              door.
+            </p>
+            <div class="hero-features">
+              <div class="feat-item">
+                <div class="feat-dot fd-blue">
+                  <i class="fa-solid fa-user-doctor"></i>
+                </div>
+                <span>Access 200+ certified doctors &amp; nurses</span>
+              </div>
+              <div class="feat-item">
+                <div class="feat-dot fd-amber">
+                  <i class="fa-solid fa-clock"></i>
+                </div>
+                <span>24/7 support — response in under 5 minutes</span>
+              </div>
+              <div class="feat-item">
+                <div class="feat-dot fd-green">
+                  <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <span>Fully secure &amp; HIPAA-compliant platform</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT — FORM -->
+          <div class="form-card" id="registerCard">
+            <div class="form-card-header">
+              <h2>Create Your Account</h2>
+              <p>Fill in the details below to get started</p>
+            </div>
+
+            <!-- avatar -->
+            <div class="avatar-upload-row">
+              <label
+                class="avatar-circle"
+                for="avatarInput"
+                title="Upload photo"
+              >
+                <i class="fa-solid fa-user" id="avatarPlaceholder"></i>
+                <div class="cam-overlay">
+                  <i class="fa-solid fa-camera"></i>
+                </div>
+                <img
+                  id="avatarPreview"
+                  src=""
+                  alt=""
+                  style="
+                    display: none;
+                    position: absolute;
+                    inset: 0;
+                    border-radius: 50%;
+                  "
+                />
+              </label>
+              <input type="file" id="avatarInput" accept="image/*" />
+              <small
+                >Upload profile photo
+                <span style="color: #ccc">(optional)</span></small
+              >
+            </div>
+
+            <div class="form-body">
+              <!-- name row -->
+              <div class="form-row">
+                <div class="field">
+                  <label><i class="fa-solid fa-user"></i> First Name</label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    placeholder="hassan"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label><i class="fa-solid fa-user"></i> Last Name</label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    placeholder="elsaid"
+                    required
+                  />
+                </div>
+              </div>
+
+              <!-- email -->
+              <div class="field">
+                <label
+                  ><i class="fa-solid fa-envelope"></i> Email Address</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="account@email.com"
+                  required
+                />
+              </div>
+
+              <!-- age + role -->
+              <div class="form-row">
+                <div class="field">
+                  <label><i class="fa-solid fa-cake-candles"></i> Age</label>
+                  <input
+                    type="number"
+                    id="age"
+                    placeholder="25"
+                    min="1"
+                    max="120"
+                  />
+                </div>
+                <div class="field">
+                  <label
+                    ><i class="fa-solid fa-user-tag"></i> Account Type</label
+                  >
+                  <select id="role" required>
+                    <option value="">Choose...</option>
+                    <option value="sick">Patient</option>
+                    <option value="doctors">Doctor</option>
+                    <option value="nursing">Nurse</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- address + city -->
+              <div class="form-row">
+                <div class="field">
+                  <label
+                    ><i class="fa-solid fa-location-dot"></i> Address</label
+                  >
+                  <input type="text" id="address" placeholder="123 Main St" />
+                </div>
+                <div class="field">
+                  <label><i class="fa-solid fa-map-pin"></i> City</label>
+                  <input type="text" id="city" placeholder="Cairo, Egypt" />
+                </div>
+              </div>
+
+              <!-- password -->
+              <div class="field has-eye">
+                <label><i class="fa-solid fa-lock"></i> Password</label>
+                <div class="input-wrap">
+                  <input
+                    type="password"
+                    id="password"
+                    placeholder="••••••••"
+                    required
+                  />
+                  <button class="eye-btn" type="button" data-target="password">
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
+                </div>
+                <div class="strength-wrap">
+                  <div class="s-bar" id="b1"></div>
+                  <div class="s-bar" id="b2"></div>
+                  <div class="s-bar" id="b3"></div>
+                  <div class="s-bar" id="b4"></div>
+                </div>
+                <div class="s-label" id="sLabel"></div>
+              </div>
+
+              <!-- confirm password -->
+              <div class="field has-eye">
+                <label
+                  ><i class="fa-solid fa-shield-halved"></i> Confirm
+                  Password</label
+                >
+                <div class="input-wrap">
+                  <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="••••••••"
+                    required
+                  />
+                  <button
+                    class="eye-btn"
+                    type="button"
+                    data-target="confirmPassword"
+                  >
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- terms -->
+              <div class="terms-row">
+                <input type="checkbox" id="terms" />
+                <label for="terms">
+                  I agree to the <a href="#">Terms of Use</a> and
+                  <a href="#">Privacy Policy</a> of Care At Home.
+                </label>
+              </div>
+
+              <!-- submit -->
+              <button class="submit-btn" id="submitBtn">
+                <i class="fa-solid fa-user-plus"></i> Create Account
+              </button>
+
+              <!-- divider -->
+              <div class="divider">or sign up with</div>
+
+              <!-- social -->
+              <div class="social-btns">
+                <button class="social-btn">
+                  <img
+                    src="https://www.svgrepo.com/show/475656/google-color.svg"
+                    alt="Google"
+                  />
+                  Google
+                </button>
+                <button class="social-btn">
+                  <img
+                    src="https://www.svgrepo.com/show/448224/facebook.svg"
+                    alt="Facebook"
+                  />
+                  Facebook
+                </button>
+              </div>
+
+              <div class="login-link">
+                Already have an account?
+                <a href="../Get-Started/get-started.html">log in</a>
+              </div>
+            </div>
+          </div>
+          <!-- /form-card -->
+        </div>
+      </div>
+    </header>
+
+    <!-- TOAST -->
+    <div id="toast">
+      <i class="fa-solid fa-circle-check"></i><span id="toastMsg"></span>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="meds-footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h3>Care At Home</h3>
+          <p class="footer-support">Customer Support</p>
+          <p class="footer-support-text">
+            Support Is Open 24/7 In The Care At Home
+          </p>
+          <p class="footer-address-title">Address</p>
+          <p class="footer-address">Egypt, Tanta</p>
+          <div class="footer-social">
+            <a href="#" class="social-link"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+            <a href="#" class="social-link"
+              ><i class="fa-brands fa-x-twitter"></i
+            ></a>
+            <a href="#" class="social-link"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a href="#" class="social-link"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="../Care-Bot/bot.html">bot cara at home</a></li>
+            <li>
+              <a href="../healthdashboard/health-dashboard.html"
+                >healthdashboard</a
+              >
+            </li>
+            <li>
+              <a href="../patient services/patient.html">patien services</a>
+            </li>
+            <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+            <li><a href="../Medication/Medication.html">medication</a></li>
+            <li>
+              <a href="../Medical diagnosis/Medical diagnosis.html"
+                >Diagnosis</a
+              >
+            </li>
+            <li><a href="../Emergency/emergency.html">emergency</a></li>
+            <li><a href="../nursing/nursing.html">nursing</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="../How It Work/how it work.html">How It Works</a></li>
+            <li><a href="../Subscriptions/">Pricing</a></li>
+            <li><a href="#">Promo Codes</a></li>
+            <li><a href="#">Employers</a></li>
+            <li><a href="#">Brokers</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="../about us/about.html">About Us</a></li>
+            <li><a href="../help us/help.html">Help Center</a></li>
+            <li>
+              <a href="../our providers/our providers.html">Our Providers</a>
+            </li>
+            <li><a href="../pharmacy/contactus/contact.html">Contact Us</a></li>
+            <li><a href="#">Newsroom</a></li>
+            <li><a href="#">Sitemap</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Terms Of Use</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Refund/Cancellation Policy</a></li>
+            <li><a href="#">Notice Of Privacy Practices</a></li>
+            <li><a href="#">Consent To Virtual Visits</a></li>
+            <li><a href="#">Content Creation Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-partners">
+        <span class="partner-logo">aetna</span>
+        <span class="partner-logo">Anthem</span>
+        <span class="partner-logo">Humana</span>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Care At Home, Inc. All Rights Reserved.</p>
+      </div>
+    </footer>
+    <!-- end footer -->
+    <script src="account.js"></script>
+  </body>
+</html>

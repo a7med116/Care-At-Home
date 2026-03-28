@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medical Articles | Care At Home</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="../image/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="articles.css" />
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header id="logo">
+      <div class="nav-bar" id="online doctor">
+        <nav>
+          <div class="logo">
+            <a href="#logo"
+              ><p><span>care at home</span></p></a
+            >
+            <div class="lang-switch">
+              <button id="lang-toggle">ar</button>
+            </div>
+          </div>
+          <ul class="sidebar" id="sidebar">
+            <li onclick="hidesidebar()">
+              <a href="#"
+                ><span class="material-symbols-outlined">close</span></a
+              >
+            </li>
+            <li><a href="../index.html#online doctor">online doctor</a></li>
+            <li>
+              <a href="../index.html#how care at home works"
+                >how care at home works</a
+              >
+            </li>
+            <li><a href="../index.html#diagnosis">diagnosis</a></li>
+            <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+            <li>
+              <a class="a4" href="../our providers/our providers.html"
+                >our providers</a
+              >
+            </li>
+            <div class="botn">
+              <a href="./Get-Started/get-started.html" target="_blank"
+                >get started</a
+              >
+            </div>
+          </ul>
+          <ul>
+            <li class="hide">
+              <a href="../index.html#online doctor">online doctor</a>
+            </li>
+            <li class="hide">
+              <a href="../index.html#how care at home works"
+                >how care at home works</a
+              >
+            </li>
+            <li class="hide">
+              <a href="../index.html#diagnosis">diagnosis</a>
+            </li>
+            <li class="hide">
+              <a href="../index.html#Telehealth Services">Telehealth Services</a>
+            </li>
+            <li class="hide">
+              <a class="a4" href="../our providers/our providers.html"
+                >our providers</a
+              >
+            </li>
+            <div class="botn">
+              <a
+                class="hide"
+                href="./Get-Started/get-started.html"
+                target="_blank"
+                >get started</a
+              >
+            </div>
+            <li class="span" onclick="showsidebar()">
+              <a href="#"
+                ><span class="material-symbols-outlined">menu</span></a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="articles-hero">
+      <div class="hero-inner">
+        <div class="hero-badge">
+          <span class="badge-dot"></span> Health Knowledge Hub
+        </div>
+        <h1>Medical <span>Articles</span> & Health Tips</h1>
+        <p>
+          Evidence-based health insights written by our certified physicians —
+          stay informed, stay healthy.
+        </p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num">20+</span
+            ><span class="hero-stat-label">Expert Articles</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">10+</span
+            ><span class="hero-stat-label">Health Topics</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">100%</span
+            ><span class="hero-stat-label">Verified Info</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">Free</span
+            ><span class="hero-stat-label">Always Free</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MAIN WRAPPER ===== -->
+    <div class="articles-wrapper">
+      <!-- SEARCH & FILTER -->
+      <div class="search-filter-bar">
+        <div class="search-input-wrap">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search articles by title or topic..."
+            oninput="filterArticles()"
+          />
+        </div>
+        <div class="filter-row">
+          <span class="filter-label"
+            ><i class="fa-solid fa-filter"></i> Category:</span
+          >
+          <button
+            class="filter-btn active"
+            data-cat="all"
+            onclick="setFilter(this, 'all')"
+          >
+            All
+          </button>
+          <button
+            class="filter-btn"
+            data-cat="Nutrition"
+            onclick="setFilter(this, 'Nutrition')"
+          >
+            <i class="fa-solid fa-apple-whole"></i> Nutrition
+          </button>
+          <button
+            class="filter-btn"
+            data-cat="Smoking"
+            onclick="setFilter(this, 'Smoking')"
+          >
+            <i class="fa-solid fa-ban-smoking"></i> Quit Smoking
+          </button>
+          <button
+            class="filter-btn"
+            data-cat="Mental Health"
+            onclick="setFilter(this, 'Mental Health')"
+          >
+            <i class="fa-solid fa-brain"></i> Mental Health
+          </button>
+          <button
+            class="filter-btn"
+            data-cat="Exercise"
+            onclick="setFilter(this, 'Exercise')"
+          >
+            <i class="fa-solid fa-dumbbell"></i> Exercise
+          </button>
+          <button
+            class="filter-btn"
+            data-cat="Heart Health"
+            onclick="setFilter(this, 'Heart Health')"
+          >
+            <i class="fa-solid fa-heart-pulse"></i> Heart
+          </button>
+          <button
+            class="filter-btn"
+            data-cat="Diabetes"
+            onclick="setFilter(this, 'Diabetes')"
+          >
+            <i class="fa-solid fa-syringe"></i> Diabetes
+          </button>
+          <button
+            class="filter-btn"
+            data-cat="Sleep"
+            onclick="setFilter(this, 'Sleep')"
+          >
+            <i class="fa-solid fa-moon"></i> Sleep
+          </button>
+        </div>
+      </div>
+
+      <!-- RESULTS COUNT -->
+      <div class="results-header">
+        <div class="results-count">
+          Showing <span id="result-count">0</span> articles
+        </div>
+      </div>
+
+      <!-- ARTICLES GRID -->
+      <div class="articles-grid" id="articles-grid"></div>
+
+      <!-- NO RESULTS -->
+      <div class="no-results" id="no-results">
+        <i class="fa-solid fa-newspaper"></i>
+        <h3>No articles found</h3>
+        <p>Try a different search term or category.</p>
+      </div>
+    </div>
+
+    <!-- ===== CUSTOM ALERT MODAL ===== -->
+    <div class="alert-overlay" id="alert-overlay">
+      <div class="alert-box">
+        <div class="alert-img-wrap">
+          <img id="alert-img" src="" alt="" />
+          <div class="alert-cat-tag" id="alert-cat"></div>
+        </div>
+        <div class="alert-body">
+          <div class="alert-read-time" id="alert-read"></div>
+          <h2 class="alert-title" id="alert-title">Article Title</h2>
+          <p class="alert-author" id="alert-author"></p>
+          <div class="alert-divider"></div>
+          <p class="alert-text" id="alert-text"></p>
+          <div class="alert-tips" id="alert-tips"></div>
+          <div class="alert-actions">
+            <button class="alert-close-btn" onclick="closeAlert()">
+              <i class="fa-solid fa-xmark"></i> Close
+            </button>
+            <button class="alert-share-btn" onclick="shareArticle()">
+              <i class="fa-solid fa-share-nodes"></i> Share
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast">
+      <i class="fa-solid fa-circle-check"></i>
+      <span id="toast-msg"></span>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="meds-footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h3>Care At Home</h3>
+          <p class="footer-support">Customer Support</p>
+          <p class="footer-support-text">
+            Support Is Open 24/7 In The Care At Home
+          </p>
+          <p class="footer-address-title">Address</p>
+          <p class="footer-address">Egypt, Tanta</p>
+          <div class="footer-social">
+            <a href="#" class="social-link"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+            <a href="#" class="social-link"
+              ><i class="fa-brands fa-x-twitter"></i
+            ></a>
+            <a href="#" class="social-link"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a href="#" class="social-link"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="../Care-Bot/bot.html">bot cara at home</a></li>
+            <li>
+              <a href="../healthdashboard/health-dashboard.html"
+                >healthdashboard</a
+              >
+            </li>
+            <li>
+              <a href="../patient services/patient.html">patien services</a>
+            </li>
+            <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+            <li><a href="../Medication/Medication.html">medication</a></li>
+            <li>
+              <a href="../Medical diagnosis/Medical diagnosis.html"
+                >Diagnosis</a
+              >
+            </li>
+            <li><a href="../Emergency/emergency.html">emergency</a></li>
+            <li><a href="../nursing/nursing.html">nursing</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="../How It Work/how it work.html">How It Works</a></li>
+            <li><a href="../Subscriptions/">Pricing</a></li>
+            <li><a href="#">Promo Codes</a></li>
+            <li><a href="#">Employers</a></li>
+            <li><a href="#">Brokers</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="../about us/about.html">About Us</a></li>
+            <li><a href="../help us/help.html">Help Center</a></li>
+            <li>
+              <a href="../our providers/our providers.html">Our Providers</a>
+            </li>
+            <li><a href="../pharmacy/contactus/contact.html">Contact Us</a></li>
+            <li><a href="#">Newsroom</a></li>
+            <li><a href="#">Sitemap</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Terms Of Use</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Refund/Cancellation Policy</a></li>
+            <li><a href="#">Notice Of Privacy Practices</a></li>
+            <li><a href="#">Consent To Virtual Visits</a></li>
+            <li><a href="#">Content Creation Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-partners">
+        <span class="partner-logo">aetna</span>
+        <span class="partner-logo">Anthem</span>
+        <span class="partner-logo">Humana</span>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Care At Home, Inc. All Rights Reserved.</p>
+      </div>
+    </footer>
+    <!-- end footer -->
+
+    <script src="articles.js"></script>
+  </body>
+</html>

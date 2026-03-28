@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MedBot AI — Care At Home</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="bot.css" />
+    <link rel="shortcut icon" href="../image/favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <!-- ══════════════ HEADER (unchanged) ══════════════ -->
+  <header id="logo">
+    <div class="nav-bar" id="online doctor">
+      <nav>
+        <div class="logo">
+          <a href="#logo"><p><span>care at home</span></p></a>
+          <div class="lang-switch">
+            <button id="lang-toggle">AR</button>
+          </div>
+        </div>
+        <ul class="sidebar">
+          <li onclick="hidesidebar()"><a href="#"><span class="material-symbols-outlined">close</span></a></li>
+          <li><a href="../index.html#online doctor">online doctor</a></li>
+          <li><a href="../index.html#how care at home works">how care at home works</a></li>
+          <li><a href="../index.html#diagnosis">diagnosis</a></li>
+          <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+          <li><a class="a4" href="../our providers/our providers.html">our providers</a></li>
+          <div class="botn">
+            <a href="./Get-Started/get-started.html" target="_blank">get started</a>
+          </div>
+        </ul>
+        <ul>
+          <li class="hide"><a href="../index.html#online doctor">online doctor</a></li>
+          <li class="hide"><a href="../index.html#how care at home works">how care at home works</a></li>
+          <li class="hide"><a href="../index.html#diagnosis">diagnosis</a></li>
+          <li class="hide"><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+          <li class="hide"><a class="a4" href="../our providers/our providers.html">our providers</a></li>
+          <div class="botn">
+            <a class="hide" href="./Get-Started/get-started.html" target="_blank">get started</a>
+          </div>
+          <li class="span" onclick="showsidebar()"><a href="#"><span class="material-symbols-outlined">menu</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <!-- HERO -->
+    <section class="bot-hero">
+      <div class="bh-inner">
+        <div class="bh-badge">
+          <i class="fa-solid fa-robot"></i>&nbsp; Powered by Claude AI
+        </div>
+        <h1>Medical <span>AI Assistant</span></h1>
+        <p class="bh-desc">
+          Ask anything about symptoms, medications, diseases, lab tests, first
+          aid, and more — 24/7
+        </p>
+        <div class="bh-stats">
+          <div class="bhs">
+            <i class="fa-solid fa-book-medical"></i><span>100K+ Topics</span>
+          </div>
+          <div class="bhs-div"></div>
+          <div class="bhs">
+            <i class="fa-solid fa-clock"></i><span>24/7 Available</span>
+          </div>
+          <div class="bhs-div"></div>
+          <div class="bhs">
+            <i class="fa-solid fa-shield-halved"></i><span>Private</span>
+          </div>
+          <div class="bhs-div"></div>
+          <div class="bhs">
+            <i class="fa-solid fa-language"></i
+            ><span>Arabic &amp; English</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DISCLAIMER -->
+    <div class="disclaimer" id="disc">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <span
+        ><strong>Medical Disclaimer:</strong> General health information only —
+        not a substitute for professional advice. Always consult a qualified
+        healthcare provider.</span
+      >
+      <button onclick="document.getElementById('disc').style.display = 'none'">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- CHATBOT LAYOUT -->
+    <div class="chatbot-wrap">
+      <!-- SIDEBAR -->
+      <aside class="cb-sidebar" id="cbSidebar">
+        <div class="sb-head">
+          <div class="bot-ava"><i class="fa-solid fa-robot"></i></div>
+          <div>
+            <div class="bot-nm">MedBot AI</div>
+            <div class="bot-st"><span class="st-dot"></span>Online</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="sb-lbl">
+            <i class="fa-solid fa-grid-2"></i> Specialties
+          </div>
+          <div class="cat-grid">
+            <button
+              class="cat-btn"
+              onclick="
+                sendQ(
+                  'What are common medical symptoms and what do they indicate?',
+                )
+              "
+            >
+              <i class="fa-solid fa-thermometer"></i><span>Symptoms</span>
+            </button>
+            <button
+              class="cat-btn"
+              onclick="
+                sendQ(
+                  'Explain main drug categories, how medications work and safety rules',
+                )
+              "
+            >
+              <i class="fa-solid fa-pills"></i><span>Medications</span>
+            </button>
+            <button
+              class="cat-btn"
+              onclick="
+                sendQ(
+                  'List and explain the most common diseases and their treatments',
+                )
+              "
+            >
+              <i class="fa-solid fa-virus"></i><span>Diseases</span>
+            </button>
+            <button
+              class="cat-btn"
+              onclick="
+                sendQ(
+                  'Guide to interpreting CBC, metabolic panel, lipid panel with normal ranges',
+                )
+              "
+            >
+              <i class="fa-solid fa-flask-vial"></i><span>Lab Tests</span>
+            </button>
+            <button
+              class="cat-btn"
+              onclick="
+                sendQ(
+                  'Complete first aid guide: CPR, choking, burns, fractures, poisoning',
+                )
+              "
+            >
+              <i class="fa-solid fa-kit-medical"></i><span>First Aid</span>
+            </button>
+            <button
+              class="cat-btn"
+              onclick="
+                sendQ(
+                  'Explain depression, anxiety, OCD, PTSD, ADHD, bipolar disorder',
+                )
+              "
+            >
+              <i class="fa-solid fa-brain"></i><span>Mental Health</span>
+            </button>
+            <button
+              class="cat-btn"
+              onclick="
+                sendQ(
+                  'Cardiology overview: heart attack, heart failure, arrhythmias and treatments',
+                )
+              "
+            >
+              <i class="fa-solid fa-heart-pulse"></i><span>Cardiology</span>
+            </button>
+            <button
+              class="cat-btn"
+              onclick="
+                sendQ(
+                  'Pediatric health: vaccination schedule, childhood illnesses, fever in children',
+                )
+              "
+            >
+              <i class="fa-solid fa-baby"></i><span>Pediatrics</span>
+            </button>
+            <button
+              class="cat-btn"
+              onclick="
+                sendQ(
+                  'Common skin conditions: eczema, psoriasis, acne, skin cancer warning signs',
+                )
+              "
+            >
+              <i class="fa-regular fa-hand"></i><span>Dermatology</span>
+            </button>
+            <button
+              class="cat-btn"
+              onclick="
+                sendQ(
+                  'Nutrition and therapeutic diets for diabetes, hypertension and heart disease',
+                )
+              "
+            >
+              <i class="fa-solid fa-apple-whole"></i><span>Nutrition</span>
+            </button>
+            <button
+              class="cat-btn"
+              onclick="
+                sendQ(
+                  'Explain PCOS, menstrual disorders, pregnancy, contraception options',
+                )
+              "
+            >
+              <i class="fa-solid fa-venus"></i><span>Women Health</span>
+            </button>
+            <button
+              class="cat-btn"
+              onclick="
+                sendQ(
+                  'Emergency medicine: when to go to ER, stroke and heart attack recognition',
+                )
+              "
+            >
+              <i class="fa-solid fa-triangle-exclamation"></i
+              ><span>Emergency</span>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <div class="sb-lbl">
+            <i class="fa-solid fa-lightbulb"></i> Quick Questions
+          </div>
+          <div class="sq-list" id="sqList">
+            <button class="sq-btn" onclick="sendQ(this.textContent)">
+              What are symptoms of type 2 diabetes?
+            </button>
+            <button class="sq-btn" onclick="sendQ(this.textContent)">
+              How to read a CBC blood test?
+            </button>
+            <button class="sq-btn" onclick="sendQ(this.textContent)">
+              Warning signs of a heart attack?
+            </button>
+            <button class="sq-btn" onclick="sendQ(this.textContent)">
+              How to lower blood pressure naturally?
+            </button>
+            <button class="sq-btn" onclick="sendQ(this.textContent)">
+              How to treat a fever at home?
+            </button>
+            <button class="sq-btn" onclick="sendQ(this.textContent)">
+              Side effects of ibuprofen vs paracetamol?
+            </button>
+            <button class="sq-btn" onclick="sendQ(this.textContent)">
+              What foods should diabetics avoid?
+            </button>
+            <button class="sq-btn" onclick="sendQ(this.textContent)">
+              How to perform CPR correctly?
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <div class="sb-lbl">
+            <i class="fa-solid fa-chart-bar"></i> Session
+          </div>
+          <div class="sess-row">
+            <div class="sess-card">
+              <strong id="msgCt">0</strong><span>Messages</span>
+            </div>
+            <div class="sess-card">
+              <strong id="topicCt">0</strong><span>Topics</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="clear-btn" onclick="clearChat()">
+          <i class="fa-solid fa-trash-can"></i> Clear Chat
+        </button>
+      </aside>
+
+      <!-- CHAT WINDOW -->
+      <main class="cb-chat">
+        <div class="chat-msgs" id="chatMsgs"></div>
+
+        <div class="typing-wrap" id="typingWrap">
+          <div class="typing-inner">
+            <div class="m-ava bot"><i class="fa-solid fa-robot"></i></div>
+            <div class="ty-dots"><span></span><span></span><span></span></div>
+          </div>
+        </div>
+
+        <div class="inp-area">
+          <div class="inp-chips">
+            <button
+              class="inp-chip"
+              onclick="sendQ('Medication information')"
+              onclick="injectText('Explain this medication: ')"
+            >
+              <i class="fa-solid fa-pills"></i> Medication
+            </button>
+            <button
+              class="inp-chip"
+              onclick="sendQ('Common disease symptoms')"
+              onclick="injectText('What are symptoms of ')"
+            >
+              <i class="fa-solid fa-thermometer"></i> Symptoms
+            </button>
+            <button
+              class="inp-chip"
+              onclick="sendQ('Disease treatment options')"
+            >
+              <i class="fa-solid fa-stethoscope"></i> Treatment
+            </button>
+            <button class="inp-chip" onclick="sendQ('Normal lab values')">
+              <i class="fa-solid fa-flask-vial"></i> Lab Values
+            </button>
+            <button
+              class="inp-chip"
+              onclick="sendQ('Compare medications')"
+              onclick="injectText('Difference between ')"
+            >
+              <i class="fa-solid fa-code-compare"></i> Compare
+            </button>
+          </div>
+          <div class="inp-row">
+            <div class="inp-wrap">
+              <textarea
+                id="user-input"
+                rows="1"
+                placeholder="Ask any medical question… (English or Arabic)"
+                onkeydown="handleKey(event)"
+                oninput="resizeTA(this)"
+              ></textarea>
+              <div class="char-ct" id="charCt">0 / 1000</div>
+            </div>
+            <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+              <i class="fa-solid fa-paper-plane" id="sendIco"></i>
+            </button>
+          </div>
+          <div class="inp-footer">
+            <span
+              ><i class="fa-solid fa-shield-halved"></i> Conversations are
+              private</span
+            >
+            <span
+              ><kbd>Enter</kbd> to send &nbsp;·&nbsp; <kbd>Shift+Enter</kbd> new
+              line</span
+            >
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <button
+      class="mob-toggle"
+      id="mobToggle"
+      onclick="document.getElementById('cbSidebar').classList.toggle('open')"
+    >
+      <i class="fa-solid fa-grid-2"></i>
+    </button>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="meds-footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h3>Care At Home</h3>
+          <p class="footer-support">Customer Support</p>
+          <p class="footer-support-text">
+            Support Is Open 24/7 In The Care At Home
+          </p>
+          <p class="footer-address-title">Address</p>
+          <p class="footer-address">Egypt, Tanta</p>
+          <div class="footer-social">
+            <a href="#" class="social-link"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+            <a href="#" class="social-link"
+              ><i class="fa-brands fa-x-twitter"></i
+            ></a>
+            <a href="#" class="social-link"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a href="#" class="social-link"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="../Care-Bot/bot.html">bot cara at home</a></li>
+            <li>
+              <a href="../healthdashboard/health-dashboard.html"
+                >healthdashboard</a
+              >
+            </li>
+            <li>
+              <a href="../patient services/patient.html">patien services</a>
+            </li>
+            <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+            <li><a href="../Medication/Medication.html">medication</a></li>
+            <li>
+              <a href="../Medical diagnosis/Medical diagnosis.html"
+                >Diagnosis</a
+              >
+            </li>
+            <li><a href="../Emergency/emergency.html">emergency</a></li>
+            <li><a href="../nursing/nursing.html">nursing</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="../How It Work/how it work.html">How It Works</a></li>
+            <li><a href="../Subscriptions/">Pricing</a></li>
+            <li><a href="#">Promo Codes</a></li>
+            <li><a href="#">Employers</a></li>
+            <li><a href="#">Brokers</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="../about us/about.html">About Us</a></li>
+            <li><a href="../help us/help.html">Help Center</a></li>
+            <li>
+              <a href="../our providers/our providers.html">Our Providers</a>
+            </li>
+            <li><a href="../pharmacy/contactus/contact.html">Contact Us</a></li>
+            <li><a href="#">Newsroom</a></li>
+            <li><a href="#">Sitemap</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Terms Of Use</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Refund/Cancellation Policy</a></li>
+            <li><a href="#">Notice Of Privacy Practices</a></li>
+            <li><a href="#">Consent To Virtual Visits</a></li>
+            <li><a href="#">Content Creation Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-partners">
+        <span class="partner-logo">aetna</span>
+        <span class="partner-logo">Anthem</span>
+        <span class="partner-logo">Humana</span>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Care At Home, Inc. All Rights Reserved.</p>
+      </div>
+    </footer>
+    <!-- end footer -->
+
+    <div id="google_translate_element" style="display: none"></div>
+    <script src="bot.js"></script>
+  </body>
+</html>

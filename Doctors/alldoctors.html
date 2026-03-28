@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="./iamge/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="alldoctors.css" />
+    <title>Our Doctors | Care At Home</title>
+    <style></style>
+  </head>
+  <body>
+    !-- ===== HEADER ===== -->
+    <header id="logo">
+      <div class="nav-bar" id="online doctor">
+        <nav>
+          <div class="logo">
+            <a href="#logo"
+              ><p><span>care at home</span></p></a
+            >
+            <div class="lang-switch">
+              <button id="lang-toggle">ar</button>
+            </div>
+          </div>
+          <ul class="sidebar" id="sidebar">
+            <li onclick="hidesidebar()">
+              <a href="#"
+                ><span class="material-symbols-outlined">close</span></a
+              >
+            </li>
+            <li><a href="../index.html#online doctor">online doctor</a></li>
+            <li>
+              <a href="../index.html#how care at home works"
+                >how care at home works</a
+              >
+            </li>
+            <li><a href="../index.html#diagnosis">diagnosis</a></li>
+            <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+            <li>
+              <a class="a4" href="../our providers/our providers.html"
+                >our providers</a
+              >
+            </li>
+            <div class="botn">
+              <a href="./Get-Started/get-started.html" target="_blank"
+                >get started</a
+              >
+            </div>
+          </ul>
+          <ul>
+            <li class="hide">
+              <a href="../index.html#online doctor">online doctor</a>
+            </li>
+            <li class="hide">
+              <a href="../index.html#how care at home works"
+                >how care at home works</a
+              >
+            </li>
+            <li class="hide">
+              <a href="../index.html#diagnosis">diagnosis</a>
+            </li>
+            <li class="hide">
+              <a href="../index.html#Telehealth Services">Telehealth Services</a>
+            </li>
+            <li class="hide">
+              <a class="a4" href="../our providers/our providers.html"
+                >our providers</a
+              >
+            </li>
+            <div class="botn">
+              <a
+                class="hide"
+                href="./Get-Started/get-started.html"
+                target="_blank"
+                >get started</a
+              >
+            </div>
+            <li class="span" onclick="showsidebar()">
+              <a href="#"
+                ><span class="material-symbols-outlined">menu</span></a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="doctors-hero">
+      <h1>Meet Our <span>Expert</span> Physicians</h1>
+      <p>
+        Board-certified doctors available 24/7. Choose by specialty,
+        availability, or rating — and book your visit in minutes.
+      </p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-num">300+</span>
+          <span class="hero-stat-label">Licensed Physicians</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">50</span>
+          <span class="hero-stat-label">Specialties</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">24/7</span>
+          <span class="hero-stat-label">Always Available</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">4.9★</span>
+          <span class="hero-stat-label">Average Rating</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="doctors-wrapper">
+      <!-- SEARCH & FILTER -->
+      <div class="search-filter-bar">
+        <div class="search-input-wrap">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search by name, specialty or condition..."
+            oninput="filterDoctors()"
+          />
+        </div>
+        <div class="filter-row">
+          <span class="filter-label"
+            ><i class="fa-solid fa-filter"></i> Filter:</span
+          >
+          <button
+            class="filter-btn active"
+            data-spec="all"
+            onclick="setFilter(this, 'all')"
+          >
+            All Doctors
+          </button>
+          <button
+            class="filter-btn"
+            data-spec="Cardiology"
+            onclick="setFilter(this, 'Cardiology')"
+          >
+            <i class="fa-solid fa-heart-pulse"></i> Cardiology
+          </button>
+          <button
+            class="filter-btn"
+            data-spec="Neurology"
+            onclick="setFilter(this, 'Neurology')"
+          >
+            <i class="fa-solid fa-brain"></i> Neurology
+          </button>
+          <button
+            class="filter-btn"
+            data-spec="Orthopedics"
+            onclick="setFilter(this, 'Orthopedics')"
+          >
+            <i class="fa-solid fa-bone"></i> Orthopedics
+          </button>
+          <button
+            class="filter-btn"
+            data-spec="Dermatology"
+            onclick="setFilter(this, 'Dermatology')"
+          >
+            <i class="fa-solid fa-hand-dots"></i> Dermatology
+          </button>
+          <button
+            class="filter-btn"
+            data-spec="Pediatrics"
+            onclick="setFilter(this, 'Pediatrics')"
+          >
+            <i class="fa-solid fa-baby"></i> Pediatrics
+          </button>
+          <button
+            class="filter-btn"
+            data-spec="Internal Medicine"
+            onclick="setFilter(this, 'Internal Medicine')"
+          >
+            <i class="fa-solid fa-stethoscope"></i> Internal Med.
+          </button>
+          <button
+            class="filter-btn"
+            data-spec="Ophthalmology"
+            onclick="setFilter(this, 'Ophthalmology')"
+          >
+            <i class="fa-solid fa-eye"></i> Ophthalmology
+          </button>
+          <button
+            class="filter-btn"
+            data-spec="Psychiatry"
+            onclick="setFilter(this, 'Psychiatry')"
+          >
+            <i class="fa-solid fa-brain"></i> Psychiatry
+          </button>
+          <select
+            class="sort-select"
+            id="sort-select"
+            onchange="filterDoctors()"
+          >
+            <option value="rating">Sort: Highest Rated</option>
+            <option value="price-asc">Sort: Price ↑</option>
+            <option value="price-desc">Sort: Price ↓</option>
+            <option value="exp">Sort: Most Experienced</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- RESULTS HEADER -->
+      <div class="results-header">
+        <div class="results-count">
+          Showing <span id="result-count">0</span> doctors
+        </div>
+      </div>
+
+      <!-- GRID -->
+      <div class="doctors-grid" id="doctors-grid"></div>
+
+      <!-- NO RESULTS -->
+      <div class="no-results" id="no-results">
+        <i class="fa-solid fa-user-doctor"></i>
+        <h3>No doctors found</h3>
+        <p>Try adjusting your search or filter to find available physicians.</p>
+      </div>
+    </div>
+
+    <!-- BOOKING MODAL -->
+    <div class="modal-overlay" id="modal-overlay">
+      <div class="modal-box">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+
+        <!-- Booking Form -->
+        <div id="booking-form">
+          <div class="modal-doctor-info" id="modal-doc-info">
+            <div class="modal-avatar" id="modal-avatar">👨‍⚕️</div>
+            <div>
+              <div class="modal-doc-name" id="modal-doc-name">Doctor Name</div>
+              <div class="modal-doc-spec" id="modal-doc-spec">Specialty</div>
+              <div class="modal-doc-price" id="modal-doc-price">
+                $129 / visit
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-title">
+            <i
+              class="fa-solid fa-calendar-plus"
+              style="color: var(--bg); margin-right: 8px"
+            ></i
+            >Book Your Appointment
+          </div>
+
+          <div class="modal-form-group">
+            <label><i class="fa-solid fa-user"></i> Full Name</label>
+            <input type="text" id="f-name" placeholder="Enter your full name" />
+          </div>
+
+          <div class="form-row">
+            <div class="modal-form-group">
+              <label><i class="fa-solid fa-phone"></i> Phone Number</label>
+              <input type="tel" id="f-phone" placeholder="01xxxxxxxxx" />
+            </div>
+            <div class="modal-form-group">
+              <label><i class="fa-solid fa-envelope"></i> Email Address</label>
+              <input type="email" id="f-email" placeholder="you@email.com" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="modal-form-group">
+              <label
+                ><i class="fa-solid fa-calendar-days"></i> Preferred Date</label
+              >
+              <input type="date" id="f-date" />
+            </div>
+            <div class="modal-form-group">
+              <label><i class="fa-solid fa-clock"></i> Preferred Time</label>
+              <select id="f-time">
+                <option>9:00 AM</option>
+                <option>10:00 AM</option>
+                <option>11:00 AM</option>
+                <option>12:00 PM</option>
+                <option>2:00 PM</option>
+                <option>3:00 PM</option>
+                <option>4:00 PM</option>
+                <option>5:00 PM</option>
+                <option>6:00 PM</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="modal-form-group">
+            <label><i class="fa-solid fa-file-medical"></i> Visit Type</label>
+            <select id="f-type">
+              <option>Video Visit (Virtual)</option>
+              <option>In-person Visit</option>
+              <option>Follow-up Appointment</option>
+              <option>Second Opinion</option>
+            </select>
+          </div>
+
+          <div class="modal-form-group">
+            <label
+              ><i class="fa-solid fa-notes-medical"></i> Symptoms / Reason for
+              Visit</label
+            >
+            <textarea
+              id="f-reason"
+              placeholder="Briefly describe your symptoms or reason for the visit..."
+            ></textarea>
+          </div>
+
+          <button class="modal-submit" onclick="submitBooking()">
+            <i class="fa-solid fa-check-circle"></i> Confirm Appointment
+          </button>
+        </div>
+
+        <!-- Success Screen -->
+        <div class="success-screen" id="success-screen">
+          <div class="success-icon">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+          <h3>Appointment Booked!</h3>
+          <p>
+            Your appointment has been confirmed. You will receive a confirmation
+            email and SMS shortly. Please be available 5 minutes before your
+            visit.
+          </p>
+          <button
+            class="modal-submit"
+            onclick="closeModal()"
+            style="max-width: 240px; margin: 0 auto"
+          >
+            <i class="fa-solid fa-home"></i> Back to Doctors
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast">
+      <i class="fa-solid fa-circle-check"></i> <span id="toast-msg"></span>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="meds-footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h3>Care At Home</h3>
+          <p class="footer-support">Customer Support</p>
+          <p class="footer-support-text">
+            Support Is Open 24/7 In The Care At Home
+          </p>
+          <p class="footer-address-title">Address</p>
+          <p class="footer-address">Egypt, Tanta</p>
+          <div class="footer-social">
+            <a href="#" class="social-link"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+            <a href="#" class="social-link"
+              ><i class="fa-brands fa-x-twitter"></i
+            ></a>
+            <a href="#" class="social-link"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a href="#" class="social-link"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="../Care-Bot/bot.html">bot cara at home</a></li>
+            <li>
+              <a href="../healthdashboard/health-dashboard.html"
+                >healthdashboard</a
+              >
+            </li>
+            <li>
+              <a href="../patient services/patient.html">patien services</a>
+            </li>
+            <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+            <li><a href="../Medication/Medication.html">medication</a></li>
+            <li>
+              <a href="../Medical diagnosis/Medical diagnosis.html"
+                >Diagnosis</a
+              >
+            </li>
+            <li><a href="../Emergency/emergency.html">emergency</a></li>
+            <li><a href="../nursing/nursing.html">nursing</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="../How It Work/how it work.html">How It Works</a></li>
+            <li><a href="../Subscriptions/">Pricing</a></li>
+            <li><a href="#">Promo Codes</a></li>
+            <li><a href="#">Employers</a></li>
+            <li><a href="#">Brokers</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="../about us/about.html">About Us</a></li>
+            <li><a href="../help us/help.html">Help Center</a></li>
+            <li>
+              <a href="../our providers/our providers.html">Our Providers</a>
+            </li>
+            <li><a href="../pharmacy/contactus/contact.html">Contact Us</a></li>
+            <li><a href="#">Newsroom</a></li>
+            <li><a href="#">Sitemap</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Terms Of Use</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Refund/Cancellation Policy</a></li>
+            <li><a href="#">Notice Of Privacy Practices</a></li>
+            <li><a href="#">Consent To Virtual Visits</a></li>
+            <li><a href="#">Content Creation Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-partners">
+        <span class="partner-logo">aetna</span>
+        <span class="partner-logo">Anthem</span>
+        <span class="partner-logo">Humana</span>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Care At Home, Inc. All Rights Reserved.</p>
+      </div>
+    </footer>
+    <!-- end footer -->
+    <script src="alldoctors.js"></script>
+  </body>
+</html>

@@ -1,0 +1,2565 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Care At Home | نظام المستشفى العالمي</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="dash.css" />
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="bg-grid"></div>
+    <div class="toast" id="toast">
+      <span class="toast-icon" id="toast-icon">✅</span>
+      <div>
+        <div class="toast-text" id="toast-text">تم بنجاح</div>
+        <div class="toast-sub" id="toast-sub"></div>
+      </div>
+    </div>
+
+    <!-- ══ MODAL: Add Patient ══ -->
+    <div class="modal-overlay" id="modal-patient">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">قبول مريض جديد</div>
+          <button class="modal-close" onclick="closeModal('modal-patient')">
+            ✕
+          </button>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">الاسم كاملاً</label
+            ><input class="input" placeholder="محمد أحمد علي" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">العمر</label
+            ><input class="input" type="number" placeholder="35" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">فصيلة الدم</label
+            ><select class="input">
+              <option>A+</option>
+              <option>A-</option>
+              <option>B+</option>
+              <option>B-</option>
+              <option>O+</option>
+              <option>O-</option>
+              <option>AB+</option>
+              <option>AB-</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">القسم</label
+            ><select class="input">
+              <option>الباطنة</option>
+              <option>الجراحة</option>
+              <option>القلب</option>
+              <option>الطوارئ</option>
+              <option>الأطفال</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">التشخيص الأولي</label
+          ><input class="input" placeholder="اكتب التشخيص..." />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">رقم الهاتف</label
+            ><input class="input" placeholder="05xxxxxxxx" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">الطبيب المعالج</label
+            ><select class="input" id="patient-doctor-select">
+              <option>د. سارة أحمد</option>
+            </select>
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px; margin-top: 8px">
+          <button
+            class="btn btn-primary"
+            style="flex: 1"
+            onclick="savePatient()"
+          >
+            ✓ حفظ وقبول المريض</button
+          ><button class="btn btn-ghost" onclick="closeModal('modal-patient')">
+            إلغاء
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MODAL: Add Appointment ══ -->
+    <div class="modal-overlay" id="modal-appt">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">📅 حجز موعد جديد</div>
+          <button class="modal-close" onclick="closeModal('modal-appt')">
+            ✕
+          </button>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">اسم المريض</label
+            ><input
+              class="input"
+              id="appt-patient-name"
+              placeholder="اسم المريض"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">الطبيب</label
+            ><select class="input" id="appt-doctor-select">
+              <option>د. سارة أحمد</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">التاريخ</label
+            ><input class="input" id="appt-date" type="date" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">الوقت</label
+            ><input class="input" id="appt-time" type="time" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">نوع الزيارة</label
+          ><select class="input" id="appt-type">
+            <option>فحص دوري</option>
+            <option>استشارة</option>
+            <option>متابعة</option>
+            <option>طوارئ</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">ملاحظات</label
+          ><textarea
+            class="input"
+            id="appt-notes"
+            rows="3"
+            placeholder="ملاحظات..."
+          ></textarea>
+        </div>
+        <div style="display: flex; gap: 12px; margin-top: 8px">
+          <button class="btn btn-primary" style="flex: 1" onclick="saveAppt()">
+            ✓ تأكيد الحجز</button
+          ><button class="btn btn-ghost" onclick="closeModal('modal-appt')">
+            إلغاء
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MODAL: View Appointment ══ -->
+    <div class="modal-overlay" id="modal-view-appt">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">📋 تفاصيل الموعد</div>
+          <button class="modal-close" onclick="closeModal('modal-view-appt')">
+            ✕
+          </button>
+        </div>
+        <div class="patient-modal-header">
+          <div class="patient-modal-avatar" id="va-avatar">م</div>
+          <div class="patient-modal-info">
+            <h3 id="va-name">اسم المريض</h3>
+            <p id="va-sub">الطبيب • النوع</p>
+          </div>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-item-label">📅 التاريخ</div>
+            <div class="info-item-value" id="va-date">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">⏰ الوقت</div>
+            <div class="info-item-value" id="va-time">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">🏥 نوع الزيارة</div>
+            <div class="info-item-value" id="va-type">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">👨‍⚕️ الطبيب</div>
+            <div class="info-item-value" id="va-doctor">--</div>
+          </div>
+        </div>
+        <div class="info-item" style="margin-bottom: 12px">
+          <div class="info-item-label">📝 ملاحظات</div>
+          <div class="info-item-value" id="va-notes">--</div>
+        </div>
+        <div class="info-item" style="margin-bottom: 16px">
+          <div class="info-item-label">📊 الحالة</div>
+          <div class="info-item-value" id="va-status">--</div>
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap">
+          <button
+            class="btn btn-primary"
+            style="flex: 1"
+            onclick="editAppointment()"
+          >
+            ✏️ تعديل
+          </button>
+          <button
+            id="va-confirm-btn"
+            class="btn btn-ghost"
+            style="flex: 1; color: var(--green); border-color: var(--green)"
+            onclick="confirmAppt(currentAppointment?.id)"
+          >
+            ✅ تأكيد
+          </button>
+          <button
+            id="va-cancel-btn"
+            class="btn btn-ghost"
+            style="flex: 1; color: var(--red); border-color: var(--red)"
+            onclick="cancelAppt(currentAppointment?.id)"
+          >
+            ❌ إلغاء
+          </button>
+          <button class="btn btn-ghost" onclick="closeModal('modal-view-appt')">
+            إغلاق
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MODAL: Edit Appointment ══ -->
+    <div class="modal-overlay" id="modal-edit-appt">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">✏️ تعديل الموعد</div>
+          <button class="modal-close" onclick="closeModal('modal-edit-appt')">
+            ✕
+          </button>
+        </div>
+        <div class="patient-modal-header">
+          <div class="patient-modal-avatar" id="ea-avatar">م</div>
+          <div class="patient-modal-info">
+            <h3 id="ea-name-display">اسم المريض</h3>
+            <p id="ea-sub-display">الطبيب</p>
+          </div>
+        </div>
+        <input type="hidden" id="edit-appt-id" />
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">اسم المريض</label
+            ><input class="input" id="edit-appt-patient" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">الطبيب</label
+            ><select class="input" id="edit-appt-doctor">
+              <option>د. سارة أحمد</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">التاريخ</label
+            ><input class="input" id="edit-appt-date" type="date" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">الوقت</label
+            ><input class="input" id="edit-appt-time" type="time" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">نوع الزيارة</label
+          ><select class="input" id="edit-appt-type">
+            <option>فحص دوري</option>
+            <option>استشارة</option>
+            <option>متابعة</option>
+            <option>طوارئ</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">ملاحظات</label
+          ><textarea class="input" id="edit-appt-notes" rows="2"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">الحالة</label>
+          <div class="status-options">
+            <div
+              class="status-option"
+              data-val="confirmed"
+              onclick="selectStatusIn(this, 'modal-edit-appt')"
+            >
+              ✅ مؤكد
+            </div>
+            <div
+              class="status-option"
+              data-val="pending"
+              onclick="selectStatusIn(this, 'modal-edit-appt')"
+            >
+              ⏳ انتظار
+            </div>
+            <div
+              class="status-option"
+              data-val="cancelled"
+              onclick="selectStatusIn(this, 'modal-edit-appt')"
+            >
+              ❌ ملغي
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px; margin-top: 8px">
+          <button
+            class="btn btn-primary"
+            style="flex: 1"
+            onclick="saveEditAppt()"
+          >
+            ✓ حفظ التعديلات</button
+          ><button
+            class="btn btn-ghost"
+            onclick="closeModal('modal-edit-appt')"
+          >
+            إلغاء
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MODAL: Add Doctor ══ -->
+    <div class="modal-overlay" id="modal-add-doctor">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">🩺 إضافة طبيب جديد</div>
+          <button class="modal-close" onclick="closeModal('modal-add-doctor')">
+            ✕
+          </button>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">اسم الطبيب</label
+            ><input class="input" id="doc-name" placeholder="د. محمد أحمد" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">سنوات الخبرة</label
+            ><input class="input" type="number" id="doc-exp" placeholder="10" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">التخصص</label
+          ><select class="input" id="doc-specialty">
+            <option>أمراض القلب والأوعية</option>
+            <option>الطوارئ والعناية المركزة</option>
+            <option>الغدد الصماء والسكري</option>
+            <option>جراحة العظام والمفاصل</option>
+            <option>الباطنة العامة</option>
+            <option>طب الأطفال</option>
+            <option>طب الأسنان</option>
+            <option>طب العيون</option>
+            <option>جراحة عامة</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">رقم الهاتف</label
+            ><input class="input" id="doc-phone" placeholder="05xxxxxxxx" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">البريد الإلكتروني</label
+            ><input
+              class="input"
+              id="doc-email"
+              placeholder="doctor@careathome.com"
+            />
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px; margin-top: 8px">
+          <button
+            class="btn btn-primary"
+            style="flex: 1"
+            onclick="saveDoctor()"
+          >
+            ✓ إضافة الطبيب</button
+          ><button
+            class="btn btn-ghost"
+            onclick="closeModal('modal-add-doctor')"
+          >
+            إلغاء
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MODAL: View Doctor ══ -->
+    <div class="modal-overlay" id="modal-view-doctor">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">ملف الطبيب</div>
+          <button class="modal-close" onclick="closeModal('modal-view-doctor')">
+            ✕
+          </button>
+        </div>
+        <div class="patient-modal-header">
+          <div class="patient-modal-avatar" id="vd-avatar">د</div>
+          <div class="patient-modal-info">
+            <h3 id="vd-name">اسم الطبيب</h3>
+            <p id="vd-spec">التخصص</p>
+          </div>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-item-label">⭐ التقييم</div>
+            <div class="info-item-value" id="vd-rating">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">📅 سنوات الخبرة</div>
+            <div class="info-item-value" id="vd-exp">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">🔬 العمليات</div>
+            <div class="info-item-value" id="vd-ops">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">📞 الهاتف</div>
+            <div class="info-item-value" id="vd-phone">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">📧 البريد</div>
+            <div class="info-item-value" id="vd-email">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">🟢 الحالة</div>
+            <div class="info-item-value" id="vd-avail">--</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px">
+          <button
+            class="btn btn-primary"
+            style="flex: 1"
+            onclick="switchToEditDoctor()"
+          >
+            ✏️ تعديل</button
+          ><button
+            class="btn btn-ghost"
+            style="flex: 1"
+            onclick="bookApptForDoctor()"
+          >
+            📅 حجز موعد</button
+          ><button
+            class="btn btn-ghost"
+            onclick="closeModal('modal-view-doctor')"
+          >
+            إغلاق
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MODAL: Edit Doctor ══ -->
+    <div class="modal-overlay" id="modal-edit-doctor">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">✏️ تعديل بيانات الطبيب</div>
+          <button class="modal-close" onclick="closeModal('modal-edit-doctor')">
+            ✕
+          </button>
+        </div>
+        <div class="patient-modal-header">
+          <div class="patient-modal-avatar" id="ed-avatar">د</div>
+          <div class="patient-modal-info">
+            <h3 id="ed-name-display">اسم الطبيب</h3>
+            <p id="ed-spec-display">التخصص</p>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">الاسم</label
+            ><input class="input" id="ed-name" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">سنوات الخبرة</label
+            ><input class="input" type="number" id="ed-exp" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">التخصص</label
+          ><select class="input" id="ed-specialty">
+            <option>أمراض القلب والأوعية</option>
+            <option>الطوارئ والعناية المركزة</option>
+            <option>الغدد الصماء والسكري</option>
+            <option>جراحة العظام والمفاصل</option>
+            <option>الباطنة العامة</option>
+            <option>طب الأطفال</option>
+            <option>طب الأسنان</option>
+            <option>طب العيون</option>
+            <option>جراحة عامة</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">رقم الهاتف</label
+            ><input class="input" id="ed-phone" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">البريد الإلكتروني</label
+            ><input class="input" id="ed-email" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">حالة التوفر</label>
+          <div class="avail-options">
+            <div
+              class="avail-option"
+              id="avail-yes"
+              onclick="selectAvail(true)"
+            >
+              ✅ متاح
+            </div>
+            <div
+              class="avail-option"
+              id="avail-no"
+              onclick="selectAvail(false)"
+            >
+              ❌ غير متاح
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px; margin-top: 8px">
+          <button
+            class="btn btn-primary"
+            style="flex: 1"
+            onclick="saveEditDoctor()"
+          >
+            ✓ حفظ التعديلات</button
+          ><button
+            class="btn btn-ghost"
+            onclick="closeModal('modal-edit-doctor')"
+          >
+            إلغاء
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MODAL: View Patient ══ -->
+    <div class="modal-overlay" id="modal-view-patient">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">ملف المريض</div>
+          <button
+            class="modal-close"
+            onclick="closeModal('modal-view-patient')"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="patient-modal-header">
+          <div class="patient-modal-avatar" id="view-avatar">م</div>
+          <div class="patient-modal-info">
+            <h3 id="view-name">اسم المريض</h3>
+            <p id="view-sub">الرقم • القسم</p>
+          </div>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-item-label">🎂 العمر</div>
+            <div class="info-item-value" id="view-age">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">🩸 فصيلة الدم</div>
+            <div class="info-item-value" id="view-blood">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">🏥 الغرفة</div>
+            <div class="info-item-value" id="view-room">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">👨‍⚕️ الطبيب</div>
+            <div class="info-item-value" id="view-doctor">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">🔬 التشخيص</div>
+            <div class="info-item-value" id="view-diag">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">🕐 وقت الدخول</div>
+            <div class="info-item-value" id="view-time">--</div>
+          </div>
+        </div>
+        <div class="info-item" style="margin-bottom: 16px">
+          <div class="info-item-label">📊 الحالة</div>
+          <div class="info-item-value" id="view-status">--</div>
+        </div>
+        <div style="display: flex; gap: 12px">
+          <button
+            class="btn btn-primary"
+            style="flex: 1"
+            onclick="switchToEdit()"
+          >
+            ✏️ تعديل البيانات</button
+          ><button
+            class="btn btn-ghost"
+            onclick="closeModal('modal-view-patient')"
+          >
+            إغلاق
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MODAL: Edit Patient ══ -->
+    <div class="modal-overlay" id="modal-edit-patient">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">✏️ تعديل بيانات المريض</div>
+          <button
+            class="modal-close"
+            onclick="closeModal('modal-edit-patient')"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="patient-modal-header">
+          <div class="patient-modal-avatar" id="edit-avatar">م</div>
+          <div class="patient-modal-info">
+            <h3 id="edit-name-display">اسم المريض</h3>
+            <p id="edit-sub-display">الرقم</p>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">الاسم</label
+            ><input class="input" id="edit-name" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">الغرفة</label
+            ><input class="input" id="edit-room" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">الطبيب المعالج</label
+          ><select class="input" id="edit-doctor">
+            <option>د. سارة أحمد</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">التشخيص</label
+          ><input class="input" id="edit-diag" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">الحالة</label>
+          <div class="status-options">
+            <div
+              class="status-option"
+              data-val="مستقر"
+              onclick="selectStatusIn(this, 'modal-edit-patient')"
+            >
+              ✅ مستقر
+            </div>
+            <div
+              class="status-option"
+              data-val="متحسن"
+              onclick="selectStatusIn(this, 'modal-edit-patient')"
+            >
+              📈 متحسن
+            </div>
+            <div
+              class="status-option"
+              data-val="حرج"
+              onclick="selectStatusIn(this, 'modal-edit-patient')"
+            >
+              ⚠️ حرج
+            </div>
+            <div
+              class="status-option"
+              data-val="طارئ"
+              onclick="selectStatusIn(this, 'modal-edit-patient')"
+            >
+              🚨 طارئ
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px; margin-top: 8px">
+          <button class="btn btn-primary" style="flex: 1" onclick="saveEdit()">
+            ✓ حفظ التعديلات</button
+          ><button
+            class="btn btn-ghost"
+            onclick="closeModal('modal-edit-patient')"
+          >
+            إلغاء
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MODAL: Add Surgery ══ -->
+    <div class="modal-overlay" id="modal-add-surgery">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">🔬 جدولة عملية جديدة</div>
+          <button class="modal-close" onclick="closeModal('modal-add-surgery')">
+            ✕
+          </button>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">اسم المريض</label
+            ><input class="input" id="surg-patient" placeholder="اسم المريض" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">الطبيب المسؤول</label
+            ><select class="input" id="surg-doctor">
+              <option>د. سارة أحمد</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">غرفة العمليات</label
+            ><select class="input" id="surg-room">
+              <option>OR-1</option>
+              <option>OR-2</option>
+              <option>OR-3</option>
+              <option>OR-4</option>
+              <option>OR-5</option>
+              <option>OR-6</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">المدة (ساعة)</label
+            ><input
+              class="input"
+              type="number"
+              id="surg-duration"
+              placeholder="2"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">نوع العملية</label
+          ><input class="input" id="surg-type" placeholder="استئصال المرارة" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">تاريخ العملية</label
+            ><input class="input" type="date" id="surg-date" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">وقت البدء</label
+            ><input class="input" type="time" id="surg-time" />
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px; margin-top: 8px">
+          <button
+            class="btn btn-primary"
+            style="flex: 1"
+            onclick="saveSurgery()"
+          >
+            ✓ جدولة العملية</button
+          ><button
+            class="btn btn-ghost"
+            onclick="closeModal('modal-add-surgery')"
+          >
+            إلغاء
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MODAL: View Surgery ══ -->
+    <div class="modal-overlay" id="modal-view-surgery">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">🔬 تفاصيل العملية</div>
+          <button
+            class="modal-close"
+            onclick="closeModal('modal-view-surgery')"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="patient-modal-header">
+          <div class="patient-modal-avatar" id="vs-avatar">OR</div>
+          <div class="patient-modal-info">
+            <h3 id="vs-type">نوع العملية</h3>
+            <p id="vs-sub">المريض • الطبيب</p>
+          </div>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-item-label">🏥 غرفة العمليات</div>
+            <div class="info-item-value" id="vs-room">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">⏱ المدة</div>
+            <div class="info-item-value" id="vs-duration">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">👨‍⚕️ الطبيب</div>
+            <div class="info-item-value" id="vs-doctor">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">👤 المريض</div>
+            <div class="info-item-value" id="vs-patient">--</div>
+          </div>
+        </div>
+        <div class="info-item" style="margin-bottom: 16px">
+          <div class="info-item-label">📊 الحالة</div>
+          <div class="info-item-value" id="vs-status">--</div>
+        </div>
+        <div style="display: flex; gap: 12px">
+          <button
+            class="btn btn-primary"
+            style="flex: 1"
+            onclick="editSurgery()"
+          >
+            ✏️ تعديل الحالة
+          </button>
+          <button
+            class="btn btn-ghost"
+            onclick="closeModal('modal-view-surgery')"
+          >
+            إغلاق
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MODAL: Edit Surgery ══ -->
+    <div class="modal-overlay" id="modal-edit-surgery">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">✏️ تعديل العملية</div>
+          <button
+            class="modal-close"
+            onclick="closeModal('modal-edit-surgery')"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="patient-modal-header">
+          <div class="patient-modal-avatar" id="es-avatar">OR</div>
+          <div class="patient-modal-info">
+            <h3 id="es-name-display">نوع العملية</h3>
+            <p id="es-sub-display">المريض</p>
+          </div>
+        </div>
+        <input type="hidden" id="edit-surg-id" />
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">اسم المريض</label
+            ><input class="input" id="edit-surg-patient" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">الطبيب</label
+            ><select class="input" id="edit-surg-doctor">
+              <option>د. سارة أحمد</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">غرفة العمليات</label
+            ><select class="input" id="edit-surg-room">
+              <option>OR-1</option>
+              <option>OR-2</option>
+              <option>OR-3</option>
+              <option>OR-4</option>
+              <option>OR-5</option>
+              <option>OR-6</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">المدة (ساعة)</label
+            ><input class="input" type="number" id="edit-surg-duration" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">نوع العملية</label
+          ><input class="input" id="edit-surg-type" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">الحالة</label>
+          <div class="status-options">
+            <div
+              class="status-option"
+              data-val="scheduled"
+              onclick="selectStatusIn(this, 'modal-edit-surgery')"
+            >
+              📅 مجدولة
+            </div>
+            <div
+              class="status-option"
+              data-val="ongoing"
+              onclick="selectStatusIn(this, 'modal-edit-surgery')"
+            >
+              🔴 جارية
+            </div>
+            <div
+              class="status-option"
+              data-val="completed"
+              onclick="selectStatusIn(this, 'modal-edit-surgery')"
+            >
+              ✅ منتهية
+            </div>
+            <div
+              class="status-option"
+              data-val="cancelled_s"
+              onclick="selectStatusIn(this, 'modal-edit-surgery')"
+            >
+              ❌ ملغية
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px; margin-top: 8px">
+          <button
+            class="btn btn-primary"
+            style="flex: 1"
+            onclick="saveEditSurgery()"
+          >
+            ✓ حفظ التعديلات</button
+          ><button
+            class="btn btn-ghost"
+            onclick="closeModal('modal-edit-surgery')"
+          >
+            إلغاء
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MODAL: Add Lab ══ -->
+    <div class="modal-overlay" id="modal-add-lab">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">🧪 طلب تحليل جديد</div>
+          <button class="modal-close" onclick="closeModal('modal-add-lab')">
+            ✕
+          </button>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">اسم المريض</label
+            ><input class="input" id="lab-patient" placeholder="اسم المريض" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">التاريخ</label
+            ><input class="input" type="date" id="lab-date" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">نوع التحليل</label
+          ><select class="input" id="lab-test">
+            <option>تحليل دم كامل CBC</option>
+            <option>إنزيمات القلب Troponin</option>
+            <option>سكر الدم HbA1c</option>
+            <option>وظائف الكلى</option>
+            <option>وظائف الكبد LFT</option>
+            <option>أشعة X</option>
+            <option>أشعة MRI</option>
+            <option>مزرعة بكتيرية</option>
+            <option>تحليل بول</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">الأولوية</label
+            ><select class="input" id="lab-priority">
+              <option value="normal">عادي</option>
+              <option value="urgent">⚡ عاجل</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">النتيجة (إن وجدت)</label
+            ><input class="input" id="lab-result" placeholder="اتركه فارغاً" />
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px; margin-top: 8px">
+          <button
+            class="btn btn-primary"
+            style="flex: 1"
+            onclick="saveLabResult()"
+          >
+            ✓ إرسال الطلب</button
+          ><button class="btn btn-ghost" onclick="closeModal('modal-add-lab')">
+            إلغاء
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MODAL: View Lab ══ -->
+    <div class="modal-overlay" id="modal-view-lab">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">🧪 تفاصيل التحليل</div>
+          <button class="modal-close" onclick="closeModal('modal-view-lab')">
+            ✕
+          </button>
+        </div>
+        <div class="patient-modal-header">
+          <div class="patient-modal-avatar" id="vl-avatar">🧪</div>
+          <div class="patient-modal-info">
+            <h3 id="vl-test">نوع التحليل</h3>
+            <p id="vl-patient">اسم المريض</p>
+          </div>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-item-label">📅 التاريخ</div>
+            <div class="info-item-value" id="vl-date">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">⚡ الأولوية</div>
+            <div class="info-item-value" id="vl-priority">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">📊 النتيجة</div>
+            <div class="info-item-value" id="vl-result">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">✅ الحالة</div>
+            <div class="info-item-value" id="vl-ready">--</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px">
+          <button
+            class="btn btn-primary"
+            style="flex: 1"
+            onclick="editLabResult()"
+          >
+            ✏️ تحديث النتيجة
+          </button>
+          <button class="btn btn-ghost" onclick="closeModal('modal-view-lab')">
+            إغلاق
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MODAL: Edit Lab ══ -->
+    <div class="modal-overlay" id="modal-edit-lab">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">✏️ تحديث نتيجة التحليل</div>
+          <button class="modal-close" onclick="closeModal('modal-edit-lab')">
+            ✕
+          </button>
+        </div>
+        <div class="patient-modal-header">
+          <div class="patient-modal-avatar" id="el-avatar">🧪</div>
+          <div class="patient-modal-info">
+            <h3 id="el-test-display">نوع التحليل</h3>
+            <p id="el-patient-display">المريض</p>
+          </div>
+        </div>
+        <input type="hidden" id="edit-lab-id" />
+        <div class="form-group">
+          <label class="form-label">النتيجة</label
+          ><input
+            class="input"
+            id="edit-lab-result"
+            placeholder="أدخل النتيجة..."
+          />
+        </div>
+        <div class="form-group">
+          <label class="form-label">حالة النتيجة</label>
+          <div class="status-options">
+            <div
+              class="status-option"
+              data-val="normal"
+              onclick="selectStatusIn(this, 'modal-edit-lab')"
+            >
+              ✅ طبيعي
+            </div>
+            <div
+              class="status-option"
+              data-val="high"
+              onclick="selectStatusIn(this, 'modal-edit-lab')"
+            >
+              ⬆️ مرتفع
+            </div>
+            <div
+              class="status-option"
+              data-val="low"
+              onclick="selectStatusIn(this, 'modal-edit-lab')"
+            >
+              ⬇️ منخفض
+            </div>
+            <div
+              class="status-option"
+              data-val="critical"
+              onclick="selectStatusIn(this, 'modal-edit-lab')"
+            >
+              🚨 حرج
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">هل النتيجة جاهزة؟</label>
+          <div class="avail-options">
+            <div
+              class="avail-option"
+              id="lab-ready-yes"
+              onclick="selectLabReady(true)"
+            >
+              ✅ جاهزة
+            </div>
+            <div
+              class="avail-option"
+              id="lab-ready-no"
+              onclick="selectLabReady(false)"
+            >
+              ⏳ قيد المعالجة
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px; margin-top: 8px">
+          <button
+            class="btn btn-primary"
+            style="flex: 1"
+            onclick="saveEditLab()"
+          >
+            ✓ حفظ النتيجة</button
+          ><button class="btn btn-ghost" onclick="closeModal('modal-edit-lab')">
+            إلغاء
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MODAL: Add Medicine ══ -->
+    <div class="modal-overlay" id="modal-add-medicine">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">💊 إضافة دواء جديد</div>
+          <button
+            class="modal-close"
+            onclick="closeModal('modal-add-medicine')"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">اسم الدواء</label
+            ><input
+              class="input"
+              id="med-name"
+              placeholder="باراسيتامول 500mg"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">التصنيف</label
+            ><select class="input" id="med-category">
+              <option>مضاد حيوي</option>
+              <option>مسكن</option>
+              <option>سكري</option>
+              <option>قلب</option>
+              <option>ضغط</option>
+              <option>معدة</option>
+              <option>غدة درقية</option>
+              <option>أعصاب</option>
+              <option>أخرى</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">الكمية الحالية</label
+            ><input
+              class="input"
+              type="number"
+              id="med-stock"
+              placeholder="500"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">الحد الأدنى</label
+            ><input
+              class="input"
+              type="number"
+              id="med-min"
+              placeholder="100"
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">الوحدة</label
+            ><select class="input" id="med-unit">
+              <option>قرص</option>
+              <option>كبسولة</option>
+              <option>شراب</option>
+              <option>حقنة</option>
+              <option>كريم</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">السعر (ر.س)</label
+            ><input
+              class="input"
+              type="number"
+              id="med-price"
+              placeholder="0.00"
+            />
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px; margin-top: 8px">
+          <button
+            class="btn btn-primary"
+            style="flex: 1"
+            onclick="saveMedicine()"
+          >
+            ✓ إضافة الدواء</button
+          ><button
+            class="btn btn-ghost"
+            onclick="closeModal('modal-add-medicine')"
+          >
+            إلغاء
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MODAL: View Medicine ══ -->
+    <div class="modal-overlay" id="modal-view-medicine">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">💊 تفاصيل الدواء</div>
+          <button
+            class="modal-close"
+            onclick="closeModal('modal-view-medicine')"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="patient-modal-header">
+          <div class="patient-modal-avatar" id="vm-avatar">💊</div>
+          <div class="patient-modal-info">
+            <h3 id="vm-name">اسم الدواء</h3>
+            <p id="vm-category">التصنيف</p>
+          </div>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-item-label">📦 الكمية الحالية</div>
+            <div class="info-item-value" id="vm-stock">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">⚠️ الحد الأدنى</div>
+            <div class="info-item-value" id="vm-min">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">📋 الوحدة</div>
+            <div class="info-item-value" id="vm-unit">--</div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-label">💰 السعر</div>
+            <div class="info-item-value" id="vm-price">--</div>
+          </div>
+        </div>
+        <div class="info-item" style="margin-bottom: 16px">
+          <div class="info-item-label">📊 حالة المخزون</div>
+          <div class="info-item-value" id="vm-status">--</div>
+        </div>
+        <div style="display: flex; gap: 12px">
+          <button
+            class="btn btn-primary"
+            style="flex: 1"
+            onclick="editMedicine()"
+          >
+            ✏️ تعديل / تحديث المخزون
+          </button>
+          <button
+            class="btn btn-ghost"
+            onclick="closeModal('modal-view-medicine')"
+          >
+            إغلاق
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MODAL: Edit Medicine ══ -->
+    <div class="modal-overlay" id="modal-edit-medicine">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">✏️ تعديل بيانات الدواء</div>
+          <button
+            class="modal-close"
+            onclick="closeModal('modal-edit-medicine')"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="patient-modal-header">
+          <div class="patient-modal-avatar" id="em-avatar">💊</div>
+          <div class="patient-modal-info">
+            <h3 id="em-name-display">اسم الدواء</h3>
+            <p id="em-cat-display">التصنيف</p>
+          </div>
+        </div>
+        <input type="hidden" id="edit-med-id" />
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">اسم الدواء</label
+            ><input class="input" id="edit-med-name" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">التصنيف</label
+            ><select class="input" id="edit-med-category">
+              <option>مضاد حيوي</option>
+              <option>مسكن</option>
+              <option>سكري</option>
+              <option>قلب</option>
+              <option>ضغط</option>
+              <option>معدة</option>
+              <option>غدة درقية</option>
+              <option>أعصاب</option>
+              <option>أخرى</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">الكمية الحالية</label
+            ><input class="input" type="number" id="edit-med-stock" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">الحد الأدنى</label
+            ><input class="input" type="number" id="edit-med-min" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">الوحدة</label
+            ><select class="input" id="edit-med-unit">
+              <option>قرص</option>
+              <option>كبسولة</option>
+              <option>شراب</option>
+              <option>حقنة</option>
+              <option>كريم</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">السعر (ر.س)</label
+            ><input class="input" type="number" id="edit-med-price" />
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px; margin-top: 8px">
+          <button
+            class="btn btn-primary"
+            style="flex: 1"
+            onclick="saveEditMedicine()"
+          >
+            ✓ حفظ التعديلات</button
+          ><button
+            class="btn btn-ghost"
+            onclick="closeModal('modal-edit-medicine')"
+          >
+            إلغاء
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="layout">
+      <!-- ══ SIDEBAR ══ -->
+      <nav class="sidebar">
+        <div class="logo">
+          <div class="logo-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+                stroke="white"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div class="logo-name">Care At Home</div>
+          <div class="logo-sub">النظام الصحي العالمي</div>
+        </div>
+        <div class="nav-section">
+          <div class="nav-label">الرئيسي</div>
+          <div class="nav-item active" onclick="nav('dashboard', this)">
+            <span class="nav-icon">⬡</span> لوحة التحكم
+          </div>
+          <div class="nav-item" onclick="nav('patients', this)">
+            <span class="nav-icon">👥</span> المرضى
+            <span
+              class="badge badge-teal"
+              id="patients-badge"
+              style="margin-right: auto; padding: 2px 8px; font-size: 9px"
+              >0</span
+            >
+          </div>
+          <div class="nav-item" onclick="nav('doctors', this)">
+            <span class="nav-icon">🩺</span> الكادر الطبي
+            <span
+              class="badge badge-blue"
+              id="doctors-badge"
+              style="margin-right: auto; padding: 2px 8px; font-size: 9px"
+              >0</span
+            >
+          </div>
+          <div class="nav-item" onclick="nav('appointments', this)">
+            <span class="nav-icon">📅</span> المواعيد
+            <span
+              class="badge badge-amber"
+              id="appt-badge"
+              style="margin-right: auto; padding: 2px 8px; font-size: 9px"
+              >0</span
+            >
+          </div>
+          <div class="nav-label">الأقسام الطبية</div>
+          <div class="nav-item" onclick="nav('icu', this)">
+            <span class="nav-icon">❤️</span> العناية المركزة
+            <span class="badge-dot"></span>
+          </div>
+          <div class="nav-item" onclick="nav('surgery', this)">
+            <span class="nav-icon">🔬</span> غرف العمليات
+            <span
+              class="badge badge-red"
+              id="surgery-badge"
+              style="margin-right: auto; padding: 2px 8px; font-size: 9px"
+              >0</span
+            >
+          </div>
+          <div class="nav-item" onclick="nav('lab', this)">
+            <span class="nav-icon">🧪</span> المختبر والأشعة
+            <span
+              class="badge badge-purple"
+              id="lab-badge"
+              style="margin-right: auto; padding: 2px 8px; font-size: 9px"
+              >0</span
+            >
+          </div>
+          <div class="nav-item" onclick="nav('pharmacy', this)">
+            <span class="nav-icon">💊</span> الصيدلية
+            <span
+              class="badge badge-amber"
+              id="pharma-badge"
+              style="margin-right: auto; padding: 2px 8px; font-size: 9px"
+              >0</span
+            >
+          </div>
+          <div class="nav-label">الإدارة</div>
+          <div class="nav-item" onclick="nav('billing', this)">
+            <span class="nav-icon">💳</span> الفواتير والمالية
+          </div>
+          <div class="nav-item" onclick="nav('reports', this)">
+            <span class="nav-icon">📊</span> التقارير والإحصاء
+          </div>
+        </div>
+        <div class="sidebar-footer">
+          <div class="user-card">
+            <div class="user-avatar">M</div>
+            <div>
+              <div class="user-name">مدير النظام</div>
+              <div class="user-role">admin@careathome.com</div>
+            </div>
+            <div
+              style="
+                margin-right: auto;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: var(--green);
+                flex-shrink: 0;
+                box-shadow: 0 0 6px var(--green);
+              "
+            ></div>
+          </div>
+        </div>
+      </nav>
+
+      <main class="main">
+        <!-- ══ DASHBOARD ══ -->
+        <section class="page-section active" id="sec-dashboard">
+          <div class="page-header">
+            <div>
+              <div class="page-title">لوحة <span>التحكم</span></div>
+              <div class="page-sub" id="live-time">جاري التحميل...</div>
+            </div>
+            <div class="header-toolbar">
+              <div class="toolbar-search">
+                <span class="search-icon">🔍</span
+                ><input
+                  type="text"
+                  placeholder="بحث..."
+                  class="toolbar-search-input"
+                />
+              </div>
+              <button class="toolbar-btn theme-toggle" id="theme-toggle">
+                <span class="icon-sun">☀️</span
+                ><span class="icon-moon">🌙</span>
+              </button>
+              <div class="notification-wrapper">
+                <button
+                  class="toolbar-btn notification-btn"
+                  id="notification-btn"
+                >
+                  <span class="bell-icon">🔔</span
+                  ><span class="notification-badge" id="notif-count">3</span>
+                </button>
+                <div class="notification-dropdown" id="notification-dropdown">
+                  <div class="notif-header">
+                    <span class="notif-title">الإشعارات</span
+                    ><span class="notif-count-badge">3 جديد</span>
+                  </div>
+                  <div class="notif-list">
+                    <div class="notif-item unread">
+                      <div class="notif-icon urgent">🚨</div>
+                      <div class="notif-content">
+                        <div class="notif-text">حالة طوارئ جديدة - ICU-3</div>
+                        <div class="notif-sub">فاطمة حسن - نوبة قلبية حادة</div>
+                        <div class="notif-time">منذ 5 دقائق</div>
+                      </div>
+                      <div class="notif-dot"></div>
+                    </div>
+                    <div class="notif-item unread">
+                      <div class="notif-icon warning">⚠️</div>
+                      <div class="notif-content">
+                        <div class="notif-text">مخزون منخفض جداً</div>
+                        <div class="notif-sub">أوميبرازول - 40 كبسولة</div>
+                        <div class="notif-time">منذ 12 دقيقة</div>
+                      </div>
+                      <div class="notif-dot"></div>
+                    </div>
+                    <div class="notif-item unread">
+                      <div class="notif-icon info">📅</div>
+                      <div class="notif-content">
+                        <div class="notif-text">موعد قريب</div>
+                        <div class="notif-sub">د. سارة أحمد - غرفة 201</div>
+                        <div class="notif-time">منذ 15 دقيقة</div>
+                      </div>
+                      <div class="notif-dot"></div>
+                    </div>
+                  </div>
+                  <div class="notif-footer">
+                    <button class="notif-view-all">عرض جميع الإشعارات</button
+                    ><button class="notif-mark-read">تعيين كمقروء</button>
+                  </div>
+                </div>
+              </div>
+              <button class="toolbar-btn settings-btn" id="settings-btn">
+                <span class="gear-icon">⚙️</span>
+              </button>
+            </div>
+            <div class="hdr-actions">
+              <button class="btn btn-ghost btn-sm">⬇ تصدير تقرير</button
+              ><button
+                class="btn btn-primary"
+                onclick="openModal('modal-patient')"
+              >
+                ＋ مريض جديد
+              </button>
+            </div>
+          </div>
+          <div class="kpi-grid">
+            <div class="kpi teal">
+              <div class="kpi-icon" style="background: var(--teal-dim)">🏥</div>
+              <div class="kpi-val" style="color: var(--teal)" id="k1">0</div>
+              <div class="kpi-label">إجمالي المرضى</div>
+              <div class="kpi-change up">▲ 47 هذا الشهر</div>
+            </div>
+            <div class="kpi red">
+              <div class="kpi-icon" style="background: var(--red-dim)">🚨</div>
+              <div class="kpi-val" style="color: var(--red)" id="k2">0</div>
+              <div class="kpi-label">حالات الطوارئ</div>
+              <div class="kpi-change down">▲ 3 هذا الصباح</div>
+            </div>
+            <div class="kpi blue">
+              <div class="kpi-icon" style="background: var(--blue-dim)">👨‍⚕️</div>
+              <div class="kpi-val" style="color: var(--blue)" id="k3">0</div>
+              <div class="kpi-label">الأطباء النشطون</div>
+              <div class="kpi-change neutral">5 في إجازة</div>
+            </div>
+            <div class="kpi green">
+              <div class="kpi-icon" style="background: var(--green-dim)">
+                🛏
+              </div>
+              <div class="kpi-val" style="color: var(--green)" id="k4">0</div>
+              <div class="kpi-label">سرائر متاحة</div>
+              <div class="kpi-change up">من أصل 340 سرير</div>
+            </div>
+          </div>
+          <div class="g-main" style="margin-bottom: 20px">
+            <div class="card">
+              <div class="card-title">
+                <span class="icon" style="background: var(--teal-dim)">📈</span
+                >حركة المرضى — آخر 7 أيام<span
+                  class="badge badge-teal"
+                  style="margin-right: auto"
+                  >مباشر</span
+                >
+              </div>
+              <div class="chart-wrap-lg">
+                <canvas id="chart-patients"></canvas>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">
+                <span class="icon" style="background: var(--blue-dim)">🍩</span
+                >توزيع الأقسام
+              </div>
+              <div class="chart-wrap" style="height: 220px">
+                <canvas id="chart-depts"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="g2">
+            <div class="card">
+              <div class="card-title">
+                <span class="icon" style="background: var(--red-dim)">🔔</span
+                >النشاط الأخير
+              </div>
+              <div id="feed-container">
+                <div class="feed-item">
+                  <div class="feed-dot" style="background: var(--red)"></div>
+                  <div style="flex: 1">
+                    <div class="feed-text">
+                      <strong>فاطمة حسن</strong> — حالة طوارئ جديدة في ICU-3
+                    </div>
+                    <div class="feed-time">14:32</div>
+                  </div>
+                </div>
+                <div class="feed-item">
+                  <div class="feed-dot" style="background: var(--green)"></div>
+                  <div style="flex: 1">
+                    <div class="feed-text">
+                      <strong>محمود إبراهيم</strong> — نتائج التحاليل جاهزة
+                    </div>
+                    <div class="feed-time">14:15</div>
+                  </div>
+                </div>
+                <div class="feed-item">
+                  <div class="feed-dot" style="background: var(--blue)"></div>
+                  <div style="flex: 1">
+                    <div class="feed-text">
+                      عملية جراحية ناجحة للمريض <strong>أحمد علي</strong>
+                    </div>
+                    <div class="feed-time">13:50</div>
+                  </div>
+                </div>
+                <div class="feed-item">
+                  <div class="feed-dot" style="background: var(--amber)"></div>
+                  <div style="flex: 1">
+                    <div class="feed-text">
+                      تحذير: مخزون <strong>أوميبرازول</strong> منخفض جداً
+                    </div>
+                    <div class="feed-time">13:22</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">
+                <span class="icon" style="background: var(--amber-dim)">⚡</span
+                >الحالات الحرجة الآن
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 10px">
+                <div
+                  class="op-card"
+                  style="
+                    border-color: rgba(255, 77, 109, 0.3);
+                    background: rgba(255, 77, 109, 0.04);
+                  "
+                >
+                  <div class="av av-red">فح</div>
+                  <div style="flex: 1">
+                    <div
+                      style="
+                        font-weight: 700;
+                        font-size: 13px;
+                        color: var(--text);
+                      "
+                    >
+                      فاطمة حسن
+                    </div>
+                    <div
+                      style="
+                        font-size: 11px;
+                        color: var(--text3);
+                        margin-top: 2px;
+                      "
+                    >
+                      ICU-3 • نوبة قلبية حادة
+                    </div>
+                  </div>
+                  <span class="badge badge-red"
+                    ><span class="status-dot"></span> حرج</span
+                  >
+                </div>
+                <div
+                  class="op-card"
+                  style="
+                    border-color: rgba(255, 77, 109, 0.3);
+                    background: rgba(255, 77, 109, 0.04);
+                  "
+                >
+                  <div class="av av-amber">سخ</div>
+                  <div style="flex: 1">
+                    <div
+                      style="
+                        font-weight: 700;
+                        font-size: 13px;
+                        color: var(--text);
+                      "
+                    >
+                      سلمى خالد
+                    </div>
+                    <div
+                      style="
+                        font-size: 11px;
+                        color: var(--text3);
+                        margin-top: 2px;
+                      "
+                    >
+                      ERG-1 • تسمم حاد
+                    </div>
+                  </div>
+                  <span class="badge badge-red"
+                    ><span class="status-dot"></span> طارئ</span
+                  >
+                </div>
+                <div class="op-card">
+                  <div class="av av-blue">أم</div>
+                  <div style="flex: 1">
+                    <div
+                      style="
+                        font-weight: 700;
+                        font-size: 13px;
+                        color: var(--text);
+                      "
+                    >
+                      أحمد محمد
+                    </div>
+                    <div
+                      style="
+                        font-size: 11px;
+                        color: var(--text3);
+                        margin-top: 2px;
+                      "
+                    >
+                      غرفة 201 • ضغط الدم
+                    </div>
+                  </div>
+                  <span class="badge badge-amber"
+                    ><span class="status-dot"></span> متابعة</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══ PATIENTS ══ -->
+        <section class="page-section" id="sec-patients">
+          <div class="page-header">
+            <div>
+              <div class="page-title">سجلات <span>المرضى</span></div>
+              <div class="page-sub" id="patients-sub">جاري التحميل...</div>
+            </div>
+            <div class="hdr-actions">
+              <button class="btn btn-ghost btn-sm">⬇ تصدير Excel</button
+              ><button
+                class="btn btn-primary"
+                onclick="openModal('modal-patient')"
+              >
+                ＋ قبول مريض
+              </button>
+            </div>
+          </div>
+          <div class="top-bar">
+            <div class="top-search input-wrap">
+              <span class="input-icon">🔍</span
+              ><input
+                class="input search-input"
+                placeholder="ابحث..."
+                id="patient-search"
+                oninput="filterPatients()"
+              />
+            </div>
+            <div class="top-filters">
+              <button
+                class="filter-chip active"
+                onclick="setFilter(this, 'all')"
+              >
+                الكل</button
+              ><button class="filter-chip" onclick="setFilter(this, 'مستقر')">
+                مستقر</button
+              ><button class="filter-chip" onclick="setFilter(this, 'حرج')">
+                حرج</button
+              ><button class="filter-chip" onclick="setFilter(this, 'طارئ')">
+                طارئ</button
+              ><button class="filter-chip" onclick="setFilter(this, 'متحسن')">
+                متحسن
+              </button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="tbl-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>المريض</th>
+                    <th>الرقم</th>
+                    <th>العمر</th>
+                    <th>الغرفة</th>
+                    <th>الطبيب</th>
+                    <th>التشخيص</th>
+                    <th>الدم</th>
+                    <th>وقت الدخول</th>
+                    <th>الحالة</th>
+                    <th>إجراءات</th>
+                  </tr>
+                </thead>
+                <tbody id="patient-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══ DOCTORS ══ -->
+        <section class="page-section" id="sec-doctors">
+          <div class="page-header">
+            <div>
+              <div class="page-title">الكادر <span>الطبي</span></div>
+              <div class="page-sub" id="doctors-sub">جاري التحميل...</div>
+            </div>
+            <button
+              class="btn btn-primary"
+              onclick="openModal('modal-add-doctor')"
+            >
+              ＋ إضافة طبيب
+            </button>
+          </div>
+          <div class="top-bar">
+            <div class="top-search input-wrap">
+              <span class="input-icon">🔍</span
+              ><input
+                class="input search-input"
+                id="doctor-search"
+                placeholder="ابحث عن طبيب..."
+                oninput="filterDoctors()"
+              />
+            </div>
+            <div class="top-filters">
+              <button
+                class="filter-chip active"
+                onclick="setDoctorFilter(this, 'all')"
+              >
+                الكل</button
+              ><button
+                class="filter-chip"
+                onclick="setDoctorFilter(this, 'متاح')"
+              >
+                متاح</button
+              ><button
+                class="filter-chip"
+                onclick="setDoctorFilter(this, 'غير متاح')"
+              >
+                غير متاح</button
+              ><button
+                class="filter-chip"
+                onclick="setDoctorFilter(this, 'القلب')"
+              >
+                القلب</button
+              ><button
+                class="filter-chip"
+                onclick="setDoctorFilter(this, 'الأطفال')"
+              >
+                الأطفال
+              </button>
+            </div>
+          </div>
+          <div
+            id="doctors-grid"
+            style="
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              gap: 18px;
+            "
+          ></div>
+        </section>
+
+        <!-- ══ APPOINTMENTS ══ -->
+        <section class="page-section" id="sec-appointments">
+          <div class="page-header">
+            <div>
+              <div class="page-title">جدول <span>المواعيد</span></div>
+              <div class="page-sub" id="appt-sub">جاري التحميل...</div>
+            </div>
+            <button class="btn btn-primary" onclick="openModal('modal-appt')">
+              ＋ موعد جديد
+            </button>
+          </div>
+          <div class="top-bar" style="margin-bottom: 16px">
+            <div class="top-filters">
+              <button
+                class="filter-chip active"
+                onclick="setApptFilter(this, 'all')"
+              >
+                الكل</button
+              ><button
+                class="filter-chip"
+                onclick="setApptFilter(this, 'confirmed')"
+              >
+                ✅ مؤكد</button
+              ><button
+                class="filter-chip"
+                onclick="setApptFilter(this, 'pending')"
+              >
+                ⏳ انتظار</button
+              ><button
+                class="filter-chip"
+                onclick="setApptFilter(this, 'cancelled')"
+              >
+                ❌ ملغي
+              </button>
+            </div>
+          </div>
+          <div class="g-rev">
+            <div class="card">
+              <div class="card-title">
+                <span class="icon" style="background: var(--blue-dim)">📆</span
+                >مارس 2026
+              </div>
+              <div class="cal-grid">
+                <div class="cal-head">أحد</div>
+                <div class="cal-head">إثنين</div>
+                <div class="cal-head">ثلاثاء</div>
+                <div class="cal-head">أربعاء</div>
+                <div class="cal-head">خميس</div>
+                <div class="cal-head">جمعة</div>
+                <div class="cal-head">سبت</div>
+                <div class="cal-day empty"></div>
+                <div class="cal-day empty"></div>
+                <div class="cal-day empty"></div>
+                <div class="cal-day empty"></div>
+                <div class="cal-day empty"></div>
+                <div class="cal-day empty"></div>
+                <div class="cal-day">1</div>
+                <div class="cal-day">2</div>
+                <div class="cal-day">3</div>
+                <div class="cal-day">4</div>
+                <div class="cal-day">5</div>
+                <div class="cal-day">6</div>
+                <div class="cal-day">7</div>
+                <div class="cal-day">8</div>
+                <div class="cal-day">9</div>
+                <div class="cal-day">10</div>
+                <div class="cal-day">11</div>
+                <div class="cal-day">12</div>
+                <div class="cal-day">13</div>
+                <div class="cal-day">14</div>
+                <div class="cal-day">15</div>
+                <div class="cal-day">16</div>
+                <div class="cal-day">17</div>
+                <div class="cal-day">18</div>
+                <div class="cal-day">19</div>
+                <div class="cal-day">20</div>
+                <div class="cal-day">21</div>
+                <div class="cal-day">22</div>
+                <div class="cal-day today">23</div>
+                <div class="cal-day">24</div>
+                <div class="cal-day">25</div>
+                <div class="cal-day">26</div>
+                <div class="cal-day">27</div>
+                <div class="cal-day">28</div>
+                <div class="cal-day">29</div>
+                <div class="cal-day">30</div>
+                <div class="cal-day">31</div>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 14px">
+              <div class="card" style="padding: 18px">
+                <div class="card-title" style="margin-bottom: 14px">
+                  <span class="icon" style="background: var(--amber-dim)"
+                    >⏰</span
+                  >قائمة المواعيد
+                </div>
+                <div id="appt-list"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══ ICU ══ -->
+        <section class="page-section" id="sec-icu">
+          <div class="page-header">
+            <div>
+              <div class="page-title">العناية <span>المركزة</span> ICU</div>
+              <div class="page-sub">
+                مراقبة حية للعلامات الحيوية<span class="live-dot"></span>
+              </div>
+            </div>
+            <div class="hdr-actions">
+              <span
+                class="badge badge-red"
+                style="padding: 8px 16px; font-size: 12px"
+                >🔴 بث مباشر</span
+              >
+            </div>
+          </div>
+          <div style="display: flex; gap: 10px; margin-bottom: 20px">
+            <div class="filter-chip active" onclick="selectICU(this, 'icu1')">
+              فاطمة حسن — ICU-3
+            </div>
+            <div class="filter-chip" onclick="selectICU(this, 'icu2')">
+              أحمد الريحاني — ICU-5
+            </div>
+            <div class="filter-chip" onclick="selectICU(this, 'icu3')">
+              نادية عمر — ICU-7
+            </div>
+          </div>
+          <div class="vitals-grid" id="vitals-grid">
+            <div class="vital-card" id="vc-hr">
+              <div class="vital-val" id="v-hr" style="color: var(--red)">
+                78
+              </div>
+              <div class="vital-unit">BPM</div>
+              <div class="vital-name">معدل القلب</div>
+              <div class="vital-status" id="vs-hr" style="color: var(--green)">
+                ● طبيعي
+              </div>
+            </div>
+            <div class="vital-card" id="vc-bp">
+              <div class="vital-val" id="v-bp" style="color: var(--blue)">
+                120/80
+              </div>
+              <div class="vital-unit">mmHg</div>
+              <div class="vital-name">ضغط الدم</div>
+              <div class="vital-status" style="color: var(--green)">
+                ● طبيعي
+              </div>
+            </div>
+            <div class="vital-card" id="vc-o2">
+              <div class="vital-val" id="v-o2" style="color: var(--teal)">
+                98%
+              </div>
+              <div class="vital-unit">SpO2</div>
+              <div class="vital-name">تشبع الأكسجين</div>
+              <div class="vital-status" id="vs-o2" style="color: var(--green)">
+                ● ممتاز
+              </div>
+            </div>
+            <div class="vital-card" id="vc-temp">
+              <div class="vital-val" id="v-temp" style="color: var(--amber)">
+                37.1°
+              </div>
+              <div class="vital-unit">مئوية</div>
+              <div class="vital-name">درجة الحرارة</div>
+              <div class="vital-status" style="color: var(--green)">
+                ● طبيعي
+              </div>
+            </div>
+            <div class="vital-card" id="vc-resp">
+              <div class="vital-val" id="v-resp" style="color: var(--purple)">
+                16
+              </div>
+              <div class="vital-unit">نفس/دقيقة</div>
+              <div class="vital-name">معدل التنفس</div>
+              <div class="vital-status" style="color: var(--green)">
+                ● طبيعي
+              </div>
+            </div>
+          </div>
+          <div class="card" style="margin-bottom: 20px">
+            <div class="card-title">
+              <span class="icon" style="background: var(--red-dim)">📡</span
+              >مخطط القلب الكهربائي ECG<span
+                class="badge badge-red"
+                style="margin-right: auto"
+                >مباشر</span
+              >
+            </div>
+            <div class="waveform-wrap">
+              <canvas id="ecg-canvas" height="80"></canvas>
+            </div>
+            <div class="chart-wrap">
+              <canvas id="chart-hr-history"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══ SURGERY ══ -->
+        <section class="page-section" id="sec-surgery">
+          <div class="page-header">
+            <div>
+              <div class="page-title">غرف <span>العمليات</span></div>
+              <div class="page-sub" id="surgery-sub">جاري التحميل...</div>
+            </div>
+            <button
+              class="btn btn-primary"
+              onclick="openModal('modal-add-surgery')"
+            >
+              ＋ جدولة عملية
+            </button>
+          </div>
+          <div class="top-bar" style="margin-bottom: 16px">
+            <div class="top-filters">
+              <button
+                class="filter-chip active"
+                onclick="setSurgeryFilter(this, 'all')"
+              >
+                الكل</button
+              ><button
+                class="filter-chip"
+                onclick="setSurgeryFilter(this, 'ongoing')"
+              >
+                🔴 جارية</button
+              ><button
+                class="filter-chip"
+                onclick="setSurgeryFilter(this, 'scheduled')"
+              >
+                📅 مجدولة</button
+              ><button
+                class="filter-chip"
+                onclick="setSurgeryFilter(this, 'completed')"
+              >
+                ✅ منتهية
+              </button>
+            </div>
+          </div>
+          <div class="g3" style="margin-bottom: 20px">
+            <div class="kpi teal" style="padding: 18px">
+              <div class="kpi-icon" style="background: var(--teal-dim)">🔬</div>
+              <div
+                class="kpi-val"
+                style="color: var(--teal); font-size: 28px"
+                id="surg-ongoing"
+              >
+                0
+              </div>
+              <div class="kpi-label">عمليات جارية</div>
+            </div>
+            <div class="kpi blue" style="padding: 18px">
+              <div class="kpi-icon" style="background: var(--blue-dim)">📋</div>
+              <div
+                class="kpi-val"
+                style="color: var(--blue); font-size: 28px"
+                id="surg-scheduled"
+              >
+                0
+              </div>
+              <div class="kpi-label">عمليات مجدولة</div>
+            </div>
+            <div class="kpi green" style="padding: 18px">
+              <div class="kpi-icon" style="background: var(--green-dim)">
+                ✅
+              </div>
+              <div
+                class="kpi-val"
+                style="color: var(--green); font-size: 28px"
+                id="surg-completed"
+              >
+                0
+              </div>
+              <div class="kpi-label">عمليات منتهية</div>
+            </div>
+          </div>
+          <div class="g2">
+            <div class="card">
+              <div class="card-title">
+                <span class="icon" style="background: var(--teal-dim)">🏥</span
+                >حالة غرف العمليات
+              </div>
+              <div
+                style="display: flex; flex-direction: column; gap: 10px"
+                id="surgeries-list"
+              >
+                <div
+                  style="text-align: center; color: var(--text3); padding: 20px"
+                >
+                  جاري التحميل...
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">
+                <span class="icon" style="background: var(--purple-dim)"
+                  >📊</span
+                >إحصائيات العمليات
+              </div>
+              <div class="chart-wrap-lg">
+                <canvas id="chart-surgery"></canvas>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══ LAB ══ -->
+        <section class="page-section" id="sec-lab">
+          <div class="page-header">
+            <div>
+              <div class="page-title">المختبر <span>والأشعة</span></div>
+              <div class="page-sub" id="lab-sub">جاري التحميل...</div>
+            </div>
+            <button
+              class="btn btn-primary"
+              onclick="openModal('modal-add-lab')"
+            >
+              ＋ طلب تحليل جديد
+            </button>
+          </div>
+          <div class="top-bar" style="margin-bottom: 16px">
+            <div class="top-filters">
+              <button
+                class="filter-chip active"
+                onclick="setLabFilter(this, 'all')"
+              >
+                الكل</button
+              ><button
+                class="filter-chip"
+                onclick="setLabFilter(this, 'ready')"
+              >
+                ✅ جاهز</button
+              ><button
+                class="filter-chip"
+                onclick="setLabFilter(this, 'pending')"
+              >
+                ⏳ قيد المعالجة</button
+              ><button
+                class="filter-chip"
+                onclick="setLabFilter(this, 'urgent')"
+              >
+                ⚡ عاجل
+              </button>
+            </div>
+          </div>
+          <div class="kpi-grid" style="margin-bottom: 20px">
+            <div class="kpi teal" style="padding: 18px">
+              <div
+                class="kpi-val"
+                style="color: var(--teal); font-size: 26px"
+                id="lab-total"
+              >
+                0
+              </div>
+              <div class="kpi-label">إجمالي الطلبات</div>
+            </div>
+            <div class="kpi green" style="padding: 18px">
+              <div
+                class="kpi-val"
+                style="color: var(--green); font-size: 26px"
+                id="lab-ready"
+              >
+                0
+              </div>
+              <div class="kpi-label">جاهزة</div>
+            </div>
+            <div class="kpi amber" style="padding: 18px">
+              <div
+                class="kpi-val"
+                style="color: var(--amber); font-size: 26px"
+                id="lab-processing"
+              >
+                0
+              </div>
+              <div class="kpi-label">قيد المعالجة</div>
+            </div>
+            <div class="kpi red" style="padding: 18px">
+              <div
+                class="kpi-val"
+                style="color: var(--red); font-size: 26px"
+                id="lab-urgent"
+              >
+                0
+              </div>
+              <div class="kpi-label">عاجلة وحرجة</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <span class="icon" style="background: var(--teal-dim)">🧪</span
+              >نتائج التحاليل
+            </div>
+            <div class="tbl-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>رقم الطلب</th>
+                    <th>المريض</th>
+                    <th>التحليل</th>
+                    <th>التاريخ</th>
+                    <th>النتيجة</th>
+                    <th>الأولوية</th>
+                    <th>الحالة</th>
+                    <th>إجراءات</th>
+                  </tr>
+                </thead>
+                <tbody id="lab-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══ PHARMACY ══ -->
+        <section class="page-section" id="sec-pharmacy">
+          <div class="page-header">
+            <div>
+              <div class="page-title">الصيدلية <span>والمخزون</span></div>
+              <div class="page-sub" id="pharma-sub">جاري التحميل...</div>
+            </div>
+            <div class="hdr-actions">
+              <button
+                class="btn btn-ghost btn-sm"
+                onclick="toast('طلب توريد شامل', 'جاري الإرسال', '📦')"
+              >
+                📦 طلب توريد شامل</button
+              ><button
+                class="btn btn-primary"
+                onclick="openModal('modal-add-medicine')"
+              >
+                ＋ إضافة دواء
+              </button>
+            </div>
+          </div>
+          <div class="top-bar" style="margin-bottom: 16px">
+            <div class="top-filters">
+              <button
+                class="filter-chip active"
+                onclick="setPharmaFilter(this, 'all')"
+              >
+                الكل</button
+              ><button
+                class="filter-chip"
+                onclick="setPharmaFilter(this, 'low')"
+              >
+                ⚠️ منخفض</button
+              ><button
+                class="filter-chip"
+                onclick="setPharmaFilter(this, 'empty')"
+              >
+                🔴 نفد
+              </button>
+            </div>
+          </div>
+          <div class="kpi-grid" style="margin-bottom: 20px">
+            <div class="kpi teal" style="padding: 18px">
+              <div
+                class="kpi-val"
+                style="color: var(--teal); font-size: 26px"
+                id="pharma-total"
+              >
+                0
+              </div>
+              <div class="kpi-label">إجمالي الأصناف</div>
+            </div>
+            <div class="kpi green" style="padding: 18px">
+              <div
+                class="kpi-val"
+                style="color: var(--green); font-size: 26px"
+                id="pharma-ok"
+              >
+                0
+              </div>
+              <div class="kpi-label">مخزون كافٍ</div>
+            </div>
+            <div class="kpi amber" style="padding: 18px">
+              <div
+                class="kpi-val"
+                style="color: var(--amber); font-size: 26px"
+                id="pharma-low"
+              >
+                0
+              </div>
+              <div class="kpi-label">مخزون منخفض</div>
+            </div>
+            <div class="kpi red" style="padding: 18px">
+              <div
+                class="kpi-val"
+                style="color: var(--red); font-size: 26px"
+                id="pharma-empty"
+              >
+                0
+              </div>
+              <div class="kpi-label">نفد تماماً</div>
+            </div>
+          </div>
+          <div class="g2">
+            <div class="card">
+              <div class="card-title">
+                <span class="icon" style="background: var(--red-dim)">⚠️</span
+                >قائمة الأدوية
+              </div>
+              <div
+                style="display: flex; flex-direction: column; gap: 12px"
+                id="pharma-list"
+              ></div>
+            </div>
+            <div class="card">
+              <div class="card-title">
+                <span class="icon" style="background: var(--blue-dim)">📊</span
+                >توزيع التصنيفات
+              </div>
+              <div class="chart-wrap-lg">
+                <canvas id="chart-pharma"></canvas>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══ BILLING ══ -->
+        <section class="page-section" id="sec-billing">
+          <div class="page-header">
+            <div>
+              <div class="page-title">الفواتير <span>والمالية</span></div>
+              <div class="page-sub">إيرادات مارس 2026</div>
+            </div>
+            <button
+              class="btn btn-primary"
+              onclick="toast('فاتورة جديدة', 'قريباً', '💳')"
+            >
+              ＋ فاتورة جديدة
+            </button>
+          </div>
+          <div class="kpi-grid" style="margin-bottom: 24px">
+            <div class="kpi teal">
+              <div class="kpi-icon" style="background: var(--teal-dim)">💰</div>
+              <div class="kpi-val" style="color: var(--teal); font-size: 26px">
+                287K
+              </div>
+              <div class="kpi-label">إيرادات الشهر (ر.س)</div>
+              <div class="kpi-change up">▲ 12%</div>
+            </div>
+            <div class="kpi green">
+              <div class="kpi-icon" style="background: var(--green-dim)">
+                ✅
+              </div>
+              <div
+                class="kpi-val"
+                style="color: var(--green); font-size: 26px"
+                id="billing-paid-count"
+              >
+                0
+              </div>
+              <div class="kpi-label">فواتير مدفوعة</div>
+            </div>
+            <div class="kpi amber">
+              <div class="kpi-icon" style="background: var(--amber-dim)">
+                ⏳
+              </div>
+              <div
+                class="kpi-val"
+                style="color: var(--amber); font-size: 26px"
+                id="billing-pending-count"
+              >
+                0
+              </div>
+              <div class="kpi-label">قيد الانتظار</div>
+            </div>
+            <div class="kpi red">
+              <div class="kpi-icon" style="background: var(--red-dim)">❌</div>
+              <div
+                class="kpi-val"
+                style="color: var(--red); font-size: 26px"
+                id="billing-pending"
+              >
+                0
+              </div>
+              <div class="kpi-label">ديون معلقة (ر.س)</div>
+            </div>
+          </div>
+          <div class="g-main">
+            <div class="card">
+              <div class="card-title">
+                <span class="icon" style="background: var(--teal-dim)">📈</span
+                >الإيرادات الشهرية
+              </div>
+              <div class="chart-wrap-lg">
+                <canvas id="chart-revenue"></canvas>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">
+                <span class="icon" style="background: var(--amber-dim)">🧾</span
+                >آخر الفواتير
+              </div>
+              <div
+                style="display: flex; flex-direction: column"
+                id="billing-list"
+              ></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══ REPORTS ══ -->
+        <section class="page-section" id="sec-reports">
+          <div class="page-header">
+            <div>
+              <div class="page-title">التقارير <span>والإحصاء</span></div>
+              <div class="page-sub">تحليل شامل لأداء المستشفى</div>
+            </div>
+            <div class="hdr-actions">
+              <button class="btn btn-ghost btn-sm">⬇ PDF</button
+              ><button class="btn btn-primary">⬇ Excel</button>
+            </div>
+          </div>
+          <div class="kpi-grid">
+            <div class="kpi teal">
+              <div class="kpi-val" style="color: var(--teal)">94.2%</div>
+              <div class="kpi-label">نسبة الشفاء</div>
+              <div class="kpi-change up">▲ 2.1%</div>
+            </div>
+            <div class="kpi green">
+              <div class="kpi-val" style="color: var(--green)">4.3</div>
+              <div class="kpi-label">متوسط الإقامة (أيام)</div>
+              <div class="kpi-change up">↓ 0.5</div>
+            </div>
+            <div class="kpi blue">
+              <div class="kpi-val" style="color: var(--blue)">4.8★</div>
+              <div class="kpi-label">رضا المرضى</div>
+              <div class="kpi-change up">▲ 0.2</div>
+            </div>
+            <div class="kpi amber">
+              <div class="kpi-val" style="color: var(--amber)">78%</div>
+              <div class="kpi-label">إشغال السرائر</div>
+              <div class="kpi-change neutral">مستقر</div>
+            </div>
+          </div>
+          <div class="g2" style="margin-top: 20px">
+            <div class="card">
+              <div class="card-title">
+                <span class="icon" style="background: var(--teal-dim)">🏥</span
+                >إشغال الأقسام
+              </div>
+              <div
+                style="display: flex; flex-direction: column; gap: 14px"
+                id="dept-stats"
+              ></div>
+            </div>
+            <div class="card">
+              <div class="card-title">
+                <span class="icon" style="background: var(--blue-dim)">📊</span
+                >أداء الأطباء
+              </div>
+              <div class="chart-wrap-lg"><canvas id="chart-perf"></canvas></div>
+            </div>
+          </div>
+          <div class="card" style="margin-top: 20px">
+            <div class="card-title">
+              <span class="icon" style="background: var(--purple-dim)">🏆</span
+              >أفضل الأطباء أداءً
+            </div>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 14px;
+              "
+              id="top-docs"
+            ></div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

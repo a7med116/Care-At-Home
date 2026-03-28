@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="../image/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="Diseases.css" />
+  <title>Diseases | Care At Home</title>
+</head>
+<body>
+  <!-- HEADER (غير متغير) -->
+  <header id="logo">
+    <div class="nav-bar" id="online doctor">
+      <nav>
+        <div class="logo">
+          <a href="#logo"><p><span>care at home</span></p></a>
+          <div class="lang-switch">
+            <button id="lang-toggle">ar</button>
+          </div>
+        </div>
+         <!-- Sidebar (Mobile Menu) -->
+    <ul class="sidebar" id="mobileSidebar">
+      <li onclick="toggleSidebar()">
+        <a href="#"><span class="material-symbols-outlined">close</span></a>
+      </li>
+      <li><a href="./Donations/Donations.html">donations</a></li>
+      <li><a href="./How It Work/how it work.html">how care at home works</a></li>
+      <li><a href="./Medical diagnosis/Medical diagnosis.html">diagnosis</a></li>
+
+      <!-- Mobile Dropdown (ID مظبوط) -->
+      <li class="dropdown" id="mobileDropdown">
+        <a href="javascript:void(0)" onclick="toggleMobileDropdown(event)">
+          services <span class="blue-arrow">▼</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="./Care-Bot/bot.html">bot cara at home</a></li>
+        <li><a href="./healthdashboard/health-dashboard.html">healthdashboard</a></li>
+        <li><a href="./patient services/patient.html">patien services</a></li>
+        <li><a href="./prescriptions/prescriptions.html">Telehealth Services</a></li>
+        <li><a href="./Medication/Medication.html">medication</a></li>
+        <li><a href="./Medical diagnosis/Medical diagnosis.html">Diagnosis</a></li>
+        <li><a href="./Emergency/emergency.html">emergency</a></li>
+        <li><a href="./nursing/nursing.html">nursing</a></li>
+        </ul>
+      </li>
+
+      <li><a class="a4" href="./our providers/our providers.html">our providers</a></li>
+      <div class="botn">
+        <a href="./Get-Started/get-started.html" target="_blank">get started</a>
+      </div>
+    </ul>
+
+    <!-- Desktop Menu -->
+    <ul class="sidebar">
+          <li onclick="hidesidebar()"><a href="#"><span class="material-symbols-outlined">close</span></a></li>
+          <li><a href="../index.html#online doctor">online doctor</a></li>
+          <li><a href="../index.html#how care at home works">how care at home works</a></li>
+          <li><a href="../index.html#diagnosis">diagnosis</a></li>
+          <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+          <li><a class="a4" href="../our providers/our providers.html">our providers</a></li>
+          <div class="botn">
+            <a href="./Get-Started/get-started.html" target="_blank">get started</a>
+          </div>
+        </ul>
+        <ul>
+          <li class="hide"><a href="../index.html#online doctor">online doctor</a></li>
+          <li class="hide"><a href="../index.html#how care at home works">how care at home works</a></li>
+          <li class="hide"><a href="../index.html#diagnosis">diagnosis</a></li>
+          <li class="hide"><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+          <li class="hide"><a class="a4" href="../our providers/our providers.html">our providers</a></li>
+          <div class="botn">
+            <a class="hide" href="./Get-Started/get-started.html" target="_blank">get started</a>
+          </div>
+          <li class="span" onclick="showsidebar()"><a href="#"><span class="material-symbols-outlined">menu</span></a></li>
+        </ul>
+
+    <!-- Menu Button for Mobile -->
+  </nav>
+</div>
+
+  </header>
+
+  <!-- HERO -->
+  <section class="doctors-hero">
+    <h1>Explore <span>Diseases</span></h1>
+    <p>Learn about symptoms, diagnosis, treatments, and advanced medical details of 50 common diseases.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="hero-stat-num">100+</span><span class="hero-stat-label">Diseases</span></div>
+      <div class="hero-stat"><span class="hero-stat-num">1000+</span><span class="hero-stat-label">Medical Details</span></div>
+      <div class="hero-stat"><span class="hero-stat-num">24/7</span><span class="hero-stat-label">Available Info</span></div>
+    </div>
+  </section>
+
+  <!-- MAIN -->
+  <div class="doctors-wrapper">
+    <div class="search-filter-bar">
+      <div class="search-input-wrap">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="search-input" placeholder="Search disease, symptoms, treatment..." oninput="filterDiseases()" />
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Categories:</span>
+        <!-- <button class="filter-btn active" data-category="all" onclick="filterByCategory(this)">All</button> -->
+        <!-- <button class="filter-btn" data-category="Chronic" onclick="filterByCategory(this)">Chronic</button> -->
+        <!-- <button class="filter-btn" data-category="Cardiovascular" onclick="filterByCategory(this)">Cardiovascular</button> -->
+        <!-- <button class="filter-btn" data-category="Respiratory" onclick="filterByCategory(this)">Respiratory</button> -->
+        <!-- <button class="filter-btn" data-category="Neurological" onclick="filterByCategory(this)">Neurological</button> -->
+        <!-- <button class="filter-btn" data-category="Autoimmune" onclick="filterByCategory(this)">Autoimmune</button> -->
+        <!-- <button class="filter-btn" data-category="Gastrointestinal" onclick="filterByCategory(this)">Gastrointestinal</button> -->
+        <!-- <button class="filter-btn" data-category="Oncological" onclick="filterByCategory(this)">Oncological</button> -->
+        <!-- <button class="filter-btn" data-category="Infectious" onclick="filterByCategory(this)">Infectious</button> -->
+      </div>
+    </div>
+
+    <div class="results-header">
+      <div class="results-count">Showing <span id="result-count">0</span> diseases</div>
+    </div>
+
+    <div class="doctors-grid" id="diseases-grid"></div>
+
+    <div style="text-align:center; margin:50px 0;">
+      <button id="load-more-btn" onclick="loadMoreDiseases()" class="book-btn" style="display:none; padding:14px 50px;">
+        <i class="fa-solid fa-plus"></i> Load More Diseases
+      </button>
+    </div>
+
+    <div class="no-results" id="no-results">
+      <i class="fa-solid fa-virus"></i>
+      <h3>No diseases found</h3>
+      <p>Try another search keyword or different category.</p>
+    </div>
+  </div>
+
+   <!-- start footer -->
+  <!-- ===== FOOTER ===== -->
+<footer class="meds-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h3>Care At Home</h3>
+      <p class="footer-support">Customer Support</p>
+      <p class="footer-support-text">Support Is Open 24/7 In The Care At Home</p>
+      <p class="footer-address-title">Address</p>
+      <p class="footer-address">Egypt, Tanta</p>
+      <div class="footer-social">
+        <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="../Care-Bot/bot.html">bot cara at home</a></li>
+        <li><a href="../healthdashboard/health-dashboard.html">healthdashboard</a></li>
+        <li><a href="../patient services/patient.html">patien services</a></li>
+        <li><a href="./prescriptions/prescriptions.html">Telehealth Services</a></li>
+        <li><a href="../Medication/Medication.html">medication</a></li>
+        <li><a href="../Medical diagnosis/Medical diagnosis.html">Diagnosis</a></li>
+        <li><a href="../Emergency/emergency.html">emergency</a></li>
+        <li><a href="../nursing/nursing.html">nursing</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="../How It Work/how it work.html">How It Works</a></li>
+        <li><a href="../Subscriptions/">Pricing</a></li>
+        <li><a href="#">Promo Codes</a></li>
+        <li><a href="#">Employers</a></li>
+        <li><a href="#">Brokers</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="../about us/about.html">About Us</a></li>
+        <li><a href="../help us/help.html">Help Center</a></li>
+        <li><a href="../our providers/our providers.html">Our Providers</a></li>
+        <li><a href="../pharmacy/contactus/contact.html">Contact Us</a></li>
+        <li><a href="#">Newsroom</a></li>
+        <li><a href="#">Sitemap</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Terms Of Use</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Refund/Cancellation Policy</a></li>
+        <li><a href="#">Notice Of Privacy Practices</a></li>
+        <li><a href="#">Consent To Virtual Visits</a></li>
+        <li><a href="#">Content Creation Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-partners">
+    <span class="partner-logo">aetna</span>
+    <span class="partner-logo">Anthem</span>
+    <span class="partner-logo">Humana</span>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Care At Home, Inc. All Rights Reserved.</p>
+  </div>
+</footer>
+ <!-- end footer -->
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="disease-modal">
+    <div class="modal-box" id="modal-content"></div>
+  </div>
+
+  <script src="Diseases.js"></script>
+</body>
+</html>
