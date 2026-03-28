@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="nursing.css" />
+    <link rel="shortcut icon" href="../image/favicon.ico" type="image/x-icon">
+    <title>Our Nurses | Care At Home</title>
+  </head>
+  <body>
+
+    <!-- ══════════════ HEADER (unchanged) ══════════════ -->
+  <header id="logo">
+    <div class="nav-bar" id="online doctor">
+      <nav>
+        <div class="logo">
+          <a href="#logo"><p><span>care at home</span></p></a>
+          <div class="lang-switch">
+            <button id="lang-toggle">ar</button>
+          </div>
+        </div>
+        <ul class="sidebar">
+          <li onclick="hidesidebar()"><a href="#"><span class="material-symbols-outlined">close</span></a></li>
+          <li><a href="../index.html#online doctor">online doctor</a></li>
+          <li><a href="../index.html#how care at home works">how care at home works</a></li>
+          <li><a href="../index.html#diagnosis">diagnosis</a></li>
+          <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+          <li><a class="a4" href="../our providers/our providers.html">our providers</a></li>
+          <div class="botn">
+            <a href="./Get-Started/get-started.html" target="_blank">get started</a>
+          </div>
+        </ul>
+        <ul>
+          <li class="hide"><a href="../index.html#online doctor">online doctor</a></li>
+          <li class="hide"><a href="../index.html#how care at home works">how care at home works</a></li>
+          <li class="hide"><a href="../index.html#diagnosis">diagnosis</a></li>
+          <li class="hide"><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+          <li class="hide"><a class="a4" href="../our providers/our providers.html">our providers</a></li>
+          <div class="botn">
+            <a class="hide" href="./Get-Started/get-started.html" target="_blank">get started</a>
+          </div>
+          <li class="span" onclick="showsidebar()"><a href="#"><span class="material-symbols-outlined">menu</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <!-- HERO -->
+    <section class="nurses-hero">
+      <div class="hero-inner">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Nursing Staff Portal
+        </div>
+        <h1>Meet Our <span>Dedicated</span> Nurses</h1>
+        <p>
+          Certified, compassionate nursing professionals available for home care,
+          post-surgery recovery, chronic disease management, and 24/7 patient support.
+        </p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num">500+</span>
+            <span class="hero-stat-label">Certified Nurses</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">20+</span>
+            <span class="hero-stat-label">Specializations</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">24/7</span>
+            <span class="hero-stat-label">Always Available</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">4.9★</span>
+            <span class="hero-stat-label">Average Rating</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="nurses-wrapper">
+
+      <!-- SEARCH & FILTER -->
+      <div class="search-filter-bar">
+        <div class="search-input-wrap">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="search-input"
+            placeholder="Search by name, specialty, certification or service..."
+            oninput="filterNurses()" />
+        </div>
+        <div class="filter-row">
+          <span class="filter-label"><i class="fa-solid fa-filter"></i> Specialty:</span>
+          <button class="filter-btn active" data-spec="all"           onclick="setFilter(this,'all')">All Nurses</button>
+          <button class="filter-btn" data-spec="Home Care"            onclick="setFilter(this,'Home Care')"><i class="fa-solid fa-house-medical"></i> Home Care</button>
+          <button class="filter-btn" data-spec="ICU"                  onclick="setFilter(this,'ICU')"><i class="fa-solid fa-heart-pulse"></i> ICU</button>
+          <button class="filter-btn" data-spec="Pediatric"            onclick="setFilter(this,'Pediatric')"><i class="fa-solid fa-baby"></i> Pediatric</button>
+          <button class="filter-btn" data-spec="Surgical"             onclick="setFilter(this,'Surgical')"><i class="fa-solid fa-scalpel"></i> Surgical</button>
+          <button class="filter-btn" data-spec="Oncology"             onclick="setFilter(this,'Oncology')"><i class="fa-solid fa-ribbon"></i> Oncology</button>
+          <button class="filter-btn" data-spec="Geriatric"            onclick="setFilter(this,'Geriatric')"><i class="fa-solid fa-person-cane"></i> Geriatric</button>
+          <button class="filter-btn" data-spec="Mental Health"        onclick="setFilter(this,'Mental Health')"><i class="fa-solid fa-brain"></i> Mental Health</button>
+          <button class="filter-btn" data-spec="Rehabilitation"       onclick="setFilter(this,'Rehabilitation')"><i class="fa-solid fa-person-walking"></i> Rehab</button>
+          <select class="sort-select" id="sort-select" onchange="filterNurses()">
+            <option value="rating">Sort: Highest Rated</option>
+            <option value="price-asc">Sort: Price ↑</option>
+            <option value="price-desc">Sort: Price ↓</option>
+            <option value="exp">Sort: Most Experienced</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- RESULTS HEADER -->
+      <div class="results-header">
+        <div class="results-count">Showing <span id="result-count">0</span> nurses</div>
+      </div>
+
+      <!-- GRID -->
+      <div class="nurses-grid" id="nurses-grid"></div>
+
+      <!-- NO RESULTS -->
+      <div class="no-results" id="no-results">
+        <i class="fa-solid fa-user-nurse"></i>
+        <h3>No nurses found</h3>
+        <p>Try adjusting your search or filter to find available nursing staff.</p>
+      </div>
+    </div>
+
+    <!-- BOOKING MODAL -->
+    <div class="modal-overlay" id="modal-overlay">
+      <div class="modal-box">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+
+        <div id="booking-form">
+          <div class="modal-nurse-info" id="modal-nurse-info">
+            <div class="modal-avatar" id="modal-avatar">👩‍⚕️</div>
+            <div>
+              <div class="modal-nurse-name" id="modal-nurse-name">Nurse Name</div>
+              <div class="modal-nurse-spec" id="modal-nurse-spec">Specialty</div>
+              <div class="modal-nurse-price" id="modal-nurse-price">$XX / visit</div>
+            </div>
+          </div>
+
+          <div class="modal-title">
+            <i class="fa-solid fa-calendar-plus" style="color:var(--bg);margin-right:8px"></i>
+            Book a Nursing Visit
+          </div>
+
+          <div class="modal-form-group">
+            <label><i class="fa-solid fa-user"></i> Patient Full Name</label>
+            <input type="text" id="f-name" placeholder="Enter patient's full name" />
+          </div>
+
+          <div class="form-row">
+            <div class="modal-form-group">
+              <label><i class="fa-solid fa-phone"></i> Phone Number</label>
+              <input type="tel" id="f-phone" placeholder="01xxxxxxxxx" />
+            </div>
+            <div class="modal-form-group">
+              <label><i class="fa-solid fa-envelope"></i> Email Address</label>
+              <input type="email" id="f-email" placeholder="you@email.com" />
+            </div>
+          </div>
+
+          <div class="modal-form-group">
+            <label><i class="fa-solid fa-location-dot"></i> Home Address</label>
+            <input type="text" id="f-address" placeholder="Enter your full home address" />
+          </div>
+
+          <div class="form-row">
+            <div class="modal-form-group">
+              <label><i class="fa-solid fa-calendar-days"></i> Preferred Date</label>
+              <input type="date" id="f-date" />
+            </div>
+            <div class="modal-form-group">
+              <label><i class="fa-solid fa-clock"></i> Preferred Time</label>
+              <select id="f-time">
+                <option>8:00 AM</option>
+                <option>9:00 AM</option>
+                <option>10:00 AM</option>
+                <option>11:00 AM</option>
+                <option>12:00 PM</option>
+                <option>2:00 PM</option>
+                <option>4:00 PM</option>
+                <option>6:00 PM</option>
+                <option>8:00 PM</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="modal-form-group">
+            <label><i class="fa-solid fa-stethoscope"></i> Type of Care Needed</label>
+            <select id="f-care-type">
+              <option>Post-Surgery Home Care</option>
+              <option>Chronic Disease Management</option>
+              <option>Wound Dressing & IV Therapy</option>
+              <option>Elderly Daily Care</option>
+              <option>Pediatric Home Care</option>
+              <option>Medication Administration</option>
+              <option>Physical Rehabilitation Support</option>
+              <option>Mental Health Support</option>
+            </select>
+          </div>
+
+          <div class="modal-form-group">
+            <label><i class="fa-solid fa-notes-medical"></i> Patient Condition / Notes</label>
+            <textarea id="f-reason" placeholder="Describe the patient's condition or any special requirements..."></textarea>
+          </div>
+
+          <button class="modal-submit" onclick="submitBooking()">
+            <i class="fa-solid fa-check-circle"></i> Confirm Nursing Visit
+          </button>
+        </div>
+
+        <!-- Success Screen -->
+        <div class="success-screen" id="success-screen">
+          <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+          <h3>Visit Booked!</h3>
+          <p>Your nursing visit has been confirmed. The nurse will arrive at your location on time. You'll receive a confirmation SMS shortly.</p>
+          <button class="modal-submit" onclick="closeModal()" style="max-width:240px;margin:0 auto">
+            <i class="fa-solid fa-home"></i> Back to Nurses
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast">
+      <i class="fa-solid fa-circle-check"></i>
+      <span id="toast-msg"></span>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+<footer class="meds-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h3>Care At Home</h3>
+      <p class="footer-support">Customer Support</p>
+      <p class="footer-support-text">Support Is Open 24/7 In The Care At Home</p>
+      <p class="footer-address-title">Address</p>
+      <p class="footer-address">Egypt, Tanta</p>
+      <div class="footer-social">
+        <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="../Care-Bot/bot.html">bot cara at home</a></li>
+        <li><a href="../healthdashboard/health-dashboard.html">healthdashboard</a></li>
+        <li><a href="../patient services/patient.html">patien services</a></li>
+        <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+        <li><a href="../Medication/Medication.html">medication</a></li>
+        <li><a href="../Medical diagnosis/Medical diagnosis.html">Diagnosis</a></li>
+        <li><a href="../Emergency/emergency.html">emergency</a></li>
+        <li><a href="../nursing/nursing.html">nursing</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="../How It Work/how it work.html">How It Works</a></li>
+        <li><a href="../Subscriptions/">Pricing</a></li>
+        <li><a href="#">Promo Codes</a></li>
+        <li><a href="#">Employers</a></li>
+        <li><a href="#">Brokers</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="../about us/about.html">About Us</a></li>
+        <li><a href="../help us/help.html">Help Center</a></li>
+        <li><a href="../our providers/our providers.html">Our Providers</a></li>
+        <li><a href="../pharmacy/contactus/contact.html">Contact Us</a></li>
+        <li><a href="#">Newsroom</a></li>
+        <li><a href="#">Sitemap</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Terms Of Use</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Refund/Cancellation Policy</a></li>
+        <li><a href="#">Notice Of Privacy Practices</a></li>
+        <li><a href="#">Consent To Virtual Visits</a></li>
+        <li><a href="#">Content Creation Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-partners">
+    <span class="partner-logo">aetna</span>
+    <span class="partner-logo">Anthem</span>
+    <span class="partner-logo">Humana</span>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Care At Home, Inc. All Rights Reserved.</p>
+  </div>
+</footer>
+ <!-- end footer -->
+
+    <script src="nursing.js"></script>
+  </body>
+</html>

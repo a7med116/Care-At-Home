@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="payment completed.css" />
+    <link rel="shortcut icon" href="./image/favicon.ico" type="image/x-icon" />
+    <title>payment completed | Care At Home</title>
+  </head>
+  <body>
+    <header id="logo">
+      <div class="nav-bar" id="online doctor">
+        <nav>
+          <div class="logo">
+            <a href="#logo"
+              ><p><span>care at home</span></p></a
+            >
+            <div class="lang-switch">
+              <button id="lang-toggle">ar</button>
+            </div>
+          </div>
+          <ul>
+            <li class="hide">
+              <a href="../index.html#online doctor">online doctor</a>
+            </li>
+            <li class="hide">
+              <a href="../index.html#how care at home works"
+                >how care at home works</a
+              >
+            </li>
+            <li class="hide">
+              <a href="../index.html#diagnosis">diagnosis</a>
+            </li>
+            <li class="hide">
+              <a href="../index.html#Telehealth Services">Telehealth Services</a>
+            </li>
+            <li class="hide">
+              <a class="a4" href="../our providers/our providers.html"
+                >our providers</a
+              >
+            </li>
+            <div class="botn">
+              <a
+                class="hide"
+                href="./Get-Started/get-started.html"
+                target="_blank"
+                >get started</a
+              >
+            </div>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <div class="header">
+        <h1>Donation Methods & Donation Form</h1>
+        <p>Choose The Way That Works Best For You To Make An Impact Today</p>
+      </div>
+
+      <div class="content">
+        <!-- Left Panel -->
+        <div class="payment-methods">
+          <div class="method-item active" onclick="selectMethod(this)">
+            <div class="check-icon">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="method-content">
+              <h3><i class="fas fa-credit-card"></i> Electronic</h3>
+              <p>Visa, Mastercard, Fawry, Vodafone Cash,<br />InstaPay</p>
+            </div>
+          </div>
+
+          <div class="method-item" onclick="selectMethod(this)">
+            <div class="check-icon">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="method-content">
+              <h3><i class="fas fa-university"></i> Bank Account</h3>
+              <p>Account Number, Entity Name</p>
+            </div>
+          </div>
+
+          <div class="method-item" onclick="selectMethod(this)">
+            <div class="check-icon">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="method-content">
+              <h3>
+                <i class="fas fa-hand-holding-medical"></i> Monetary Donations
+              </h3>
+              <p>Medicines, Medical Devices, Medical Supplies</p>
+            </div>
+          </div>
+
+          <div class="partners">
+            <div class="partner-logos">
+              <div class="partner-logo">Humana</div>
+              <div class="partner-logo"><i class="fas fa-heart"></i> aetna</div>
+              <div class="partner-logo">
+                <i class="fas fa-shield-alt"></i> UnitedHealthcare
+              </div>
+              <div class="partner-logo">
+                Anthem <i class="fas fa-plus-square"></i>
+              </div>
+              <div class="partner-logo">Medicare.gov</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="donation-form">
+          <div class="form-header">
+            <i class="fas fa-hand-holding-heart"></i>
+            <h2>Make A Donation</h2>
+          </div>
+
+          <form id="donationForm">
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-user"></i>
+                Full Name
+                <span class="optional">optional</span>
+              </label>
+              <input
+                type="text"
+                class="form-input"
+                placeholder="Hassan ElSaid"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-phone"></i>
+                Phone Number
+              </label>
+              <input
+                type="tel"
+                class="form-input"
+                placeholder="+20xxxxxxxxxx"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-pound-sign"></i>
+                Amount (EGP)
+              </label>
+              <input type="number" class="form-input" placeholder="e.g. 500" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-list-ul"></i>
+                Type Of Donation
+              </label>
+              <div class="select-wrapper">
+                <select class="form-input form-select">
+                  <option value="" disabled selected>Select type</option>
+                  <option value="medical">صدقه</option>
+                  <option value="medicine">ذكاة</option>
+                  <option value="supplies">تبرع خيري</option>
+                  <option value="financial">صدقه جاريه</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="donate-btn">
+              <i class="fas fa-heart"></i>
+              Donate Now
+            </button>
+          </form>
+
+          <div class="thank-you">
+            Thank You For Your Donation <i class="fas fa-heart"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ===== FOOTER ===== -->
+<footer class="meds-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h3>Care At Home</h3>
+      <p class="footer-support">Customer Support</p>
+      <p class="footer-support-text">Support Is Open 24/7 In The Care At Home</p>
+      <p class="footer-address-title">Address</p>
+      <p class="footer-address">Egypt, Tanta</p>
+      <div class="footer-social">
+        <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="../Care-Bot/bot.html">bot cara at home</a></li>
+        <li><a href="../healthdashboard/health-dashboard.html">healthdashboard</a></li>
+        <li><a href="../patient services/patient.html">patien services</a></li>
+        <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+        <li><a href="../Medication/Medication.html">medication</a></li>
+        <li><a href="../Medical diagnosis/Medical diagnosis.html">Diagnosis</a></li>
+        <li><a href="../Emergency/emergency.html">emergency</a></li>
+        <li><a href="../nursing/nursing.html">nursing</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="../How It Work/how it work.html">How It Works</a></li>
+        <li><a href="../Subscriptions/">Pricing</a></li>
+        <li><a href="#">Promo Codes</a></li>
+        <li><a href="#">Employers</a></li>
+        <li><a href="#">Brokers</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="../about us/about.html">About Us</a></li>
+        <li><a href="../help us/help.html">Help Center</a></li>
+        <li><a href="../our providers/our providers.html">Our Providers</a></li>
+        <li><a href="../pharmacy/contactus/contact.html">Contact Us</a></li>
+        <li><a href="#">Newsroom</a></li>
+        <li><a href="#">Sitemap</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Terms Of Use</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Refund/Cancellation Policy</a></li>
+        <li><a href="#">Notice Of Privacy Practices</a></li>
+        <li><a href="#">Consent To Virtual Visits</a></li>
+        <li><a href="#">Content Creation Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-partners">
+    <span class="partner-logo">aetna</span>
+    <span class="partner-logo">Anthem</span>
+    <span class="partner-logo">Humana</span>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Care At Home, Inc. All Rights Reserved.</p>
+  </div>
+</footer>
+ <!-- end footer -->
+    <div id="google_translate_element" style="display: none"></div>
+    <script src="payment completed.js"></script>
+  </body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="payment.css">
+    <title>payment | Care At Home</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="back-arrow">←</div>
+            <h1>Pro plan</h1>
+        </div>
+
+        <div class="pricing-cards">
+            <div class="pricing-card">
+                <input type="radio" name="plan" id="monthly" value="monthly">
+                <label class="pricing-card-label" for="monthly">Monthly</label>
+                <div class="pricing-card-price">$20.00/month + tax</div>
+            </div>
+
+            <div class="pricing-card active">
+                <input type="radio" name="plan" id="yearly" value="yearly" checked>
+                <label class="pricing-card-label" for="yearly">Yearly</label>
+                <div class="pricing-card-price">$200.00/year + tax</div>
+                <div class="save-badge">Save 17%</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Order details</div>
+            <div class="order-detail-row">
+                <div>
+                    <div class="order-detail-label">Pro plan</div>
+                    <div class="order-detail-sub">Annually</div>
+                </div>
+                <div class="order-detail-value">$200</div>
+            </div>
+            <div class="order-detail-row">
+                <div class="order-detail-label">Subtotal</div>
+                <div class="order-detail-value">$200</div>
+            </div>
+            <div class="order-detail-row">
+                <div class="order-detail-label">Total due today</div>
+                <div class="order-detail-value">$200</div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-icon">ⓘ</div>
+            <div class="info-text">
+                Your subscription will auto renew on 3/7/2027. You will be charged <span class="warning">$200.00/year + tax</span>.
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Payment method</div>
+
+            <div class="form-group">
+                <label class="form-label">Full name</label>
+                <input type="text" class="form-input" value="hassanelsaid">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Country or region</label>
+                <select class="form-select">
+                    <option>Egypt</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Address line 1</label>
+                <input type="text" class="form-input" placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Card number</label>
+                <div style="position: relative;" class="card-input-wrapper">
+                    <input type="text" class="form-input" value="1234 1234 1234 1234" placeholder="Enter card number">
+                    <div class="card-logos">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 32'%3E%3Crect fill='%23EB001B' width='48' height='32' rx='4'/%3E%3Ccircle cx='15' cy='16' r='6' fill='%23FF5F00'/%3E%3Ccircle cx='33' cy='16' r='6' fill='%23F79E1B'/%3E%3C/svg%3E" alt="Mastercard" class="card-logo">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 32'%3E%3Crect fill='%231434CB' width='48' height='32' rx='4'/%3E%3Ctext x='24' y='20' font-size='14' font-weight='bold' fill='white' text-anchor='middle'%3Evisa%3C/text%3E%3C/svg%3E" alt="Visa" class="card-logo">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 32'%3E%3Crect fill='%23006FCF' width='48' height='32' rx='4'/%3E%3Ctext x='24' y='20' font-size='10' font-weight='bold' fill='white' text-anchor='middle'%3EAMEX%3C/text%3E%3C/svg%3E" alt="Amex" class="card-logo">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Expiration date</label>
+                    <input type="text" class="form-input" placeholder="MM / YY">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Security code</label>
+                    <div style="position: relative;">
+                        <input type="text" class="form-input" placeholder="CVC">
+                        <div style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: #909090; font-size: 18px;">🔒</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="different-name" class="form-checkbox">
+                <label for="different-name" class="checkbox-label">Use a different name on invoices</label>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Business tax ID (Optional)</div>
+            <div class="form-description">If you provide a tax ID, the "Full name" above should be your business's name.</div>
+
+            <div class="form-group">
+                <label class="form-label">Egyptian TIN</label>
+                <input type="text" class="form-input" value="123456789" placeholder="">
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="checkbox-group">
+                <input type="checkbox" id="terms" class="form-checkbox" checked>
+                <label for="terms" class="checkbox-label terms-label">You agree that Anthropic will charge your card in the amount above now and on a recurring annual basis until you cancel in accordance with our terms. You can cancel at any time in your account settings.</label>
+            </div>
+        </div>
+
+        <button class="subscribe-button">Subscribe</button>
+    </div>
+    <script src="payment.js"></script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medication Guide</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="./image/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="medications.css" />
+    <base target="_blank" />
+  </head>
+  <body>
+           <header>
+             <div class="lang-switch">
+              <button id="lang-toggle">ar</button>
+            </div>
+           </header>
+    <section class="medications-section" id="medications">
+      <div class="meds-header">
+        <h2>medication <span>guide</span></h2>
+        <p>
+          Search, explore and understand your medications — dosages, uses,
+          interactions and warnings all in one place.
+        </p>
+      </div>
+
+      <div class="meds-search-wrap">
+        <div class="meds-search-box">
+          <i class="fa-solid fa-magnifying-glass meds-search-icon"></i>
+          <input
+            type="text"
+            id="meds-search-input"
+            placeholder="Search medication name, use or category..."
+            oninput="filterMeds(this.value)"
+          />
+          <button
+            class="meds-search-clear"
+            id="meds-clear-btn"
+            onclick="clearMedSearch()"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="meds-filter-row">
+        <button class="meds-cat-btn active" onclick="setMedCat(this, 'all')">
+          <i class="fa-solid fa-border-all"></i> All
+        </button>
+        <button class="meds-cat-btn" onclick="setMedCat(this, 'Pain Relief')">
+          <i class="fa-solid fa-head-side-virus"></i> Pain Relief
+        </button>
+        <button class="meds-cat-btn" onclick="setMedCat(this, 'Antibiotics')">
+          <i class="fa-solid fa-bacterium"></i> Antibiotics
+        </button>
+        <button class="meds-cat-btn" onclick="setMedCat(this, 'Cardiac')">
+          <i class="fa-solid fa-heart-pulse"></i> Cardiac
+        </button>
+        <button class="meds-cat-btn" onclick="setMedCat(this, 'Diabetes')">
+          <i class="fa-solid fa-syringe"></i> Diabetes
+        </button>
+        <button class="meds-cat-btn" onclick="setMedCat(this, 'Digestive')">
+          <i class="fa-solid fa-stomach"></i> Digestive
+        </button>
+        <button class="meds-cat-btn" onclick="setMedCat(this, 'Respiratory')">
+          <i class="fa-solid fa-lungs"></i> Respiratory
+        </button>
+        <button class="meds-cat-btn" onclick="setMedCat(this, 'Mental Health')">
+          <i class="fa-solid fa-brain"></i> Mental Health
+        </button>
+        <button class="meds-cat-btn" onclick="setMedCat(this, 'Vitamins')">
+          <i class="fa-solid fa-capsules"></i> Vitamins
+        </button>
+        <button class="meds-cat-btn" onclick="setMedCat(this, 'Allergy')">
+          <i class="fa-solid fa-hand-dots"></i> Allergy
+        </button>
+      </div>
+
+      <div class="meds-results-row">
+        <span class="meds-count-label"
+          >Showing <strong id="meds-count">0</strong> medications</span
+        >
+      </div>
+
+      <div class="meds-grid" id="meds-grid"></div>
+
+      <div class="meds-no-results" id="meds-no-results">
+        <i class="fa-solid fa-pills"></i>
+        <p>No medications found. Try a different search or category.</p>
+      </div>
+    </section>
+
+    <!-- Modal -->
+    <div
+      class="med-modal-overlay"
+      id="med-modal-overlay"
+      onclick="closeMedModal(event)"
+    >
+      <div class="med-modal" onclick="event.stopPropagation()">
+        <button class="med-modal-close" onclick="closeMedModal()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="med-modal-header" id="med-modal-header"></div>
+        <div class="med-modal-body" id="med-modal-body"></div>
+        <div class="med-modal-footer">
+          <i class="fa-solid fa-user-doctor"></i>
+          Always consult your doctor or pharmacist before use
+        </div>
+      </div>
+    </div>
+    <!-- ===== FOOTER ===== -->
+<footer class="meds-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h3>Care At Home</h3>
+      <p class="footer-support">Customer Support</p>
+      <p class="footer-support-text">Support Is Open 24/7 In The Care At Home</p>
+      <p class="footer-address-title">Address</p>
+      <p class="footer-address">Egypt, Tanta</p>
+      <div class="footer-social">
+        <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="../Care-Bot/bot.html">bot cara at home</a></li>
+        <li><a href="../healthdashboard/health-dashboard.html">healthdashboard</a></li>
+        <li><a href="../patient services/patient.html">patien services</a></li>
+        <li><a href="../index.html#Services">Tele Services</a></li>
+        <li><a href="../Medication/Medication.html">medication</a></li>
+        <li><a href="../Medical diagnosis/Medical diagnosis.html">Diagnosis</a></li>
+        <li><a href="../Emergency/emergency.html">emergency</a></li>
+        <li><a href="../nursing/nursing.html">nursing</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="../How It Work/how it work.html">How It Works</a></li>
+        <li><a href="../Subscriptions/">Pricing</a></li>
+        <li><a href="#">Promo Codes</a></li>
+        <li><a href="#">Employers</a></li>
+        <li><a href="#">Brokers</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="../about us/about.html">About Us</a></li>
+        <li><a href="../help us/help.html">Help Center</a></li>
+        <li><a href="../our providers/our providers.html">Our Providers</a></li>
+        <li><a href="../pharmacy/contactus/contact.html">Contact Us</a></li>
+        <li><a href="#">Newsroom</a></li>
+        <li><a href="#">Sitemap</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Terms Of Use</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Refund/Cancellation Policy</a></li>
+        <li><a href="#">Notice Of Privacy Practices</a></li>
+        <li><a href="#">Consent To Virtual Visits</a></li>
+        <li><a href="#">Content Creation Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-partners">
+    <span class="partner-logo">aetna</span>
+    <span class="partner-logo">Anthem</span>
+    <span class="partner-logo">Humana</span>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Care At Home, Inc. All Rights Reserved.</p>
+  </div>
+</footer>
+ <!-- end footer -->
+    <script src="medication.js"></script>
+    <div id="google_translate_element" style="display: none"></div>
+  </body>
+</html>

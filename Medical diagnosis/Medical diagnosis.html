@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../image/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="Medical diagnosis.css">
+    <title>Medical Diagnosis | Care At Home</title>
+    <style>
+
+    </style>
+  </head>
+  <body>
+
+   <!-- ══════════════ HEADER (unchanged) ══════════════ -->
+  <header id="logo">
+    <div class="nav-bar" id="online doctor">
+      <nav>
+        <div class="logo">
+          <a href="#logo"><p><span>care at home</span></p></a>
+          <div class="lang-switch">
+            <button id="lang-toggle">ar</button>
+          </div>
+        </div>
+        <ul class="sidebar">
+          <li onclick="hidesidebar()"><a href="#"><span class="material-symbols-outlined">close</span></a></li>
+          <li><a href="../index.html#online doctor">online doctor</a></li>
+          <li><a href="../index.html#how care at home works">how care at home works</a></li>
+          <li><a href="../index.html#diagnosis">diagnosis</a></li>
+          <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+          <li><a class="a4" href="../our providers/our providers.html">our providers</a></li>
+          <div class="botn">
+            <a href="./Get-Started/get-started.html" target="_blank">get started</a>
+          </div>
+        </ul>
+        <ul>
+          <li class="hide"><a href="../index.html#online doctor">online doctor</a></li>
+          <li class="hide"><a href="../index.html#how care at home works">how care at home works</a></li>
+          <li class="hide"><a href="../index.html#diagnosis">diagnosis</a></li>
+          <li class="hide"><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+          <li class="hide"><a class="a4" href="../our providers/our providers.html">our providers</a></li>
+          <div class="botn">
+            <a class="hide" href="./Get-Started/get-started.html" target="_blank">get started</a>
+          </div>
+          <li class="span" onclick="showsidebar()"><a href="#"><span class="material-symbols-outlined">menu</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+    <!-- HERO -->
+    <section class="diagnosis-hero">
+      <h1>Smart <span>Medical</span> Diagnosis</h1>
+      <p>Describe your symptoms, select the affected area, and get an AI-powered preliminary assessment to guide your care.</p>
+      <div class="hero-badges">
+        <span class="hero-badge"><i class="fa-solid fa-bolt"></i> Instant results</span>
+        <span class="hero-badge"><i class="fa-solid fa-clock"></i> 24/7 available</span>
+        <span class="hero-badge"><i class="fa-solid fa-shield-halved"></i> Confidential</span>
+        <span class="hero-badge"><i class="fa-solid fa-stethoscope"></i> Clinically-guided</span>
+      </div>
+    </section>
+
+    <div class="diagnosis-wrapper">
+
+      <!-- STEP INDICATOR -->
+      <div class="steps-indicator">
+        <div class="step-item">
+          <div class="step-circle active" id="sc1">1</div>
+          <span class="step-label active" id="sl1">Select Area</span>
+        </div>
+        <div class="step-connector" id="con1"></div>
+        <div class="step-item">
+          <div class="step-circle" id="sc2">2</div>
+          <span class="step-label" id="sl2">Symptoms</span>
+        </div>
+        <div class="step-connector" id="con2"></div>
+        <div class="step-item">
+          <div class="step-circle" id="sc3">3</div>
+          <span class="step-label" id="sl3">Your Info</span>
+        </div>
+        <div class="step-connector" id="con3"></div>
+        <div class="step-item">
+          <div class="step-circle" id="sc4">4</div>
+          <span class="step-label" id="sl4">Results</span>
+        </div>
+      </div>
+
+      <!-- STEP 1: BODY MAP -->
+      <div class="section-card" id="step1-card">
+        <div class="card-header">
+          <div class="card-icon"><i class="fa-solid fa-person-dots-from-line"></i></div>
+          <div class="card-header-text">
+            <h2>Step 1 — Select Affected Area</h2>
+            <p>Click on the body map or choose a region from the list</p>
+          </div>
+        </div>
+
+        <div class="body-map-layout">
+          <!-- SVG Body -->
+          <div class="body-figure">
+            <div class="body-svg-wrap">
+              <svg class="body-svg" viewBox="0 0 200 460" xmlns="http://www.w3.org/2000/svg">
+                <!-- Head -->
+                <ellipse id="svg-head" class="body-part" cx="100" cy="45" rx="33" ry="38" onclick="selectRegion('head')"/>
+                <!-- Neck -->
+                <rect id="svg-neck" class="body-part" x="88" y="80" width="24" height="22" rx="5" onclick="selectRegion('neck')"/>
+                <!-- Chest / Torso upper -->
+                <rect id="svg-chest" class="body-part" x="60" y="102" width="80" height="65" rx="12" onclick="selectRegion('chest')"/>
+                <!-- Left Arm -->
+                <rect id="svg-arm-l" class="body-part" x="20" y="102" width="36" height="105" rx="14" onclick="selectRegion('arm')"/>
+                <!-- Right Arm -->
+                <rect id="svg-arm-r" class="body-part" x="144" y="102" width="36" height="105" rx="14" onclick="selectRegion('arm')"/>
+                <!-- Abdomen -->
+                <rect id="svg-abdomen" class="body-part" x="63" y="168" width="74" height="55" rx="8" onclick="selectRegion('abdomen')"/>
+                <!-- Pelvis -->
+                <rect id="svg-pelvis" class="body-part" x="58" y="224" width="84" height="44" rx="8" onclick="selectRegion('pelvis')"/>
+                <!-- Left Leg -->
+                <rect id="svg-leg-l" class="body-part" x="60" y="270" width="36" height="125" rx="14" onclick="selectRegion('leg')"/>
+                <!-- Right Leg -->
+                <rect id="svg-leg-r" class="body-part" x="104" y="270" width="36" height="125" rx="14" onclick="selectRegion('leg')"/>
+                <!-- Left Foot -->
+                <ellipse class="body-part" cx="78" cy="406" rx="24" ry="12" onclick="selectRegion('leg')"/>
+                <!-- Right Foot -->
+                <ellipse class="body-part" cx="122" cy="406" rx="24" ry="12" onclick="selectRegion('leg')"/>
+                <!-- Face details -->
+                <ellipse cx="89" cy="42" rx="6" ry="4" fill="#d4cbff" stroke="#c4b8ff" stroke-width="1"/>
+                <ellipse cx="111" cy="42" rx="6" ry="4" fill="#d4cbff" stroke="#c4b8ff" stroke-width="1"/>
+                <path d="M96 54 Q100 60 104 54" stroke="#c4b8ff" stroke-width="1.5" fill="none"/>
+                <path d="M92 64 Q100 70 108 64" stroke="#c4b8ff" stroke-width="1.5" fill="none"/>
+                <!-- Heart symbol -->
+                <text x="100" y="142" text-anchor="middle" fill="rgba(106,81,255,0.4)" font-size="14">♥</text>
+                <!-- Navel -->
+                <circle cx="100" cy="205" r="3" fill="rgba(106,81,255,0.3)"/>
+              </svg>
+              <div class="body-label" id="body-label">Click to select</div>
+            </div>
+          </div>
+
+          <!-- Region buttons -->
+          <div class="region-buttons">
+            <button class="region-btn" id="rbtn-head" onclick="selectRegion('head')">
+              <i class="fa-solid fa-brain"></i> Head & Brain
+            </button>
+            <button class="region-btn" id="rbtn-neck" onclick="selectRegion('neck')">
+              <i class="fa-solid fa-lungs"></i> Neck & Throat
+            </button>
+            <button class="region-btn" id="rbtn-chest" onclick="selectRegion('chest')">
+              <i class="fa-solid fa-heart-pulse"></i> Chest & Heart
+            </button>
+            <button class="region-btn" id="rbtn-abdomen" onclick="selectRegion('abdomen')">
+              <i class="fa-solid fa-stomach"></i> Abdomen & Stomach
+            </button>
+            <button class="region-btn" id="rbtn-arm" onclick="selectRegion('arm')">
+              <i class="fa-solid fa-hand"></i> Arms & Shoulders
+            </button>
+            <button class="region-btn" id="rbtn-pelvis" onclick="selectRegion('pelvis')">
+              <i class="fa-solid fa-bone"></i> Pelvis & Lower Back
+            </button>
+            <button class="region-btn" id="rbtn-leg" onclick="selectRegion('leg')">
+              <i class="fa-solid fa-person-walking"></i> Legs & Feet
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 2: SYMPTOMS -->
+      <div class="section-card hidden" id="step2-card">
+        <div class="card-header">
+          <div class="card-icon"><i class="fa-solid fa-clipboard-list"></i></div>
+          <div class="card-header-text">
+            <h2>Step 2 — Select Your Symptoms</h2>
+            <p>Area: <strong id="region-display" style="color:var(--link)"></strong> — Choose all that apply</p>
+          </div>
+        </div>
+        <div id="selected-count-wrap" class="hidden">
+          <span class="selected-count"><i class="fa-solid fa-check"></i> <span id="selected-count-num">0</span> symptoms selected</span>
+        </div>
+        <div class="symptoms-tags" id="symptoms-tags"></div>
+        <button class="analyze-btn" onclick="goToStep3()" style="margin-top:20px;max-width:300px">
+          Next Step <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+
+      <!-- STEP 3: INFO -->
+      <div class="section-card hidden" id="step3-card">
+        <div class="card-header">
+          <div class="card-icon"><i class="fa-solid fa-user-circle"></i></div>
+          <div class="card-header-text">
+            <h2>Step 3 — Your Information</h2>
+            <p>Help us tailor the assessment to your profile</p>
+          </div>
+        </div>
+        <div class="info-grid">
+          <div class="form-group">
+            <label><i class="fa-solid fa-calendar-days"></i> Age Group</label>
+            <select id="sel-age">
+              <option value="child">Child (under 12)</option>
+              <option value="teen">Teen (13–17)</option>
+              <option value="adult" selected>Adult (18–40)</option>
+              <option value="middle">Middle-aged (41–60)</option>
+              <option value="senior">Senior (60+)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label><i class="fa-solid fa-venus-mars"></i> Biological Sex</label>
+            <select id="sel-gender">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label><i class="fa-solid fa-clock"></i> Symptom Duration</label>
+            <select id="sel-duration">
+              <option value="hours">A few hours</option>
+              <option value="day">1–2 days</option>
+              <option value="week">3–7 days</option>
+              <option value="weeks">1–4 weeks</option>
+              <option value="chronic">More than a month</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label><i class="fa-solid fa-notes-medical"></i> Known Conditions</label>
+            <select id="sel-conditions">
+              <option value="none">None</option>
+              <option value="diabetes">Diabetes</option>
+              <option value="hypertension">Hypertension</option>
+              <option value="heart">Heart Disease</option>
+              <option value="asthma">Asthma / Respiratory</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group severity-wrap">
+            <label><i class="fa-solid fa-gauge-high"></i> Pain / Discomfort Level: <span id="sev-val" style="color:var(--link);font-weight:800">5</span>/10</label>
+            <input type="range" class="severity-slider" id="severity-slider" min="1" max="10" value="5" oninput="document.getElementById('sev-val').textContent=this.value">
+            <div class="severity-labels">
+              <span style="color:#4a8f00"><i class="fa-solid fa-face-smile"></i> Mild</span>
+              <span style="color:var(--link)"><i class="fa-solid fa-face-meh"></i> Moderate</span>
+              <span style="color:#cc0000"><i class="fa-solid fa-face-grimace"></i> Severe</span>
+            </div>
+          </div>
+        </div>
+        <button class="analyze-btn" onclick="runAnalysis()">
+          <i class="fa-solid fa-microscope"></i> Analyze Symptoms Now
+        </button>
+      </div>
+
+      <!-- LOADING -->
+      <div class="section-card hidden" id="loading-card">
+        <div class="loading-overlay show">
+          <div class="spinner"></div>
+          <div class="loading-text">Analyzing your symptoms...</div>
+          <div style="margin-top:12px;font-size:0.8rem;color:var(--second)">Matching against clinical database</div>
+          <div class="progress-dots" style="margin-top:20px">
+            <div class="p-dot active"></div>
+            <div class="p-dot"></div>
+            <div class="p-dot"></div>
+            <div class="p-dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div class="section-card results-section" id="results-card">
+
+        <!-- Summary bar -->
+        <div class="result-summary">
+          <div class="result-summary-left">
+            <h3><i class="fa-solid fa-file-medical"></i> Preliminary Assessment</h3>
+            <h2 id="result-title">Analysis Results</h2>
+          </div>
+          <div class="result-stats">
+            <div class="result-stat">
+              <div class="result-stat-num" id="res-symptoms-count">0</div>
+              <div class="result-stat-label">Symptoms</div>
+            </div>
+            <div class="result-stat">
+              <div class="result-stat-num" id="res-accuracy">—</div>
+              <div class="result-stat-label">Match Rate</div>
+            </div>
+            <div class="result-stat">
+              <div id="sev-pill" class="severity-pill sev-moderate">Moderate</div>
+              <div class="result-stat-label" style="margin-top:8px">Severity</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conditions -->
+        <div class="card-header" style="margin-bottom:20px">
+          <div class="card-icon" style="background:linear-gradient(135deg,#ffaf12,#ffc020);box-shadow:0 8px 20px rgba(255,175,18,0.3)"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          <div class="card-header-text">
+            <h2>Possible Conditions</h2>
+            <p>Based on your symptoms — ranked by probability</p>
+          </div>
+        </div>
+
+        <div class="conditions-grid" id="conditions-output"></div>
+
+        <!-- Recommendations -->
+        <div class="rec-card">
+          <h3><i class="fa-solid fa-lightbulb"></i> Medical Recommendations</h3>
+          <div class="rec-list" id="rec-list"></div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="disclaimer">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <div><strong>Important Notice:</strong> This assessment is for informational purposes only and is not a substitute for professional medical diagnosis or treatment. Always consult a qualified physician for accurate diagnosis and treatment.</div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="action-btns">
+          <a href="../Doctors/alldoctors.html" class="action-btn btn-book">
+            <i class="fa-solid fa-user-doctor"></i> Book a Doctor Now
+          </a>
+          <button class="action-btn btn-reset" onclick="resetDiagnosis()">
+            <i class="fa-solid fa-rotate-left"></i> New Assessment
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+     <!-- ===== FOOTER ===== -->
+<footer class="meds-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h3>Care At Home</h3>
+      <p class="footer-support">Customer Support</p>
+      <p class="footer-support-text">Support Is Open 24/7 In The Care At Home</p>
+      <p class="footer-address-title">Address</p>
+      <p class="footer-address">Egypt, Tanta</p>
+      <div class="footer-social">
+        <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="../Care-Bot/bot.html">bot cara at home</a></li>
+        <li><a href="../healthdashboard/health-dashboard.html">healthdashboard</a></li>
+        <li><a href="../patient services/patient.html">patien services</a></li>
+        <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+        <li><a href="../Medication/Medication.html">medication</a></li>
+        <li><a href="../Medical diagnosis/Medical diagnosis.html">Diagnosis</a></li>
+        <li><a href="../Emergency/emergency.html">emergency</a></li>
+        <li><a href="../nursing/nursing.html">nursing</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="../How It Work/how it work.html">How It Works</a></li>
+        <li><a href="../Subscriptions/">Pricing</a></li>
+        <li><a href="#">Promo Codes</a></li>
+        <li><a href="#">Employers</a></li>
+        <li><a href="#">Brokers</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="../about us/about.html">About Us</a></li>
+        <li><a href="../help us/help.html">Help Center</a></li>
+        <li><a href="../our providers/our providers.html">Our Providers</a></li>
+        <li><a href="../pharmacy/contactus/contact.html">Contact Us</a></li>
+        <li><a href="#">Newsroom</a></li>
+        <li><a href="#">Sitemap</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Terms Of Use</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Refund/Cancellation Policy</a></li>
+        <li><a href="#">Notice Of Privacy Practices</a></li>
+        <li><a href="#">Consent To Virtual Visits</a></li>
+        <li><a href="#">Content Creation Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-partners">
+    <span class="partner-logo">aetna</span>
+    <span class="partner-logo">Anthem</span>
+    <span class="partner-logo">Humana</span>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Care At Home, Inc. All Rights Reserved.</p>
+  </div>
+</footer>
+ <!-- end footer -->
+    <script src="Medical diagnosis.js"></script>
+    <div id="google_translate_element" style="display:none;"></div>
+  </body>
+</html>

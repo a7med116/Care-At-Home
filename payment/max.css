@@ -1,0 +1,353 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Saira:ital,wght@0,100..900;1,100..900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", sans-serif;
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.back-arrow {
+  font-size: 24px;
+  cursor: pointer;
+  margin-right: 20px;
+  color: #e0e0e0;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.pricing-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.pricing-card {
+  border: 1px solid #404040;
+  border-radius: 8px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  background-color: #323232;
+}
+
+.pricing-card:hover {
+  border-color: #505050;
+}
+
+.pricing-card.active {
+  border-color: #2563eb;
+  background-color: #1e3a5f;
+}
+
+.pricing-card input[type="radio"] {
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.pricing-card-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #e0e0e0;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.pricing-card-price {
+  font-size: 13px;
+  color: #909090;
+}
+
+.save-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #2563eb;
+  color: #ffffff;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.section {
+  border: 1px solid #404040;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #323232;
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.order-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.order-detail-row:last-child {
+  margin-bottom: 0;
+}
+
+.order-detail-label {
+  font-size: 13px;
+  color: #e0e0e0;
+}
+
+.order-detail-sub {
+  font-size: 12px;
+  color: #707070;
+  margin-top: 2px;
+}
+
+.order-detail-value {
+  font-size: 13px;
+  color: #e0e0e0;
+  font-weight: 500;
+}
+
+.info-box {
+  border: 1px solid #404040;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+  background-color: #323232;
+  display: flex;
+  gap: 12px;
+}
+
+.info-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #505050;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #707070;
+  margin-top: 2px;
+}
+
+.info-text {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #c0c0c0;
+}
+
+.info-text .warning {
+  color: #ff6b6b;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-label {
+  font-size: 12px;
+  color: #e0e0e0;
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.form-input,
+.form-select {
+  width: 100%;
+  background-color: #404040;
+  border: 1px solid #505050;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 13px;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+}
+
+.form-input {
+  padding: 10px 12px;
+}
+
+.form-select {
+  padding: 10px 12px;
+}
+
+.form-group:has(.card-logos) .form-input {
+  padding: 10px 12px 10px 12px;
+}
+
+.card-input-wrapper {
+  position: relative;
+}
+
+.card-input-wrapper .form-input {
+  padding-right: 125px;
+}
+
+.form-input:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #2563eb;
+  background-color: #454545;
+}
+
+.form-input::placeholder {
+  color: #808080;
+}
+
+.form-select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23909090' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 30px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.card-icons {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.card-icon {
+  width: 32px;
+  height: 20px;
+  border-radius: 3px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+}
+
+.mastercard {
+  background-color: #eb001b;
+}
+
+.visa {
+  background-color: #1434cb;
+}
+
+.amex {
+  background-color: #006fcf;
+}
+
+.card-logos {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  display: flex;
+  gap: 4px;
+}
+
+.card-logo {
+  height: 18px;
+  width: auto;
+  max-width: 35px;
+  pointer-events: none;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.checkbox-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-checkbox {
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  cursor: pointer;
+  accent-color: #2563eb;
+  flex-shrink: 0;
+}
+
+.checkbox-label {
+  font-size: 13px;
+  color: #c0c0c0;
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+.checkbox-label.terms-label {
+  font-size: 13px;
+  color: #c0c0c0;
+  line-height: 1.6;
+}
+
+.form-description {
+  font-size: 12px;
+  color: #808080;
+  margin-bottom: 12px;
+}
+
+.subscribe-button {
+  width: 100%;
+  padding: 14px;
+  background-color: #6b7280;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: inherit;
+}
+
+.subscribe-button:hover {
+  background-color: #5a6470;
+}
+
+.subscribe-button:active {
+  background-color: #4b5563;
+}
