@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Profile — Care At Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="profiles.css">
+  <link rel="shortcut icon" href="../image/favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+<!-- ══════════════ HEADER (unchanged) ══════════════ -->
+  <header id="logo">
+    <div class="nav-bar" id="online doctor">
+      <nav>
+        <div class="logo">
+          <a href="#logo"><p><span>care at home</span></p></a>
+          <div class="lang-switch">
+            <button id="lang-toggle">ar</button>
+          </div>
+        </div>
+        <ul class="sidebar">
+          <li onclick="hidesidebar()"><a href="#"><span class="material-symbols-outlined">close</span></a></li>
+          <li><a href="../index.html#online doctor">online doctor</a></li>
+          <li><a href="../index.html#how care at home works">how care at home works</a></li>
+          <li><a href="../index.html#diagnosis">diagnosis</a></li>
+          <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+          <li><a class="a4" href="../our providers/our providers.html">our providers</a></li>
+          <div class="botn">
+            <a href="./Get-Started/get-started.html" target="_blank">get started</a>
+          </div>
+        </ul>
+        <ul>
+          <li class="hide"><a href="../index.html#online doctor">online doctor</a></li>
+          <li class="hide"><a href="../index.html#how care at home works">how care at home works</a></li>
+          <li class="hide"><a href="../index.html#diagnosis">diagnosis</a></li>
+          <li class="hide"><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+          <li class="hide"><a class="a4" href="../our providers/our providers.html">our providers</a></li>
+          <div class="botn">
+            <a class="hide" href="./Get-Started/get-started.html" target="_blank">get started</a>
+          </div>
+          <li class="span" onclick="showsidebar()"><a href="#"><span class="material-symbols-outlined">menu</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="hero-badge"><i class="fa-solid fa-circle-user"></i> My Account</div>
+  <h1>Profile Settings</h1>
+  <p>Manage your personal information and account preferences</p>
+</div>
+
+<!-- WRAPPER -->
+<div class="profile-wrapper">
+
+  <!-- STATS -->
+  <div class="stats-row reveal">
+    <div class="stat-card">
+      <div class="stat-icon si-blue"><i class="fa-solid fa-calendar-check"></i></div>
+      <div class="stat-num">12</div>
+      <div class="stat-label">Appointments</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon si-amber"><i class="fa-solid fa-star"></i></div>
+      <div class="stat-num">4.9</div>
+      <div class="stat-label">Rating</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon si-green"><i class="fa-solid fa-heart-pulse"></i></div>
+      <div class="stat-num">Active</div>
+      <div class="stat-label">Health Status</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon si-rose"><i class="fa-solid fa-shield-halved"></i></div>
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Profile Complete</div>
+    </div>
+  </div>
+
+  <!-- AVATAR CARD -->
+  <div class="avatar-card reveal">
+    <div class="avatar-wrap">
+      <div class="avatar-ring">
+        <div class="avatar-inner" id="avatarInner">
+          <i class="fa-solid fa-user avatar-placeholder"></i>
+        </div>
+      </div>
+      <label class="avatar-upload-btn" for="profileImageInput" title="Change photo">
+        <i class="fa-solid fa-camera"></i>
+      </label>
+      <input type="file" id="profileImageInput" accept="image/*"/>
+    </div>
+
+    <div class="avatar-info">
+      <h2 id="displayName">Your Name</h2>
+      <div class="role-badge"><i class="fa-solid fa-user-tag"></i> <span id="displayRole">Member</span></div>
+      <div class="join-date"><i class="fa-regular fa-clock"></i> Member since March 2026</div>
+    </div>
+
+    <div class="avatar-actions">
+      <button id="editBtn"><i class="fa-solid fa-pen"></i> Edit Profile</button>
+      <button id="saveBtn"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+      <button id="cancelBtn"><i class="fa-solid fa-xmark"></i> Cancel</button>
+    </div>
+  </div>
+
+  <!-- FORM GRID -->
+  <div class="form-grid">
+
+    <!-- Personal -->
+    <div class="form-card reveal">
+      <div class="card-header">
+        <div class="card-icon ci-blue"><i class="fa-solid fa-id-card"></i></div>
+        <div><h3>Personal Information</h3><p>Your basic profile details</p></div>
+      </div>
+      <div class="card-body">
+        <div class="field">
+          <label><i class="fa-solid fa-user"></i> First Name</label>
+          <input type="text" id="firstName" placeholder="Enter first name" disabled/>
+        </div>
+        <div class="field">
+          <label><i class="fa-solid fa-user"></i> Last Name</label>
+          <input type="text" id="lastName" placeholder="Enter last name" disabled/>
+        </div>
+        <div class="field">
+          <label><i class="fa-solid fa-cake-candles"></i> Age</label>
+          <input type="number" id="age" placeholder="Your age" min="1" max="120" disabled/>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="form-card reveal">
+      <div class="card-header">
+        <div class="card-icon ci-amber"><i class="fa-solid fa-envelope"></i></div>
+        <div><h3>Contact Details</h3><p>How we reach you</p></div>
+      </div>
+      <div class="card-body">
+        <div class="field">
+          <label><i class="fa-solid fa-envelope"></i> Email Address</label>
+          <input type="email" id="email" placeholder="your@email.com" disabled/>
+        </div>
+        <div class="field">
+          <label><i class="fa-solid fa-location-dot"></i> Address</label>
+          <input type="text" id="address" placeholder="Your address" disabled/>
+        </div>
+        <div class="field">
+          <label><i class="fa-solid fa-map-pin"></i> City / Location</label>
+          <input type="text" id="location" placeholder="City, Country" disabled/>
+        </div>
+      </div>
+    </div>
+
+    <!-- Role -->
+    <div class="form-card reveal">
+      <div class="card-header">
+        <div class="card-icon ci-green"><i class="fa-solid fa-briefcase-medical"></i></div>
+        <div><h3>Account Type</h3><p>Your registration role</p></div>
+      </div>
+      <div class="card-body">
+        <div class="field">
+          <label><i class="fa-solid fa-user-tag"></i> Registration Type</label>
+          <select id="role" disabled>
+            <option value="">Select role...</option>
+            <option value="sick">Patient</option>
+            <option value="doctors">Doctor</option>
+            <option value="nursing">Nurse</option>
+          </select>
+        </div>
+        <div class="field">
+          <label><i class="fa-solid fa-notes-medical"></i> Medical Notes</label>
+          <input type="text" id="notes" placeholder="Optional notes..." disabled/>
+        </div>
+      </div>
+    </div>
+
+    <!-- Security -->
+    <div class="form-card reveal">
+      <div class="card-header">
+        <div class="card-icon ci-rose"><i class="fa-solid fa-lock"></i></div>
+        <div><h3>Security</h3><p>Update your password</p></div>
+      </div>
+      <div class="card-body">
+        <div class="field">
+          <label><i class="fa-solid fa-lock"></i> Current Password</label>
+          <div class="input-wrap">
+            <input type="password" id="currentPassword" placeholder="••••••••" disabled/>
+            <button class="eye-btn" type="button" data-target="currentPassword"><i class="fa-solid fa-eye"></i></button>
+          </div>
+        </div>
+        <div class="field">
+          <label><i class="fa-solid fa-key"></i> New Password</label>
+          <div class="input-wrap">
+            <input type="password" id="newPassword" placeholder="••••••••" disabled/>
+            <button class="eye-btn" type="button" data-target="newPassword"><i class="fa-solid fa-eye"></i></button>
+          </div>
+          <div class="strength-wrap">
+            <div class="s-bar" id="b1"></div>
+            <div class="s-bar" id="b2"></div>
+            <div class="s-bar" id="b3"></div>
+            <div class="s-bar" id="b4"></div>
+          </div>
+          <div class="strength-label" id="sLabel"></div>
+        </div>
+        <div class="field">
+          <label><i class="fa-solid fa-shield-halved"></i> Confirm Password</label>
+          <div class="input-wrap">
+            <input type="password" id="confirmPassword" placeholder="••••••••" disabled/>
+            <button class="eye-btn" type="button" data-target="confirmPassword"><i class="fa-solid fa-eye"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"><i class="fa-solid fa-circle-check"></i><span id="toastMsg"></span></div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="meds-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h3>Care At Home</h3>
+      <p class="footer-support">Customer Support</p>
+      <p class="footer-support-text">Support Is Open 24/7 In The Care At Home</p>
+      <p class="footer-address-title">Address</p>
+      <p class="footer-address">Egypt, Tanta</p>
+      <div class="footer-social">
+        <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="../Care-Bot/bot.html">bot cara at home</a></li>
+        <li><a href="../healthdashboard/health-dashboard.html">healthdashboard</a></li>
+        <li><a href="../patient services/patient.html">patien services</a></li>
+        <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+        <li><a href="../Medication/Medication.html">medication</a></li>
+        <li><a href="../Medical diagnosis/Medical diagnosis.html">Diagnosis</a></li>
+        <li><a href="../Emergency/emergency.html">emergency</a></li>
+        <li><a href="../nursing/nursing.html">nursing</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="../How It Work/how it work.html">How It Works</a></li>
+        <li><a href="../Subscriptions/">Pricing</a></li>
+        <li><a href="#">Promo Codes</a></li>
+        <li><a href="#">Employers</a></li>
+        <li><a href="#">Brokers</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="../about us/about.html">About Us</a></li>
+        <li><a href="../help us/help.html">Help Center</a></li>
+        <li><a href="../our providers/our providers.html">Our Providers</a></li>
+        <li><a href="../pharmacy/contactus/contact.html">Contact Us</a></li>
+        <li><a href="#">Newsroom</a></li>
+        <li><a href="#">Sitemap</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Terms Of Use</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Refund/Cancellation Policy</a></li>
+        <li><a href="#">Notice Of Privacy Practices</a></li>
+        <li><a href="#">Consent To Virtual Visits</a></li>
+        <li><a href="#">Content Creation Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-partners">
+    <span class="partner-logo">aetna</span>
+    <span class="partner-logo">Anthem</span>
+    <span class="partner-logo">Humana</span>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Care At Home, Inc. All Rights Reserved.</p>
+  </div>
+</footer>
+ <!-- end footer -->
+<script src="profiles.js"></script>
+</body>
+</html>

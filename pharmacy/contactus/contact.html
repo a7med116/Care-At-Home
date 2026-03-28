@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="contact.css" />
+    <link rel="shortcut icon" href="../image/favicon.ico" type="image/x-icon" />
+    <title>Contact To Care At Home</title>
+  </head>
+  <body>
+    <!-- ══ TOAST ═══════════════════════════════════════════════ -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ══ HEADER (unchanged) ══════════════════════════════════ -->
+    <header id="logo">
+      <div class="nav-bar" id="online doctor">
+        <nav>
+          <div class="logo">
+            <a href="#logo"
+              ><p><span>care at home</span></p></a
+            >
+            <div class="lang-switch"><button id="lang-toggle">ar</button></div>
+          </div>
+          <ul class="sidebar">
+            <li onclick="hidesidebar()">
+              <a href="#"
+                ><span class="material-symbols-outlined">close</span></a
+              >
+            </li>
+            <li><a href="../index.html#online doctor">online doctor</a></li>
+            <li>
+              <a href="../index.html#how care at home works"
+                >how care at home works</a
+              >
+            </li>
+            <li><a href="../index.html#diagnosis">diagnosis</a></li>
+            <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+            <li>
+              <a class="a4" href="../our providers/our providers.html"
+                >our providers</a
+              >
+            </li>
+            <div class="botn">
+              <a href="./Get-Started/get-started.html" target="_blank"
+                >get started</a
+              >
+            </div>
+          </ul>
+          <ul>
+            <li class="hide">
+              <a href="../index.html#online doctor">online doctor</a>
+            </li>
+            <li class="hide">
+              <a href="../index.html#how care at home works"
+                >how care at home works</a
+              >
+            </li>
+            <li class="hide">
+              <a href="../index.html#diagnosis">diagnosis</a>
+            </li>
+            <li class="hide">
+              <a href="../index.html#Telehealth Services">Telehealth Services</a>
+            </li>
+            <li class="hide">
+              <a class="a4" href="../our providers/our providers.html"
+                >our providers</a
+              >
+            </li>
+            <div class="botn">
+              <a
+                class="hide"
+                href="./Get-Started/get-started.html"
+                target="_blank"
+                >get started</a
+              >
+            </div>
+            <li class="span" onclick="showsidebar()">
+              <a href="#"
+                ><span class="material-symbols-outlined">menu</span></a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ══ HERO STRIP ════════════════════════════════════════ -->
+    <section>
+      <div class="page-hero">
+        <div class="ph-badge">
+          <i class="fa-solid fa-headset"></i> We're Here For You
+        </div>
+        <h1>Have Inquiries? Reach Out to Us!</h1>
+        <p>
+          We're here to assist you with any questions or concerns. Feel free to
+          reach out anytime — our team responds within 24 hours.
+        </p>
+      </div>
+    </section>
+
+    <!-- ══ CONTACT WRAPPER ════════════════════════════════════ -->
+    <div class="contact-wrapper">
+      <!-- LEFT: Info Card -->
+      <div class="contact-info-card">
+        <div class="ci-label">Contact Information</div>
+        <h2>Let's Start a Conversation</h2>
+        <p>
+          We'd love to hear from you. Send us a message and we'll respond as
+          soon as possible.
+        </p>
+
+        <div class="info-items">
+          <div class="info-item">
+            <div class="ii-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="ii-text">
+              <strong>Our Address</strong>
+              <span>Tanta — El-Bar Street, Gharbia, Egypt</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="ii-icon"><i class="fa-solid fa-phone"></i></div>
+            <div class="ii-text">
+              <strong>Phone Number</strong>
+              <span>+20 12447885544</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="ii-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div class="ii-text">
+              <strong>Email Address</strong>
+              <span>contact@careathome.com</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="ii-icon"><i class="fa-brands fa-whatsapp"></i></div>
+            <div class="ii-text">
+              <strong>WhatsApp</strong>
+              <span>+20 12447885544 — Quick replies</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ci-social-title">Follow Us</div>
+        <div class="ci-social">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+
+        <div class="ci-hours">
+          <h4>
+            <i
+              class="fa-solid fa-clock"
+              style="color: var(--btn); margin-right: 6px"
+            ></i>
+            Working Hours
+          </h4>
+          <div class="ci-hours-row">
+            <span>Sunday – Thursday</span
+            ><strong
+              >8:00 AM – 10:00 PM <span class="badge-open">Open</span></strong
+            >
+          </div>
+          <div class="ci-hours-row">
+            <span>Friday</span><strong>2:00 PM – 10:00 PM</strong>
+          </div>
+          <div class="ci-hours-row">
+            <span>Saturday</span><strong>9:00 AM – 8:00 PM</strong>
+          </div>
+          <div class="ci-hours-row">
+            <span>Emergency Line</span><strong>24/7 Available</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Form Card -->
+      <div class="contact-form-card">
+        <div class="form-header">
+          <h3>Send Us a Message</h3>
+          <p>
+            Fill in the form below and our team will get back to you within 24
+            hours.
+          </p>
+        </div>
+
+        <div class="form-grid">
+          <!-- Full Name -->
+          <div class="form-group">
+            <label for="name"
+              ><i class="fa-solid fa-user"></i> Full Name *</label
+            >
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your full name"
+              required
+            />
+          </div>
+
+          <!-- Phone -->
+          <div class="form-group">
+            <label for="phone"><i class="fa-solid fa-phone"></i> Phone</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="+20 1XX XXX XXXX"
+            />
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email"
+              ><i class="fa-solid fa-envelope"></i> E-mail</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="you@example.com"
+            />
+          </div>
+
+          <!-- Topic -->
+          <div class="form-group">
+            <label for="topic"><i class="fa-solid fa-tag"></i> Topic</label>
+            <select id="topic" name="topic">
+              <option value="" disabled selected>Select a topic</option>
+              <option>General Inquiry</option>
+              <option>Medical Consultation</option>
+              <option>Pharmacy Order</option>
+              <option>Appointment Booking</option>
+              <option>Technical Support</option>
+              <option>Billing & Payments</option>
+              <option>Feedback / Complaint</option>
+              <option>Partnership</option>
+            </select>
+          </div>
+
+          <!-- Message -->
+          <div class="form-group full">
+            <label for="message"
+              ><i class="fa-solid fa-message"></i> Message *</label
+            >
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Write your message here..."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Checkbox -->
+        <div class="check-group">
+          <input type="checkbox" id="check" name="check" required />
+          <label for="check"
+            >I agree that my submitted data is being collected and stored. View
+            our <a href="#">Privacy Policy</a>.</label
+          >
+        </div>
+
+        <!-- Submit -->
+        <button class="btn-send" onclick="sendMessage()">
+          <i class="fa-solid fa-paper-plane"></i> Send Message
+        </button>
+
+        <p class="form-note">
+          <i class="fa-solid fa-circle-check"></i>
+          We are following up on your complaint — Care At Home
+        </p>
+      </div>
+    </div>
+
+    <!-- ══ FAQ SECTION ════════════════════════════════════════ -->
+    <div class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <p>Quick answers to the most common questions we receive.</p>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How quickly will I receive a response?
+          <i class="fa-solid fa-plus"></i>
+        </div>
+        <div class="faq-a">
+          Our support team typically responds within 2–4 hours during working
+          hours. For urgent medical queries, our emergency line is available
+          24/7.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Can I book a medical consultation through this form?
+          <i class="fa-solid fa-plus"></i>
+        </div>
+        <div class="faq-a">
+          Yes! Select "Appointment Booking" from the topic dropdown and describe
+          your preferred time. Our coordinators will confirm your appointment
+          within the same day.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Is my personal information kept confidential?
+          <i class="fa-solid fa-plus"></i>
+        </div>
+        <div class="faq-a">
+          Absolutely. All information submitted through this form is encrypted
+          and stored securely. We never share your data with third parties.
+          Please review our Privacy Policy for full details.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Do you offer home visit services? <i class="fa-solid fa-plus"></i>
+        </div>
+        <div class="faq-a">
+          Yes, Care At Home provides professional home visit services across
+          Tanta and nearby areas. Select "Medical Consultation" and mention
+          "home visit" in your message.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How can I track my pharmacy order? <i class="fa-solid fa-plus"></i>
+        </div>
+        <div class="faq-a">
+          After placing an order, you'll receive an SMS confirmation with a
+          tracking link. You can also contact us via WhatsApp at +20 12447885544
+          for real-time updates.
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MAP STRIP ═════════════════════════════════════════ -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <div class="map-strip">
+      <h3>
+        <i
+          class="fa-solid fa-location-dot"
+          style="color: var(--btn); margin-right: 6px"
+        ></i>
+        Find Us On The Map
+      </h3>
+      <div
+        id="map"
+        style="
+          height: 340px;
+          border-radius: 24px;
+          border: 2px solid rgba(106, 81, 255, 0.1);
+          box-shadow: 0 8px 30px rgba(106, 81, 255, 0.14);
+          overflow: hidden;
+        "
+      ></div>
+      <div class="map-info-row">
+        <span
+          ><i class="fa-solid fa-location-dot"></i> Tanta, El-Bar Street,
+          Gharbia, Egypt</span
+        >
+        <a
+          href="https://www.openstreetmap.org/?mlat=30.7865&mlon=31.0004#map=15/30.7865/31.0004"
+          target="_blank"
+          class="map-directions-btn"
+          ><i class="fa-solid fa-diamond-turn-right"></i> Get Directions</a
+        >
+      </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+<footer class="meds-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h3>Care At Home</h3>
+      <p class="footer-support">Customer Support</p>
+      <p class="footer-support-text">Support Is Open 24/7 In The Care At Home</p>
+      <p class="footer-address-title">Address</p>
+      <p class="footer-address">Egypt, Tanta</p>
+      <div class="footer-social">
+        <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="../Care-Bot/bot.html">bot cara at home</a></li>
+        <li><a href="../healthdashboard/health-dashboard.html">healthdashboard</a></li>
+        <li><a href="../patient services/patient.html">patien services</a></li>
+        <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+        <li><a href="../Medication/Medication.html">medication</a></li>
+        <li><a href="../Medical diagnosis/Medical diagnosis.html">Diagnosis</a></li>
+        <li><a href="../Emergency/emergency.html">emergency</a></li>
+        <li><a href="../nursing/nursing.html">nursing</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="../How It Work/how it work.html">How It Works</a></li>
+        <li><a href="../Subscriptions/">Pricing</a></li>
+        <li><a href="#">Promo Codes</a></li>
+        <li><a href="#">Employers</a></li>
+        <li><a href="#">Brokers</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="../about us/about.html">About Us</a></li>
+        <li><a href="../help us/help.html">Help Center</a></li>
+        <li><a href="../our providers/our providers.html">Our Providers</a></li>
+        <li><a href="../pharmacy/contactus/contact.html">Contact Us</a></li>
+        <li><a href="#">Newsroom</a></li>
+        <li><a href="#">Sitemap</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Terms Of Use</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Refund/Cancellation Policy</a></li>
+        <li><a href="#">Notice Of Privacy Practices</a></li>
+        <li><a href="#">Consent To Virtual Visits</a></li>
+        <li><a href="#">Content Creation Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-partners">
+    <span class="partner-logo">aetna</span>
+    <span class="partner-logo">Anthem</span>
+    <span class="partner-logo">Humana</span>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Care At Home, Inc. All Rights Reserved.</p>
+  </div>
+</footer>
+ <!-- end footer -->
+
+    <div id="google_translate_element" style="display: none"></div>
+    <script src="contact.js"></script>
+  </body>
+</html>

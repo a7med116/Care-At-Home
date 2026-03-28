@@ -1,0 +1,1586 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="pharmacy.css" />
+    <link rel="shortcut icon" href="./image/favicon.ico" type="image/x-icon" />
+    <title>Pharmacy | Care At Home</title>
+  </head>
+  <body>
+    <!-- ══ CART DRAWER ══════════════════════════════════════════ -->
+    <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+    <div class="cart-drawer" id="cartDrawer">
+      <div class="cart-header">
+        <h3>
+          <i class="fa-solid fa-cart-shopping"></i> Your Cart
+          <span id="cartCountLabel">0 items</span>
+        </h3>
+        <button class="cart-close" onclick="closeCart()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="cart-items" id="cartItems">
+        <div class="cart-empty" id="cartEmpty">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <p>Your cart is empty</p>
+          <span>Add some products to get started!</span>
+        </div>
+      </div>
+      <div class="cart-footer" id="cartFooter" style="display: none">
+        <div class="cart-total-row">
+          <span>Subtotal</span><strong id="cartSubtotal">$0.00</strong>
+        </div>
+        <div class="cart-total-row">
+          <span>Shipping</span><strong class="free-ship">FREE 🚚</strong>
+        </div>
+        <div class="cart-total-row total-final">
+          <span>Total</span><strong id="cartTotal">$0.00</strong>
+        </div>
+        <button class="btn-checkout" onclick="checkout()">
+          <i class="fa-solid fa-lock"></i> Proceed to Checkout
+        </button>
+        <button class="btn-clear" onclick="clearCart()">
+          <i class="fa-solid fa-trash"></i> Clear Cart
+        </button>
+      </div>
+    </div>
+
+    <!-- ══ CHECKOUT MODAL ══════════════════════════════════════ -->
+    <div class="modal-overlay" id="checkoutModal">
+      <div class="checkout-modal">
+        <div class="modal-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+        <h2>Complete Your Order</h2>
+        <p>Enter your details and we'll deliver to your door</p>
+        <div class="modal-form">
+          <div class="mf-row">
+            <input
+              type="text"
+              id="orderName"
+              placeholder="Full Name"
+              required
+            />
+            <input
+              type="tel"
+              id="orderPhone"
+              placeholder="Phone Number"
+              required
+            />
+          </div>
+          <input
+            type="text"
+            id="orderAddress"
+            placeholder="Delivery Address"
+            required
+          />
+          <select id="orderPayment">
+            <option value="">Select Payment Method</option>
+            <option>Cash On Delivery</option>
+            <option>Visa / Mastercard</option>
+            <option>Vodafone Cash</option>
+            <option>Fawry</option>
+            <option>InstaPay</option>
+          </select>
+        </div>
+        <div class="modal-order-summary" id="modalSummary"></div>
+        <button class="btn-confirm" onclick="confirmOrder()">
+          <i class="fa-solid fa-check"></i> Confirm Order
+        </button>
+        <button class="btn-modal-cancel" onclick="closeCheckout()">
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <!-- ══ SUCCESS MODAL ═══════════════════════════════════════ -->
+    <div class="modal-overlay" id="successModal">
+      <div class="success-modal">
+        <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+        <h2>Order Placed! 🎉</h2>
+        <p id="successMsg">
+          Your order has been confirmed. Our pharmacist will contact you
+          shortly.
+        </p>
+        <button class="btn-confirm" onclick="closeSuccess()">
+          Continue Shopping
+        </button>
+      </div>
+    </div>
+
+    <!-- ══ QUICK VIEW MODAL ════════════════════════════════════ -->
+    <div class="modal-overlay" id="quickViewModal">
+      <div class="qv-modal">
+        <button class="qv-close" onclick="closeQV()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="qv-body">
+          <div class="qv-img"><img id="qvImg" src="" alt="" /></div>
+          <div class="qv-info">
+            <div class="qv-badge" id="qvBadge"></div>
+            <h2 id="qvName"></h2>
+            <p id="qvDesc"></p>
+            <div class="qv-price" id="qvPrice"></div>
+            <div class="qv-qty">
+              <span>Quantity:</span>
+              <button onclick="qvQty(-1)">−</button>
+              <span id="qvQtyVal">1</span>
+              <button onclick="qvQty(1)">+</button>
+            </div>
+            <button class="btn-confirm" id="qvCartBtn">
+              <i class="fa-solid fa-cart-plus"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ TOAST ═══════════════════════════════════════════════ -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ══ HEADER (unchanged) ══════════════════════════════════ -->
+    <header id="logo">
+      <div class="nav-bar" id="online doctor">
+        <nav>
+          <div class="logo">
+            <a href="#logo"
+              ><p><span>care at home</span></p></a
+            >
+            <div class="lang-switch"><button id="lang-toggle">ar</button></div>
+          </div>
+          <ul class="sidebar">
+            <li onclick="hidesidebar()">
+              <a href="#"
+                ><span class="material-symbols-outlined">close</span></a
+              >
+            </li>
+            <li><a href="../index.html#online doctor">online doctor</a></li>
+            <li><a href="../Medication/Medication.html">medication</a></li>
+            <li><a href="../index.html#diagnosis">diagnosis</a></li>
+            <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+            <li>
+              <a class="a4" href="../our providers/our providers.html"
+                >our providers</a
+              >
+            </li>
+            <div class="botn">
+              <a href="./Get-Started/get-started.html" target="_blank"
+                >get started</a
+              >
+            </div>
+          </ul>
+          <ul>
+            <li class="hide">
+              <a href="../index.html#online doctor">online doctor</a>
+            </li>
+            <li class="hide">
+              <a href="../Medication/Medication.html">medication</a>
+            </li>
+            <li class="hide">
+              <a href="../index.html#diagnosis">diagnosis</a>
+            </li>
+            <li class="hide">
+              <a href="../index.html#Telehealth Services">Telehealth Services</a>
+            </li>
+            <li class="hide">
+              <a class="a4" href="../our providers/our providers.html"
+                >our providers</a
+              >
+            </li>
+            <div class="botn">
+              <a
+                class="hide"
+                href="./Get-Started/get-started.html"
+                target="_blank"
+                >get started</a
+              >
+            </div>
+            <li class="cart-nav-item">
+              <button class="cart-nav-btn" onclick="openCart()">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-badge" id="cartBadge">0</span>
+              </button>
+            </li>
+            <li class="span" onclick="showsidebar()">
+              <a href="#"
+                ><span class="material-symbols-outlined">menu</span></a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ══ FLASH SALE BANNER ═══════════════════════════════════ -->
+    <div class="flash-banner">
+      <div class="flash-inner">
+        <span>🔥</span>
+        <span class="flash-text"
+          >Flash Sale — Up to <strong>40% OFF</strong> on selected medicines
+          today only!</span
+        >
+        <div class="flash-timer">
+          Ends in: <span id="flashH">08</span>h : <span id="flashM">34</span>m :
+          <span id="flashS">12</span>s
+        </div>
+        <span>🔥</span>
+      </div>
+    </div>
+
+    <!-- ══ HERO ════════════════════════════════════════════════ -->
+    <section>
+      <div class="pharmacy">
+        <div class="title">
+          <div class="hero-badge">
+            <i class="fa-solid fa-shield-heart"></i> Trusted Since 2009
+          </div>
+          <h3>
+            care at home Professional Pharmacy :
+            <span>Your healthcare starts here.</span>
+          </h3>
+          <p>
+            Your Care At Home Pharmacies offer comprehensive pharmaceutical care
+            combining safety, speed, and professional expertise. Genuine
+            medications, reliable delivery, and personalized consultations
+            tailored to each patient.
+          </p>
+          <div class="hero-stats">
+            <div class="h-stat">
+              <strong>50K+</strong><span>Happy Customers</span>
+            </div>
+            <div class="h-stat"><strong>10K+</strong><span>Products</span></div>
+            <div class="h-stat"><strong>24/7</strong><span>Delivery</span></div>
+            <div class="h-stat">
+              <strong>15+</strong><span>Years Trust</span>
+            </div>
+          </div>
+          <div class="botns">
+            <a
+              href="./contactus/contact.html"
+              target="_blank"
+              class="btn-hero-primary"
+              ><i class="fa-solid fa-envelope"></i> contact us</a
+            >
+            <button class="btn-hero-secondary" onclick="openCart()">
+              <i class="fa-solid fa-cart-shopping"></i> view cart
+            </button>
+          </div>
+          <div class="icon">
+            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="image">
+          <img src="./image/pharmacy.jpg" alt="pharmacy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ FEATURES BAR ════════════════════════════════════════ -->
+    <article>
+      <div class="art">
+        <div class="artl">
+          <img src="./image/tipper.png" alt="" width="100" />
+          <div class="arti">
+            <h3>free shipping</h3>
+            <p>on all orders over $100</p>
+          </div>
+        </div>
+        <div class="artl">
+          <img src="./image/services.jpg" alt="" width="100" />
+          <div class="arti">
+            <h3>30 days returns</h3>
+            <p>easy product exchange</p>
+          </div>
+        </div>
+        <div class="artl">
+          <img src="./image/safe payment.png" alt="" width="100" />
+          <div class="arti">
+            <h3>secured payment</h3>
+            <p>all payment cards accepted</p>
+          </div>
+        </div>
+        <div class="artl">
+          <img src="./image/geft.jpg" alt="" width="100" />
+          <div class="arti">
+            <h3>special gifts</h3>
+            <p>contact us anytime</p>
+          </div>
+        </div>
+        <div class="artl">
+          <img src="./image/headphone.jpg" alt="" width="100" />
+          <div class="arti">
+            <h3>support 24/7</h3>
+            <p>available at all times</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ══ SEARCH & FILTER BAR ════════════════════════════════ -->
+    <div class="search-filter-bar">
+      <div class="sfb-inner">
+        <div class="sfb-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input
+            type="text"
+            id="productSearch"
+            placeholder="Search products, medicines, brands..."
+            oninput="filterBySearch()"
+          />
+        </div>
+        <div class="sfb-filters" id="filterBtns">
+          <button
+            class="filter-btn active"
+            data-filter="all"
+            onclick="filterProducts('all', this)"
+          >
+            All
+          </button>
+          <button
+            class="filter-btn"
+            data-filter="skincare"
+            onclick="filterProducts('skincare', this)"
+          >
+            Skincare
+          </button>
+          <button
+            class="filter-btn"
+            data-filter="vitamins"
+            onclick="filterProducts('vitamins', this)"
+          >
+            Vitamins
+          </button>
+          <button
+            class="filter-btn"
+            data-filter="baby"
+            onclick="filterProducts('baby', this)"
+          >
+            Baby Care
+          </button>
+          <button
+            class="filter-btn"
+            data-filter="pain"
+            onclick="filterProducts('pain', this)"
+          >
+            Pain Relief
+          </button>
+          <button
+            class="filter-btn"
+            data-filter="digestive"
+            onclick="filterProducts('digestive', this)"
+          >
+            Digestive
+          </button>
+          <button
+            class="filter-btn"
+            data-filter="hair"
+            onclick="filterProducts('hair', this)"
+          >
+            Hair & Beauty
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ CATEGORIES ════════════════════════════════════════ -->
+    <section class="shop">
+      <div class="shopby">
+        <h1>Shop By Category</h1>
+        <p>Care At Home Pharmacy offers all services.</p>
+      </div>
+      <div class="cat-grid">
+        <div class="cat-card" onclick="filterProducts('skincare', null)">
+          <div class="cat-img">
+            <img src="./image/beauty.jpg" alt="skincare" />
+          </div>
+          <span>Skincare</span>
+        </div>
+        <div class="cat-card" onclick="filterProducts('vitamins', null)">
+          <div class="cat-img">
+            <img src="./image/bones.jpg" alt="vitamins" />
+          </div>
+          <span>Vitamins</span>
+        </div>
+        <div class="cat-card" onclick="filterProducts('baby', null)">
+          <div class="cat-img"><img src="./image/chaild.jpg" alt="baby" /></div>
+          <span>Baby Care</span>
+        </div>
+        <div class="cat-card" onclick="filterProducts('pain', null)">
+          <div class="cat-img"><img src="./image/teeth.jpg" alt="pain" /></div>
+          <span>Pain Relief</span>
+        </div>
+        <div class="cat-card" onclick="filterProducts('digestive', null)">
+          <div class="cat-img">
+            <img src="./image/fats.jpg" alt="digestive" />
+          </div>
+          <span>Digestive</span>
+        </div>
+        <div class="cat-card" onclick="filterProducts('hair', null)">
+          <div class="cat-img"><img src="./image/herbal.jpg" alt="hair" /></div>
+          <span>Hair & Beauty</span>
+        </div>
+        <div class="cat-card" onclick="filterProducts('all', null)">
+          <div class="cat-img"><img src="./image/oil.jpg" alt="oils" /></div>
+          <span>Essential Oils</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ OFFERS / PRODUCTS GRID ═════════════════════════════ -->
+    <section class="offers">
+      <div class="section-header">
+        <h1>Privileged Offers</h1>
+        <p>Hand-picked deals updated daily</p>
+      </div>
+      <div class="offer" id="productsGrid">
+        <div
+          class="off"
+          data-cat="skincare"
+          data-name="cetaphil moisturizing cream"
+        >
+          <b>20%</b>
+          <div class="img"><img src="./image/galderma.webp" alt="" /></div>
+          <h3>Cetaphil</h3>
+          <p>Galderma Moisturizing Cream 450 g</p>
+          <div class="sm">
+            <div class="price-wrap">
+              <small class="old-price">13.20$</small><small>10.57$</small>
+            </div>
+            <div class="cart-btns">
+              <a
+                href="#"
+                class="btn-view"
+                onclick="
+                  quickView(
+                    event,
+                    'Cetaphil Cream',
+                    'Galderma Moisturizing Cream 450 g',
+                    '10.57',
+                    './image/galderma.webp',
+                    '20%',
+                  )
+                "
+                ><span class="material-symbols-outlined">visibility</span></a
+              >
+              <a
+                href="#"
+                class="btn-cart"
+                onclick="
+                  addToCart(
+                    event,
+                    'Cetaphil Cream',
+                    '10.57',
+                    './image/galderma.webp',
+                    'skincare',
+                  )
+                "
+                ><span class="material-symbols-outlined"
+                  >add_shopping_cart</span
+                ></a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="off" data-cat="skincare" data-name="isdin spf50">
+          <b>15%</b>
+          <div class="img"><img src="./image/isdin.webp" alt="" /></div>
+          <h3>Isdin</h3>
+          <p>Fotoprotector Fusion Water SPF50 50 ml</p>
+          <div class="sm">
+            <div class="price-wrap">
+              <small class="old-price">12.44$</small><small>10.57$</small>
+            </div>
+            <div class="cart-btns">
+              <a
+                href="#"
+                class="btn-view"
+                onclick="
+                  quickView(
+                    event,
+                    'Isdin SPF50',
+                    'Fotoprotector Fusion Water SPF50 50 ml',
+                    '10.57',
+                    './image/isdin.webp',
+                    '15%',
+                  )
+                "
+                ><span class="material-symbols-outlined">visibility</span></a
+              >
+              <a
+                href="#"
+                class="btn-cart"
+                onclick="
+                  addToCart(
+                    event,
+                    'Isdin SPF50',
+                    '10.57',
+                    './image/isdin.webp',
+                    'skincare',
+                  )
+                "
+                ><span class="material-symbols-outlined"
+                  >add_shopping_cart</span
+                ></a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="off" data-cat="hair" data-name="le petit lip care">
+          <b>20%</b>
+          <div class="img"><img src="./image/le-petit.webp" alt="" /></div>
+          <h3>Le Petit Marseillais</h3>
+          <p>Dry Lips Nutrition Lip Care 2 x 4.9g</p>
+          <div class="sm">
+            <div class="price-wrap">
+              <small class="old-price">8.20$</small><small>6.57$</small>
+            </div>
+            <div class="cart-btns">
+              <a
+                href="#"
+                class="btn-view"
+                onclick="
+                  quickView(
+                    event,
+                    'Le Petit Lip Care',
+                    'Dry Lips Nutrition Lip Care 2 x 4.9g',
+                    '6.57',
+                    './image/le-petit.webp',
+                    '20%',
+                  )
+                "
+                ><span class="material-symbols-outlined">visibility</span></a
+              >
+              <a
+                href="#"
+                class="btn-cart"
+                onclick="
+                  addToCart(
+                    event,
+                    'Le Petit Lip Care',
+                    '6.57',
+                    './image/le-petit.webp',
+                    'hair',
+                  )
+                "
+                ><span class="material-symbols-outlined"
+                  >add_shopping_cart</span
+                ></a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="off" data-cat="baby" data-name="mustela baby lotion">
+          <b>25%</b>
+          <div class="img"><img src="./image/mustela.webp" alt="" /></div>
+          <h3>Mustela</h3>
+          <p>Hydra Baby Avocado Body Lotion 500ml</p>
+          <div class="sm">
+            <div class="price-wrap">
+              <small class="old-price">14.09$</small><small>10.57$</small>
+            </div>
+            <div class="cart-btns">
+              <a
+                href="#"
+                class="btn-view"
+                onclick="
+                  quickView(
+                    event,
+                    'Mustela Baby Lotion',
+                    'Hydra Baby Avocado Body Lotion 500ml',
+                    '10.57',
+                    './image/mustela.webp',
+                    '25%',
+                  )
+                "
+                ><span class="material-symbols-outlined">visibility</span></a
+              >
+              <a
+                href="#"
+                class="btn-cart"
+                onclick="
+                  addToCart(
+                    event,
+                    'Mustela Baby Lotion',
+                    '10.57',
+                    './image/mustela.webp',
+                    'baby',
+                  )
+                "
+                ><span class="material-symbols-outlined"
+                  >add_shopping_cart</span
+                ></a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="off" data-cat="baby" data-name="physiodose serum">
+          <b>10%</b>
+          <div class="img"><img src="./image/physiodose.webp" alt="" /></div>
+          <h3>Physiodose</h3>
+          <p>Sterile Physiological Serum 40 Single 5ml</p>
+          <div class="sm">
+            <div class="price-wrap">
+              <small class="old-price">11.74$</small><small>10.57$</small>
+            </div>
+            <div class="cart-btns">
+              <a
+                href="#"
+                class="btn-view"
+                onclick="
+                  quickView(
+                    event,
+                    'Physiodose Serum',
+                    'Sterile Physiological Serum 40 Single 5ml',
+                    '10.57',
+                    './image/physiodose.webp',
+                    '10%',
+                  )
+                "
+                ><span class="material-symbols-outlined">visibility</span></a
+              >
+              <a
+                href="#"
+                class="btn-cart"
+                onclick="
+                  addToCart(
+                    event,
+                    'Physiodose Serum',
+                    '10.57',
+                    './image/physiodose.webp',
+                    'baby',
+                  )
+                "
+                ><span class="material-symbols-outlined"
+                  >add_shopping_cart</span
+                ></a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="off"
+          data-cat="vitamins"
+          data-name="probiotics digestive balance"
+        >
+          <b>30%</b>
+          <div class="img"><img src="./image/custom.jpg" alt="" /></div>
+          <h3>ProBalance</h3>
+          <p>Digestive Balance Probiotics 30 Capsules</p>
+          <div class="sm">
+            <div class="price-wrap">
+              <small class="old-price">25.71$</small><small>18.00$</small>
+            </div>
+            <div class="cart-btns">
+              <a
+                href="#"
+                class="btn-view"
+                onclick="
+                  quickView(
+                    event,
+                    'ProBalance Probiotics',
+                    'Digestive Balance Probiotics 30 Capsules',
+                    '18.00',
+                    './image/custom.jpg',
+                    '30%',
+                  )
+                "
+                ><span class="material-symbols-outlined">visibility</span></a
+              >
+              <a
+                href="#"
+                class="btn-cart"
+                onclick="
+                  addToCart(
+                    event,
+                    'ProBalance Probiotics',
+                    '18.00',
+                    './image/custom.jpg',
+                    'vitamins',
+                  )
+                "
+                ><span class="material-symbols-outlined"
+                  >add_shopping_cart</span
+                ></a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="off"
+          data-cat="digestive"
+          data-name="digestive enzyme complex"
+        >
+          <b>15%</b>
+          <div class="img"><img src="./image/custom1.jpg" alt="" /></div>
+          <h3>DigestEase</h3>
+          <p>Digestive Enzyme Complex 60 Tablets</p>
+          <div class="sm">
+            <div class="price-wrap">
+              <small class="old-price">17.64$</small><small>15.00$</small>
+            </div>
+            <div class="cart-btns">
+              <a
+                href="#"
+                class="btn-view"
+                onclick="
+                  quickView(
+                    event,
+                    'DigestEase Enzymes',
+                    'Digestive Enzyme Complex 60 Tablets',
+                    '15.00',
+                    './image/custom1.jpg',
+                    '15%',
+                  )
+                "
+                ><span class="material-symbols-outlined">visibility</span></a
+              >
+              <a
+                href="#"
+                class="btn-cart"
+                onclick="
+                  addToCart(
+                    event,
+                    'DigestEase Enzymes',
+                    '15.00',
+                    './image/custom1.jpg',
+                    'digestive',
+                  )
+                "
+                ><span class="material-symbols-outlined"
+                  >add_shopping_cart</span
+                ></a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="off" data-cat="hair" data-name="biotin hair skin gummies">
+          <b>20%</b>
+          <div class="img"><img src="./image/custom2.jpg" alt="" /></div>
+          <h3>BioGlow</h3>
+          <p>Biotin Hair & Skin Gummies 60 Count</p>
+          <div class="sm">
+            <div class="price-wrap">
+              <small class="old-price">23.75$</small><small>19.00$</small>
+            </div>
+            <div class="cart-btns">
+              <a
+                href="#"
+                class="btn-view"
+                onclick="
+                  quickView(
+                    event,
+                    'BioGlow Biotin',
+                    'Biotin Hair & Skin Gummies 60 Count',
+                    '19.00',
+                    './image/custom2.jpg',
+                    '20%',
+                  )
+                "
+                ><span class="material-symbols-outlined">visibility</span></a
+              >
+              <a
+                href="#"
+                class="btn-cart"
+                onclick="
+                  addToCart(
+                    event,
+                    'BioGlow Biotin',
+                    '19.00',
+                    './image/custom2.jpg',
+                    'hair',
+                  )
+                "
+                ><span class="material-symbols-outlined"
+                  >add_shopping_cart</span
+                ></a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="off" data-cat="pain" data-name="pain relief patch">
+          <b>35%</b>
+          <div class="img"><img src="./image/custom3.jpg" alt="" /></div>
+          <h3>PainAway</h3>
+          <p>Advanced Pain Relief Patch — 5 Pack</p>
+          <div class="sm">
+            <div class="price-wrap">
+              <small class="old-price">23.07$</small><small>15.00$</small>
+            </div>
+            <div class="cart-btns">
+              <a
+                href="#"
+                class="btn-view"
+                onclick="
+                  quickView(
+                    event,
+                    'PainAway Patch',
+                    'Advanced Pain Relief Patch 5 Pack',
+                    '15.00',
+                    './image/custom3.jpg',
+                    '35%',
+                  )
+                "
+                ><span class="material-symbols-outlined">visibility</span></a
+              >
+              <a
+                href="#"
+                class="btn-cart"
+                onclick="
+                  addToCart(
+                    event,
+                    'PainAway Patch',
+                    '15.00',
+                    './image/custom3.jpg',
+                    'pain',
+                  )
+                "
+                ><span class="material-symbols-outlined"
+                  >add_shopping_cart</span
+                ></a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="off" data-cat="vitamins" data-name="vitamin c effervescent">
+          <b>20%</b>
+          <div class="img"><img src="./image/custom4.webp" alt="" /></div>
+          <h3>VitaBoost</h3>
+          <p>Vitamin C 1000mg Effervescent Tablets 20s</p>
+          <div class="sm">
+            <div class="price-wrap">
+              <small class="old-price">9.99$</small><small>7.99$</small>
+            </div>
+            <div class="cart-btns">
+              <a
+                href="#"
+                class="btn-view"
+                onclick="
+                  quickView(
+                    event,
+                    'VitaBoost Vitamin C',
+                    'Vitamin C 1000mg Effervescent Tablets 20s',
+                    '7.99',
+                    './image/custom4.webp',
+                    '20%',
+                  )
+                "
+                ><span class="material-symbols-outlined">visibility</span></a
+              >
+              <a
+                href="#"
+                class="btn-cart"
+                onclick="
+                  addToCart(
+                    event,
+                    'VitaBoost Vitamin C',
+                    '7.99',
+                    './image/custom4.webp',
+                    'vitamins',
+                  )
+                "
+                ><span class="material-symbols-outlined"
+                  >add_shopping_cart</span
+                ></a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="off"
+          data-cat="vitamins"
+          data-name="omega 3 fish oil softgels"
+        >
+          <b>40%</b>
+          <div class="img"><img src="./image/custom5.webp" alt="" /></div>
+          <h3>OmegaPure</h3>
+          <p>Omega-3 Fish Oil 1000mg 90 Softgels</p>
+          <div class="sm">
+            <div class="price-wrap">
+              <small class="old-price">22.49$</small><small>13.49$</small>
+            </div>
+            <div class="cart-btns">
+              <a
+                href="#"
+                class="btn-view"
+                onclick="
+                  quickView(
+                    event,
+                    'OmegaPure Fish Oil',
+                    'Omega-3 Fish Oil 1000mg 90 Softgels',
+                    '13.49',
+                    './image/custom5.webp',
+                    '40%',
+                  )
+                "
+                ><span class="material-symbols-outlined">visibility</span></a
+              >
+              <a
+                href="#"
+                class="btn-cart"
+                onclick="
+                  addToCart(
+                    event,
+                    'OmegaPure Fish Oil',
+                    '13.49',
+                    './image/custom5.webp',
+                    'vitamins',
+                  )
+                "
+                ><span class="material-symbols-outlined"
+                  >add_shopping_cart</span
+                ></a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="off"
+          data-cat="pain"
+          data-name="magnesium glycinate sleep muscle"
+        >
+          <b>25%</b>
+          <div class="img"><img src="./image/custom6.webp" alt="" /></div>
+          <h3>MagRelax</h3>
+          <p>Magnesium Glycinate 400mg — Sleep & Muscle</p>
+          <div class="sm">
+            <div class="price-wrap">
+              <small class="old-price">18.65$</small><small>13.99$</small>
+            </div>
+            <div class="cart-btns">
+              <a
+                href="#"
+                class="btn-view"
+                onclick="
+                  quickView(
+                    event,
+                    'MagRelax Magnesium',
+                    'Magnesium Glycinate 400mg Sleep & Muscle',
+                    '13.99',
+                    './image/custom6.webp',
+                    '25%',
+                  )
+                "
+                ><span class="material-symbols-outlined">visibility</span></a
+              >
+              <a
+                href="#"
+                class="btn-cart"
+                onclick="
+                  addToCart(
+                    event,
+                    'MagRelax Magnesium',
+                    '13.99',
+                    './image/custom6.webp',
+                    'pain',
+                  )
+                "
+                ><span class="material-symbols-outlined"
+                  >add_shopping_cart</span
+                ></a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="off" data-cat="skincare" data-name="zinc sunscreen spf30">
+          <b>18%</b>
+          <div class="img"><img src="./image/custom7.webp" alt="" /></div>
+          <h3>SunShield</h3>
+          <p>Zinc Oxide Sunscreen SPF30 — 100ml</p>
+          <div class="sm">
+            <div class="price-wrap">
+              <small class="old-price">16.99$</small><small>13.93$</small>
+            </div>
+            <div class="cart-btns">
+              <a
+                href="#"
+                class="btn-view"
+                onclick="
+                  quickView(
+                    event,
+                    'SunShield SPF30',
+                    'Zinc Oxide Sunscreen SPF30 100ml',
+                    '13.93',
+                    './image/custom7.webp',
+                    '18%',
+                  )
+                "
+                ><span class="material-symbols-outlined">visibility</span></a
+              >
+              <a
+                href="#"
+                class="btn-cart"
+                onclick="
+                  addToCart(
+                    event,
+                    'SunShield SPF30',
+                    '13.93',
+                    './image/custom7.webp',
+                    'skincare',
+                  )
+                "
+                ><span class="material-symbols-outlined"
+                  >add_shopping_cart</span
+                ></a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="off"
+          data-cat="digestive"
+          data-name="activated charcoal detox"
+        >
+          <b>22%</b>
+          <div class="img"><img src="./image/custom8.webp" alt="" /></div>
+          <h3>CharcoalDetox</h3>
+          <p>Activated Charcoal 500mg 60 Capsules</p>
+          <div class="sm">
+            <div class="price-wrap">
+              <small class="old-price">11.53$</small><small>8.99$</small>
+            </div>
+            <div class="cart-btns">
+              <a
+                href="#"
+                class="btn-view"
+                onclick="
+                  quickView(
+                    event,
+                    'CharcoalDetox',
+                    'Activated Charcoal 500mg 60 Capsules',
+                    '8.99',
+                    './image/custom8.webp',
+                    '22%',
+                  )
+                "
+                ><span class="material-symbols-outlined">visibility</span></a
+              >
+              <a
+                href="#"
+                class="btn-cart"
+                onclick="
+                  addToCart(
+                    event,
+                    'CharcoalDetox',
+                    '8.99',
+                    './image/custom8.webp',
+                    'digestive',
+                  )
+                "
+                ><span class="material-symbols-outlined"
+                  >add_shopping_cart</span
+                ></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="no-results" id="noResults" style="display: none">
+        <i class="fa-solid fa-search"></i>
+        <p>No products found. Try a different search.</p>
+      </div>
+    </section>
+
+    <!-- ══ PROMO BANNERS ══════════════════════════════════════ -->
+    <div class="promo-banners">
+      <div class="promo-card promo-blue">
+        <div class="promo-text">
+          <span class="promo-tag">Limited Time</span>
+          <h3>Buy 2 Get 1 Free</h3>
+          <p>On all vitamin & supplement products</p>
+          <a href="#productsGrid" class="promo-link"
+            >Shop Now <i class="fa-solid fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="promo-emoji">💊</div>
+      </div>
+      <div class="promo-card promo-amber">
+        <div class="promo-text">
+          <span class="promo-tag">New Arrival</span>
+          <h3>Baby Care Collection</h3>
+          <p>Safe & gentle products for your little ones</p>
+          <a href="#productsGrid" class="promo-link"
+            >Explore <i class="fa-solid fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="promo-emoji">👶</div>
+      </div>
+      <div class="promo-card promo-green">
+        <div class="promo-text">
+          <span class="promo-tag">Free Delivery</span>
+          <h3>Same Day Delivery</h3>
+          <p>Order before 2 PM — get it today</p>
+          <a href="./contactus/contact.html" class="promo-link"
+            >Order Now <i class="fa-solid fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="promo-emoji">🚀</div>
+      </div>
+    </div>
+
+    <!-- ══ DELIVER / BESTSELLERS ═════════════════════════════ -->
+    <section class="deliver">
+      <div class="title">
+        <p>Enhancing lives with care and trust</p>
+        <h2>We deliver wellness and expert support</h2>
+      </div>
+      <div class="delivery">
+        <div class="images">
+          <div class="nova"><img src="./image/custom.jpg" alt="" /></div>
+          <div class="balance">
+            <h3>Digestive balance probiotics</h3>
+            <img src="./image/five_stars.svg" alt="" /><strong
+              >18.00$ – 19.00$</strong
+            >
+            <button
+              class="mini-cart-btn"
+              onclick="
+                addToCart(
+                  event,
+                  'Digestive Probiotics',
+                  '18.00',
+                  './image/custom.jpg',
+                  'vitamins',
+                )
+              "
+            >
+              <i class="fa-solid fa-cart-plus"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+        <div class="images">
+          <div class="nova"><img src="./image/custom1.jpg" alt="" /></div>
+          <div class="balance">
+            <h3>Digestive enzyme complex</h3>
+            <img src="./image/five_stars.svg" alt="" /><strong>15.00$</strong>
+            <button
+              class="mini-cart-btn"
+              onclick="
+                addToCart(
+                  event,
+                  'Digestive Enzymes',
+                  '15.00',
+                  './image/custom1.jpg',
+                  'digestive',
+                )
+              "
+            >
+              <i class="fa-solid fa-cart-plus"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+        <div class="images">
+          <div class="nova"><img src="./image/custom2.jpg" alt="" /></div>
+          <div class="balance">
+            <h3>Build biotin hair & skin gummies</h3>
+            <img src="./image/five_stars.svg" alt="" /><strong
+              >18.00$ – 19.00$</strong
+            >
+            <button
+              class="mini-cart-btn"
+              onclick="
+                addToCart(
+                  event,
+                  'Biotin Gummies',
+                  '18.00',
+                  './image/custom2.jpg',
+                  'hair',
+                )
+              "
+            >
+              <i class="fa-solid fa-cart-plus"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+        <div class="images">
+          <div class="nova"><img src="./image/custom3.jpg" alt="" /></div>
+          <div class="balance">
+            <h3>Pain relief patch</h3>
+            <img src="./image/five_stars.svg" alt="" /><strong>15.00$</strong>
+            <button
+              class="mini-cart-btn"
+              onclick="
+                addToCart(
+                  event,
+                  'Pain Relief Patch',
+                  '15.00',
+                  './image/custom3.jpg',
+                  'pain',
+                )
+              "
+            >
+              <i class="fa-solid fa-cart-plus"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ BRANDS ═════════════════════════════════════════════ -->
+    <div class="brands">
+      <div class="brand">
+        <img src="./image/custom4.webp" alt="brand" /><img
+          src="./image/custom5.webp"
+          alt="brand"
+        />
+        <img src="./image/custom6.webp" alt="brand" /><img
+          src="./image/custom7.webp"
+          alt="brand"
+        />
+        <img src="./image/custom8.webp" alt="brand" /><img
+          src="./image/custom9.webp"
+          alt="brand"
+        />
+      </div>
+    </div>
+
+    <!-- ══ PRESCRIPTION SECTION ══════════════════════════════ -->
+    <div class="rx-section">
+      <div class="rx-inner">
+        <div class="rx-text">
+          <div class="rx-icon">
+            <i class="fa-solid fa-file-prescription"></i>
+          </div>
+          <h2>Have a Prescription?</h2>
+          <p>
+            Upload your prescription and our pharmacist will prepare your order
+            within 30 minutes. Free delivery included.
+          </p>
+          <div class="rx-steps">
+            <div class="rx-step"><span>1</span>Upload Prescription</div>
+            <div class="rx-arrow">→</div>
+            <div class="rx-step"><span>2</span>Pharmacist Reviews</div>
+            <div class="rx-arrow">→</div>
+            <div class="rx-step"><span>3</span>Delivered to Door</div>
+          </div>
+          <button class="btn-rx" onclick="showRxToast()">
+            <i class="fa-solid fa-upload"></i> Upload Prescription
+          </button>
+        </div>
+        <div class="rx-img">
+          <img src="./image/pharmacy.jpg" alt="prescription" />
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MEDICAL ARTICLES ════════════════════════════════════ -->
+    <div class="medical">
+      <h1>We deliver trusted medical solutions daily</h1>
+      <div class="local">
+        <div class="medlocal">
+          <div class="locals">
+            <div class="imges"><img src="./image/custom10.jpg" alt="" /></div>
+            <div class="health">
+              <p>wellness guides</p>
+              <h2>
+                How local drugstores are adapting to the rise in medical
+                cannabis prescriptions
+              </h2>
+              <span>nov 27, 2025 · 2 comments</span>
+            </div>
+          </div>
+          <div class="locals">
+            <div class="imge"><img src="./image/custom11.jpg" alt="" /></div>
+            <div class="health">
+              <p>patient stories</p>
+              <h2>
+                Understanding proper dosage and safety guidelines when using
+                medical cannabis
+              </h2>
+              <span>nov 27, 2025 · no comments</span>
+            </div>
+          </div>
+          <div class="locals">
+            <div class="imges"><img src="./image/custom12.jpg" alt="" /></div>
+            <div class="health">
+              <p>product reviews</p>
+              <h2>
+                Potential risks and benefits of combining medical weed with
+                prescription drugs
+              </h2>
+              <span>nov 27, 2025 · 2 comments</span>
+            </div>
+          </div>
+          <div class="locals">
+            <div class="imge"><img src="./image/custom13.jpg" alt="" /></div>
+            <div class="health">
+              <p>wellness guides</p>
+              <h2>
+                How local drugstores are adapting to the rise in medical
+                cannabis prescriptions
+              </h2>
+              <span>nov 27, 2025 · no comments</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ PHARMACISTS ═════════════════════════════════════════ -->
+    <div class="Pharmacists">
+      <h1 class="class">Our Pharmacists</h1>
+      <div class="pharm">
+        <div class="title">
+          <h1>
+            Empower wellness with care.
+            <span>Delivering trusted health solutions daily</span> to improve
+            <b>patient support</b>
+          </h1>
+        </div>
+        <div class="pragh">
+          <p>
+            Chemist is dedicated to giving clients access to safe, reliable
+            medications and expert care, making health support simple, secure,
+            and personal.
+          </p>
+        </div>
+        <div class="pharmer">
+          <div class="pharmacy">
+            <div class="imagen"><img src="./image/custom14.jpg" alt="" /></div>
+            <h2>dr. mona mohamed</h2>
+            <span>Chief pharmacist</span>
+          </div>
+          <div class="pharmacy">
+            <div class="imagen"><img src="./image/custom15.jpg" alt="" /></div>
+            <h2>hassan elsaid</h2>
+            <span>Cannabis consultant</span>
+          </div>
+          <div class="pharmacy">
+            <div class="imagen"><img src="./image/custom16.jpg" alt="" /></div>
+            <h2>tasneem maher</h2>
+            <span>Operations manager</span>
+          </div>
+          <div class="pharmacy">
+            <div class="imagen"><img src="./image/custom17.jpg" alt="" /></div>
+            <h2>abeer hassan</h2>
+            <span>Patient advocate</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ WHY CHOOSE US ════════════════════════════════════════ -->
+    <main>
+      <h1>Why Choose Care At Home Pharmacy?</h1>
+      <p class="pp">WE HAVE OVER 15 YEARS OF TRUST FROM OUR CUSTOMERS!</p>
+      <div class="care">
+        <div class="photo">
+          <img src="./image/why-choose-us (1).jpg" alt="why choose us" />
+        </div>
+        <div class="home">
+          <p>
+            We guarantee modern and safe medicines with strict quality control,
+            fast home delivery services, as well as individual pharmaceutical
+            consultations managed by an experienced team.
+          </p>
+          <div class="why-points">
+            <div class="why-pt">
+              <i class="fa-solid fa-circle-check"></i> Licensed &
+              Board-Certified Pharmacists
+            </div>
+            <div class="why-pt">
+              <i class="fa-solid fa-circle-check"></i> 100% Genuine Medications
+              Guaranteed
+            </div>
+            <div class="why-pt">
+              <i class="fa-solid fa-circle-check"></i> Same-Day Delivery
+              Available
+            </div>
+            <div class="why-pt">
+              <i class="fa-solid fa-circle-check"></i> Cold Chain for Sensitive
+              Medicines
+            </div>
+            <div class="why-pt">
+              <i class="fa-solid fa-circle-check"></i> Free Pharmacist
+              Consultation 24/7
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ══ NEWSLETTER ════════════════════════════════════════ -->
+    <div class="newsletter">
+      <div class="nl-inner">
+        <div class="nl-text">
+          <h2>💊 Stay Healthy, Stay Informed</h2>
+          <p>
+            Subscribe for exclusive deals, health tips, and early access to new
+            arrivals
+          </p>
+        </div>
+        <div class="nl-form">
+          <input
+            type="email"
+            id="nlEmail"
+            placeholder="Enter your email address..."
+          />
+          <button onclick="subscribeNl()">
+            <i class="fa-solid fa-paper-plane"></i> Subscribe
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ TESTIMONIALS ═════════════════════════════════════════ -->
+    <div class="see">
+      <h2>See why people turn to Care At Home Pharmacy...</h2>
+    </div>
+    <section class="tabeb">
+      <div class="dev">
+        <div class="div">
+          <img src="./image/five_stars.svg" alt="" />
+          <h3>best online doctor</h3>
+          <p>
+            Best online doctors service I've ever used! Ease, speed, price,
+            comfort, value. Dr Berzansky is my go-to!
+          </p>
+          <h5>android user</h5>
+        </div>
+        <div class="div">
+          <img src="./image/five_stars.svg" alt="" />
+          <h3>amazing</h3>
+          <p>
+            Instead of waiting weeks, I waited 15 min to get on a quick video
+            chat. Absolutely incredible service!
+          </p>
+          <h5>ios user</h5>
+        </div>
+        <div class="div">
+          <img src="./image/five_stars.svg" alt="" />
+          <h3>will use again</h3>
+          <p>
+            Very kind and professional, definitely will use again. Quick,
+            convenient, and professional.
+          </p>
+          <h5>android user</h5>
+        </div>
+        <div class="div">
+          <img src="./image/five_stars.svg" alt="" />
+          <h3>quick, convenient...</h3>
+          <p>
+            Quick, convenient, and professional. Avoided an emergency room
+            visit. Very satisfied with my visit.
+          </p>
+          <h5>android user</h5>
+        </div>
+        <div class="div">
+          <img src="./image/five_stars.svg" alt="" />
+          <h3>great.</h3>
+          <p>
+            I was in and out in just a few minutes. It took longer to sign up
+            than it did to be seen! Excellent service.
+          </p>
+          <h5>ios user</h5>
+        </div>
+        <div class="div">
+          <img src="./image/five_stars.svg" alt="" />
+          <h3>fast delivery!</h3>
+          <p>
+            Ordered my prescription at noon and it arrived by 3 PM. Amazing
+            same-day service, will definitely reorder!
+          </p>
+          <h5>android user</h5>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+<footer class="meds-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h3>Care At Home</h3>
+      <p class="footer-support">Customer Support</p>
+      <p class="footer-support-text">Support Is Open 24/7 In The Care At Home</p>
+      <p class="footer-address-title">Address</p>
+      <p class="footer-address">Egypt, Tanta</p>
+      <div class="footer-social">
+        <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="../Care-Bot/bot.html">bot cara at home</a></li>
+        <li><a href="../healthdashboard/health-dashboard.html">healthdashboard</a></li>
+        <li><a href="../patient services/patient.html">patien services</a></li>
+        <li><a href="../index.html#Telehealth Services">Telehealth Services</a></li>
+        <li><a href="../Medication/Medication.html">medication</a></li>
+        <li><a href="../Medical diagnosis/Medical diagnosis.html">Diagnosis</a></li>
+        <li><a href="../Emergency/emergency.html">emergency</a></li>
+        <li><a href="../nursing/nursing.html">nursing</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="../How It Work/how it work.html">How It Works</a></li>
+        <li><a href="../Subscriptions/">Pricing</a></li>
+        <li><a href="#">Promo Codes</a></li>
+        <li><a href="#">Employers</a></li>
+        <li><a href="#">Brokers</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="../about us/about.html">About Us</a></li>
+        <li><a href="../help us/help.html">Help Center</a></li>
+        <li><a href="../our providers/our providers.html">Our Providers</a></li>
+        <li><a href="../pharmacy/contactus/contact.html">Contact Us</a></li>
+        <li><a href="#">Newsroom</a></li>
+        <li><a href="#">Sitemap</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Terms Of Use</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Refund/Cancellation Policy</a></li>
+        <li><a href="#">Notice Of Privacy Practices</a></li>
+        <li><a href="#">Consent To Virtual Visits</a></li>
+        <li><a href="#">Content Creation Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-partners">
+    <span class="partner-logo">aetna</span>
+    <span class="partner-logo">Anthem</span>
+    <span class="partner-logo">Humana</span>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Care At Home, Inc. All Rights Reserved.</p>
+  </div>
+</footer>
+ <!-- end footer -->
+
+    <div id="google_translate_element" style="display: none"></div>
+    <script src="pharmacy.js"></script>
+  </body>
+</html>
